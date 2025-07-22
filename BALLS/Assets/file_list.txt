@@ -1,0 +1,408 @@
+Folder PATH listing for volume 1TB
+Volume serial number is D26C-E662
+D:.
+|   BallScaler.cs
+|   BallScaler.cs.meta
+|   file_list.txt
+|   GadgetData.cs
+|   GadgetData.cs.meta
+|   GadgetFactory.cs
+|   GadgetFactory.cs.meta
+|   GadgetLibrary.cs
+|   GadgetLibrary.cs.meta
+|   GateLogic.cs
+|   GateLogic.cs.meta
+|   IGadgetFactory.cs
+|   IGadgetFactory.cs.meta
+|   ProjectInstaller.cs
+|   ProjectInstaller.cs.meta
+|   ProjectScope.prefab
+|   ProjectScope.prefab.meta
+|   Reflex.meta
+|   Resources.meta
+|   Scenes.meta
+|   Scripts.meta
+|   TextMesh Pro.meta
+|   
++---Reflex
+|   |   AssemblyInfo.cs
+|   |   AssemblyInfo.cs.meta
+|   |   Attributes.meta
+|   |   Caching.meta
+|   |   Components.meta
+|   |   Configuration.meta
+|   |   Core.meta
+|   |   Delegates.meta
+|   |   Diagnosis.meta
+|   |   Editor.meta
+|   |   Enums.meta
+|   |   Exceptions.meta
+|   |   Extensions.meta
+|   |   Generics.meta
+|   |   Injectors.meta
+|   |   Logging.meta
+|   |   package.json
+|   |   package.json.meta
+|   |   Pooling.meta
+|   |   Reflectors.meta
+|   |   Reflex.asmdef
+|   |   Reflex.asmdef.meta
+|   |   Resolvers.meta
+|   |   Resources.meta
+|   |   Utilities.meta
+|   |   
+|   +---Attributes
+|   |       InjectAttribute.cs
+|   |       InjectAttribute.cs.meta
+|   |       ReflexConstructorAttribute.cs
+|   |       ReflexConstructorAttribute.cs.meta
+|   |       
+|   +---Caching
+|   |       InjectedMethodInfo.cs
+|   |       InjectedMethodInfo.cs.meta
+|   |       TypeAttributeInfo.cs
+|   |       TypeAttributeInfo.cs.meta
+|   |       TypeConstructionInfo.cs
+|   |       TypeConstructionInfo.cs.meta
+|   |       TypeConstructionInfoCache.cs
+|   |       TypeConstructionInfoCache.cs.meta
+|   |       TypeInfoCache.cs
+|   |       TypeInfoCache.cs.meta
+|   |       
+|   +---Components
+|   |       GameObjectSelfInjector.cs
+|   |       GameObjectSelfInjector.cs.meta
+|   |       
+|   +---Configuration
+|   |       ReflexSettings.cs
+|   |       ReflexSettings.cs.meta
+|   |       
+|   +---Core
+|   |       Binding.cs
+|   |       Binding.cs.meta
+|   |       Container.cs
+|   |       Container.cs.meta
+|   |       ContainerBuilder.cs
+|   |       ContainerBuilder.cs.meta
+|   |       ExtraInstallerScope.cs
+|   |       ExtraInstallerScope.cs.meta
+|   |       IInstaller.cs
+|   |       IInstaller.cs.meta
+|   |       ParentOverrideScope.cs
+|   |       ParentOverrideScope.cs.meta
+|   |       ProjectScope.cs
+|   |       ProjectScope.cs.meta
+|   |       SceneScope.cs
+|   |       SceneScope.cs.meta
+|   |       
+|   +---Delegates
+|   |       ObjectActivator.cs
+|   |       ObjectActivator.cs.meta
+|   |       
+|   +---Diagnosis
+|   |       Diagnosis.cs
+|   |       Diagnosis.cs.meta
+|   |       
+|   +---Editor
+|   |   |   DebuggingWindow.meta
+|   |   |   Linking.meta
+|   |   |   Reflex.Editor.asmdef
+|   |   |   Reflex.Editor.asmdef.meta
+|   |   |   ReflexMenuItems.cs
+|   |   |   ReflexMenuItems.cs.meta
+|   |   |   UnityEditorUtility.cs
+|   |   |   UnityEditorUtility.cs.meta
+|   |   |   
+|   |   +---DebuggingWindow
+|   |   |       MultiColumnTreeView.cs
+|   |   |       MultiColumnTreeView.cs.meta
+|   |   |       MyTreeElement.cs
+|   |   |       MyTreeElement.cs.meta
+|   |   |       ReflexDebuggerWindow.cs
+|   |   |       ReflexDebuggerWindow.cs.meta
+|   |   |       ReflexEditorSettings.cs
+|   |   |       ReflexEditorSettings.cs.meta
+|   |   |       SHA1.cs
+|   |   |       SHA1.cs.meta
+|   |   |       Styles.cs
+|   |   |       Styles.cs.meta
+|   |   |       TreeElement.cs
+|   |   |       TreeElement.cs.meta
+|   |   |       TreeElementUtility.cs
+|   |   |       TreeElementUtility.cs.meta
+|   |   |       TreeModel.cs
+|   |   |       TreeModel.cs.meta
+|   |   |       TreeViewItem.cs
+|   |   |       TreeViewItem.cs.meta
+|   |   |       TreeViewWithTreeModel.cs
+|   |   |       TreeViewWithTreeModel.cs.meta
+|   |   |       UnityScriptingDefineSymbols.cs
+|   |   |       UnityScriptingDefineSymbols.cs.meta
+|   |   |       
+|   |   \---Linking
+|   |           Linker.cs
+|   |           Linker.cs.meta
+|   |           
+|   +---Enums
+|   |       Lifetime.cs
+|   |       Lifetime.cs.meta
+|   |       
+|   +---Exceptions
+|   |       ConstructorInjectorException.cs
+|   |       ConstructorInjectorException.cs.meta
+|   |       ContractDefinitionException.cs
+|   |       ContractDefinitionException.cs.meta
+|   |       FieldInjectorException.cs
+|   |       FieldInjectorException.cs.meta
+|   |       MethodInjectorException.cs
+|   |       MethodInjectorException.cs.meta
+|   |       PropertyInjectorException.cs
+|   |       PropertyInjectorException.cs.meta
+|   |       UnknownContractException.cs
+|   |       UnknownContractException.cs.meta
+|   |       
+|   +---Extensions
+|   |       ContainerExtensions.cs
+|   |       ContainerExtensions.cs.meta
+|   |       EnumerableExtensions.cs
+|   |       EnumerableExtensions.cs.meta
+|   |       IntExtensions.cs
+|   |       IntExtensions.cs.meta
+|   |       ListExtensions.cs
+|   |       ListExtensions.cs.meta
+|   |       MethodInfoExtensions.cs
+|   |       MethodInfoExtensions.cs.meta
+|   |       ResolverExtensions.cs
+|   |       ResolverExtensions.cs.meta
+|   |       SceneExtensions.cs
+|   |       SceneExtensions.cs.meta
+|   |       TypeExtensions.cs
+|   |       TypeExtensions.cs.meta
+|   |       
+|   +---Generics
+|   |       DisposableCollection.cs
+|   |       DisposableCollection.cs.meta
+|   |       
+|   +---Injectors
+|   |       AttributeInjector.cs
+|   |       AttributeInjector.cs.meta
+|   |       ConstructorInjector.cs
+|   |       ConstructorInjector.cs.meta
+|   |       FieldInjector.cs
+|   |       FieldInjector.cs.meta
+|   |       GameObjectInjector.cs
+|   |       GameObjectInjector.cs.meta
+|   |       MethodInjector.cs
+|   |       MethodInjector.cs.meta
+|   |       PropertyInjector.cs
+|   |       PropertyInjector.cs.meta
+|   |       SceneInjector.cs
+|   |       SceneInjector.cs.meta
+|   |       UnityInjector.cs
+|   |       UnityInjector.cs.meta
+|   |       
+|   +---Logging
+|   |       ContainerDebugProperties.cs
+|   |       ContainerDebugProperties.cs.meta
+|   |       LogLevel.cs
+|   |       LogLevel.cs.meta
+|   |       ReflexLogger.cs
+|   |       ReflexLogger.cs.meta
+|   |       
+|   +---Pooling
+|   |       SizeSpecificArrayPool.cs
+|   |       SizeSpecificArrayPool.cs.meta
+|   |       
+|   +---Reflectors
+|   |       ActivatorFactoryManager.cs
+|   |       ActivatorFactoryManager.cs.meta
+|   |       IActivatorFactory.cs
+|   |       IActivatorFactory.cs.meta
+|   |       IL2CPPActivatorFactory.cs
+|   |       IL2CPPActivatorFactory.cs.meta
+|   |       MonoActivatorFactory.cs
+|   |       MonoActivatorFactory.cs.meta
+|   |       
+|   +---Resolvers
+|   |       CallSite.cs
+|   |       CallSite.cs.meta
+|   |       IResolver.cs
+|   |       IResolver.cs.meta
+|   |       ResolverDebugProperties.cs
+|   |       ResolverDebugProperties.cs.meta
+|   |       ScopedFactoryResolver.cs
+|   |       ScopedFactoryResolver.cs.meta
+|   |       ScopedTypeResolver.cs
+|   |       ScopedTypeResolver.cs.meta
+|   |       SingletonFactoryResolver.cs
+|   |       SingletonFactoryResolver.cs.meta
+|   |       SingletonTypeResolver.cs
+|   |       SingletonTypeResolver.cs.meta
+|   |       SingletonValueResolver.cs
+|   |       SingletonValueResolver.cs.meta
+|   |       TransientFactoryResolver.cs
+|   |       TransientFactoryResolver.cs.meta
+|   |       TransientTypeResolver.cs
+|   |       TransientTypeResolver.cs.meta
+|   |       
+|   +---Resources
+|   |       link.xml
+|   |       link.xml.meta
+|   |       
+|   \---Utilities
+|           ScriptingBackend.cs
+|           ScriptingBackend.cs.meta
+|           
++---Resources
+|       ReflexSettings.asset
+|       ReflexSettings.asset.meta
+|       
++---Scenes
+|       BallMaterial.mat
+|       BallMaterial.mat.meta
+|       BallPhysicsMaterial.physicsMaterial2D
+|       BallPhysicsMaterial.physicsMaterial2D.meta
+|       BallShader.shader
+|       BallShader.shader.meta
+|       DotMaterial.mat
+|       DotMaterial.mat.meta
+|       InstancedDot.shader
+|       InstancedDot.shader.meta
+|       InstanstedDotMaterial.mat
+|       InstanstedDotMaterial.mat.meta
+|       LiquidGate.cs
+|       LiquidGate.cs.meta
+|       LiquidGate.mat
+|       LiquidGate.mat.meta
+|       LiquidGateAbove.mat
+|       LiquidGateAbove.mat.meta
+|       LiquidGateShader.shader
+|       LiquidGateShader.shader.meta
+|       SampleScene.unity
+|       SampleScene.unity.meta
+|       
++---Scripts
+|   |   AutoActivator.cs
+|   |   AutoActivator.cs.meta
+|   |   Ball.cs
+|   |   Ball.cs.meta
+|   |   Ball.prefab
+|   |   Ball.prefab.meta
+|   |   BallFactory.cs
+|   |   BallFactory.cs.meta
+|   |   BallSpawner.cs
+|   |   BallSpawner.cs.meta
+|   |   Dot.prefab
+|   |   Dot.prefab.meta
+|   |   DottedRope.cs
+|   |   DottedRope.cs.meta
+|   |   Draggable2D.cs
+|   |   Draggable2D.cs.meta
+|   |   Interfaces.meta
+|   |   MoneyService.cs
+|   |   MoneyService.cs.meta
+|   |   MoneyView.cs
+|   |   MoneyView.cs.meta
+|   |   ProximityEffectController.cs
+|   |   ProximityEffectController.cs.meta
+|   |   Seller.cs
+|   |   Seller.cs.meta
+|   |   
+|   \---Interfaces
+|           IActivatable.cs
+|           IActivatable.cs.meta
+|           IBallFactory.cs
+|           IBallFactory.cs.meta
+|           IMoneyService.cs
+|           IMoneyService.cs.meta
+|           
+\---TextMesh Pro
+    |   Documentation.meta
+    |   Fonts.meta
+    |   Resources.meta
+    |   Shaders.meta
+    |   Sprites.meta
+    |   
+    +---Documentation
+    |       TextMesh Pro User Guide 2016.pdf
+    |       TextMesh Pro User Guide 2016.pdf.meta
+    |       
+    +---Fonts
+    |       LiberationSans - OFL.txt
+    |       LiberationSans - OFL.txt.meta
+    |       LiberationSans.ttf
+    |       LiberationSans.ttf.meta
+    |       
+    +---Resources
+    |   |   Fonts & Materials.meta
+    |   |   LineBreaking Following Characters.txt
+    |   |   LineBreaking Following Characters.txt.meta
+    |   |   LineBreaking Leading Characters.txt
+    |   |   LineBreaking Leading Characters.txt.meta
+    |   |   Sprite Assets.meta
+    |   |   Style Sheets.meta
+    |   |   TMP Settings.asset
+    |   |   TMP Settings.asset.meta
+    |   |   
+    |   +---Fonts & Materials
+    |   |       LiberationSans SDF - Drop Shadow.mat
+    |   |       LiberationSans SDF - Drop Shadow.mat.meta
+    |   |       LiberationSans SDF - Fallback.asset
+    |   |       LiberationSans SDF - Fallback.asset.meta
+    |   |       LiberationSans SDF - Outline.mat
+    |   |       LiberationSans SDF - Outline.mat.meta
+    |   |       LiberationSans SDF.asset
+    |   |       LiberationSans SDF.asset.meta
+    |   |       
+    |   +---Sprite Assets
+    |   |       EmojiOne.asset
+    |   |       EmojiOne.asset.meta
+    |   |       
+    |   \---Style Sheets
+    |           Default Style Sheet.asset
+    |           Default Style Sheet.asset.meta
+    |           
+    +---Shaders
+    |       TMPro.cginc
+    |       TMPro.cginc.meta
+    |       TMPro_Mobile.cginc
+    |       TMPro_Mobile.cginc.meta
+    |       TMPro_Properties.cginc
+    |       TMPro_Properties.cginc.meta
+    |       TMPro_Surface.cginc
+    |       TMPro_Surface.cginc.meta
+    |       TMP_Bitmap-Custom-Atlas.shader
+    |       TMP_Bitmap-Custom-Atlas.shader.meta
+    |       TMP_Bitmap-Mobile.shader
+    |       TMP_Bitmap-Mobile.shader.meta
+    |       TMP_Bitmap.shader
+    |       TMP_Bitmap.shader.meta
+    |       TMP_SDF Overlay.shader
+    |       TMP_SDF Overlay.shader.meta
+    |       TMP_SDF SSD.shader
+    |       TMP_SDF SSD.shader.meta
+    |       TMP_SDF-Mobile Masking.shader
+    |       TMP_SDF-Mobile Masking.shader.meta
+    |       TMP_SDF-Mobile Overlay.shader
+    |       TMP_SDF-Mobile Overlay.shader.meta
+    |       TMP_SDF-Mobile SSD.shader
+    |       TMP_SDF-Mobile SSD.shader.meta
+    |       TMP_SDF-Mobile.shader
+    |       TMP_SDF-Mobile.shader.meta
+    |       TMP_SDF-Surface-Mobile.shader
+    |       TMP_SDF-Surface-Mobile.shader.meta
+    |       TMP_SDF-Surface.shader
+    |       TMP_SDF-Surface.shader.meta
+    |       TMP_SDF.shader
+    |       TMP_SDF.shader.meta
+    |       TMP_Sprite.shader
+    |       TMP_Sprite.shader.meta
+    |       
+    \---Sprites
+            EmojiOne Attribution.txt
+            EmojiOne Attribution.txt.meta
+            EmojiOne.json
+            EmojiOne.json.meta
+            EmojiOne.png
+            EmojiOne.png.meta
+            
