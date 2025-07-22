@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ManualActivator : MonoBehaviour,ICanConnect
+public class ManualActivator : MonoBehaviour, ICanConnect
 {
     private IActivatable _currentTarget;
     [Inject] private IButton _button;

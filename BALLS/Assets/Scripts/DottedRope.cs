@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Game.Economy;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -66,7 +67,7 @@ public class RopeDot
 }
 public class DottedRope : MonoBehaviour
 {
-    public AutoActivator autoActivator; // Assign this in the Inspector (the spawner/target)
+    public ICanConnect connecter; // Assign this in the Inspector (the spawner/target)
 
     [Header("Dot Spawning Settings")]
     public GameObject dotPrefab;
@@ -154,16 +155,17 @@ public class DottedRope : MonoBehaviour
     {
         // Initialize the rope's start time for global gradual changes
         ropeStartTime = Time.time;
+        connecter = GetComponent<ICanConnect>();
     }
 
     void Update()
     {
         // Auto-set target for testing. In a real game, this would be set by other game logic.
-        if (autoActivator != null)
-            SetNewTarget(autoActivator.TargetTransform); // Ensure AutoActivator has a public TargetTransform
+        if (connecter != null)
+            SetNewTarget(connecter.GetEndTransform); // Ensure AutoActivator has a public TargetTransform
         else if (currentTarget == null)
         {
-            Debug.LogWarning("DottedRope: No AutoActivator assigned, and no currentTarget set. Dots won't spawn.");
+        //    Debug.LogWarning("DottedRope: No AutoActivator assigned, and no currentTarget set. Dots won't spawn.");
             return; // Don't try to update or spawn if no target
         }
 

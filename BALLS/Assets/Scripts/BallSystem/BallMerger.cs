@@ -11,6 +11,7 @@ public class BallMerger : MonoBehaviour
     [SerializeField] private float mergeCooldownAfterSpawn = 0.5f;
     [SerializeField] private float visualRadiusMultiplier = 0.8f;
     [SerializeField] private float positionCorrectionFactor = 1.2f;
+    [SerializeField] private float maxVelocityToMerge = 5f;
 
     [Header("Merge Visualization")]
     [SerializeField] private Renderer ballRenderer;
@@ -57,6 +58,15 @@ public class BallMerger : MonoBehaviour
         if (_ball.CurrentPrice != other.CurrentPrice) return;
         if (GetInstanceID() > other.GetInstanceID()) return;
 
+        if (_rb.velocity.magnitude > maxVelocityToMerge) return;
+        if (other.GetComponent<Rigidbody2D>().velocity.magnitude > maxVelocityToMerge) return;//TODO;This also shouldn't be like this;
+
+
+        BallMerger otherMerger = other.GetComponent<BallMerger>(); //TODO: THis is bad, fix it.
+        if (!otherMerger._canMerge) return;
+
+        otherMerger._canMerge = false;
+        _canMerge = false;
         StartCoroutine(MergeCoroutine(other));
     }
 
@@ -91,7 +101,8 @@ public class BallMerger : MonoBehaviour
         _ball.MultiplyPrice(2f);
         other.gameObject.layer = 3;
         other.Despawn();
-      
+        _canMerge = true;
+        otherMerger._canMerge = true; // TODO; THis probably shoudn't be here, I think.
         //  _rb.simulated = true;
         ResetMergeShaderParams();
         otherMerger.ResetMergeShaderParams();

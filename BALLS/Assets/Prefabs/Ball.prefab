@@ -260,8 +260,9 @@ MonoBehaviour:
   allowMerge: 1
   mergeDuration: 0.15
   mergeCooldownAfterSpawn: 0.5
-  visualRadiusMultiplier: 0.5
-  positionCorrectionFactor: 0.7
+  visualRadiusMultiplier: 0.4
+  positionCorrectionFactor: 1
+  maxVelocityToMerge: 2
   ballRenderer: {fileID: 4839928598268190080}
 --- !u!114 &-7348541638402304473
 MonoBehaviour:
