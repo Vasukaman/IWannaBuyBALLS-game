@@ -608,6 +608,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetRenderer: {fileID: 5927426784849852018}
   maxBulge: 0.44
+  maxBulgePos: 0.77
+  minBulgePos: 0.37
   spring: 1000
   damper: 4
   lerpSpeed: 4
@@ -767,6 +769,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetRenderer: {fileID: 7581119227698298782}
   maxBulge: 0.44
+  maxBulgePos: 0.8
+  minBulgePos: 0.8
   spring: 1000
   damper: 4
   lerpSpeed: 4
@@ -926,6 +930,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetRenderer: {fileID: 201975221215680808}
   maxBulge: 0.44
+  maxBulgePos: 0.77
+  minBulgePos: 0.37
   spring: 500
   damper: 4
   lerpSpeed: 4

@@ -376,12 +376,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetRenderer: {fileID: 3283550488037318569}
-  maxBulge: 0.44
+  maxBulge: 0.01
+  maxBulgePos: 0.8
+  minBulgePos: 0.8
   spring: 1000
   damper: 4
   lerpSpeed: 4
   velocitySensitivity: 0.05
-  maxVelocityBulge: 0.15
+  maxVelocityBulge: 0.01
   noiseAmplitude: 0
   maxTiltAngle: 80
   tiltLerpSpeed: 5
@@ -536,6 +538,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetRenderer: {fileID: 448345501162862332}
   maxBulge: 0.01
+  maxBulgePos: 0.8
+  minBulgePos: 0.8
   spring: 1000
   damper: 4
   lerpSpeed: 4
@@ -912,6 +916,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetRenderer: {fileID: 6449776566493544918}
   maxBulge: 0.01
+  maxBulgePos: 0.8
+  minBulgePos: 0.8
   spring: 1000
   damper: 4
   lerpSpeed: 4
@@ -1223,6 +1229,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetRenderer: {fileID: 5927426784849852018}
   maxBulge: 0.44
+  maxBulgePos: 0.77
+  minBulgePos: 0.37
   spring: 1000
   damper: 4
   lerpSpeed: 4
@@ -1512,6 +1520,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetRenderer: {fileID: 7581119227698298782}
   maxBulge: 0.01
+  maxBulgePos: 0.8
+  minBulgePos: 0.8
   spring: 1000
   damper: 4
   lerpSpeed: 4
@@ -1931,6 +1941,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetRenderer: {fileID: 201975221215680808}
   maxBulge: 0.44
+  maxBulgePos: 0.77
+  minBulgePos: 0.37
   spring: 500
   damper: 4
   lerpSpeed: 4
@@ -2354,6 +2366,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetRenderer: {fileID: 2682871580114455577}
   maxBulge: 0.01
+  maxBulgePos: 0.8
+  minBulgePos: 0.8
   spring: 1000
   damper: 4
   lerpSpeed: 4
