@@ -37,6 +37,7 @@ public class Ball : MonoBehaviour
     {
         ResetToBase();
         OnInitialize.Invoke(this);
+        GetComponent<Rigidbody2D>().isKinematic = false;
     }
     public void SetPrice(int price)
     {

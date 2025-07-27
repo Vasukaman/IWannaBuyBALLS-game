@@ -40,6 +40,8 @@ public class BallFactory : MonoBehaviour, IBallFactory
         ball.Initialize();
         _activeBalls.Add(ball);
 
+       // Debug.Log("Ball Spawned at " + ball.transform.position.ToString() + " with scale " + ball.transform.lossyScale.ToString());
+
         return ball;
     }
 
