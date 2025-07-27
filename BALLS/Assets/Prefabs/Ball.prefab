@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 394379449441737378}
   - component: {fileID: 4839928598268190080}
   - component: {fileID: 947068926870216694}
+  - component: {fileID: 2381936044798404419}
   m_Layer: 3
   m_Name: Ball_Visual
   m_TagString: Untagged
@@ -102,6 +103,26 @@ MonoBehaviour:
   maxProximityStrength: 1
   maxNeighbors: 10
   ball: {fileID: 1971972945256430267}
+--- !u!114 &2381936044798404419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078741799298553027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a71e33974571b42bd2fc837d7be344, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orbSpeed: 2
+  showPathLine: 1
+  baseOutlineThickness: 0.01
+  baseOrbRadius: 0.03
+  basePathLineThickness: 0.005
+  neighborDetectionRadius: 2
+  proximityBlendSharpness: 2
+  _ball: {fileID: 1971972945256430267}
 --- !u!1 &2663361385200861499
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,7 +212,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.34
+  m_Radius: 0.32
 --- !u!50 &400522906468279838
 Rigidbody2D:
   serializedVersion: 4
@@ -243,8 +264,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a1d73cd149e8904982eb569e5452992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseScale: 0.75
-  scalePerPrice: 0.02
+  minScale: 0.7
+  baseScale: 0.15
+  scaleFactor: 0.5
+  maxScale: 5
 --- !u!114 &-1044825380979928625
 MonoBehaviour:
   m_ObjectHideFlags: 0

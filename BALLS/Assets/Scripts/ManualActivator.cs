@@ -3,11 +3,16 @@ using Reflex.Attributes;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using System; // Required for Action
 
 public class ManualActivator : MonoBehaviour, ICanConnect
 {
     private IActivatable _currentTarget;
     [Inject] private IButton _button;
+
+    // NEW: Public event for other scripts to subscribe to
+    public event Action OnActivate;
+
     public Transform GetStartTransform => this.transform;
     public Transform GetEndTransform => _currentTarget.ActivationTransform;
 
@@ -19,7 +24,7 @@ public class ManualActivator : MonoBehaviour, ICanConnect
             _button.OnClicked -= OnButtonClicked;
         }
     }
-   
+
 
     private void Start()
     {
@@ -59,6 +64,8 @@ public class ManualActivator : MonoBehaviour, ICanConnect
         if (_currentTarget != null)
         {
             _currentTarget.Activate();
+            // NEW: Invoke the OnActivate event after successful activation
+            OnActivate?.Invoke();
         }
     }
 

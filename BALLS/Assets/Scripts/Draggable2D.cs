@@ -19,14 +19,14 @@ public class Draggable2D : MonoBehaviour
         dragging = true;
         Vector3 mouseWorld = cam.ScreenToWorldPoint(Input.mousePosition);
         offset = transform.position - new Vector3(mouseWorld.x, mouseWorld.y, transform.position.z);
-        rb.gravityScale = 0f; // optional: turn off gravity while dragging
+     //   rb.gravityScale = 0f; // optional: turn off gravity while dragging
         rb.velocity = Vector2.zero;
     }
 
     void OnMouseUp()
     {
         dragging = false;
-        rb.gravityScale = 1f; // restore if using gravity
+      //  rb.gravityScale = 1f; // restore if using gravity
     }
 
     void Update()

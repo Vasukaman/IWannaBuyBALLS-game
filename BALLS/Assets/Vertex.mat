@@ -7,13 +7,12 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BallMaterial
-  m_Shader: {fileID: 4800000, guid: ae353e2c75b1ff44c92cf9fb10d88306, type: 3}
+  m_Name: Vertex
+  m_Shader: {fileID: 4800000, guid: 082edd15bb641884a80d521b1cbcad19, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _SHOWORBITLINE_ON
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -45,7 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: dffef66376be4fa480fb02b19edbe903, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -62,75 +61,33 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BulgeAngle: 0
-    - _BulgePos: 0.5
-    - _BulgeSize: 0.2
-    - _BulgeSmooth: 0.05
-    - _BulgeWidth: 0.2
+    - _AberrationStrength: 0.1
     - _BumpScale: 1
-    - _CircleRadius: 0
-    - _CircleSpeed: 1
-    - _CirclesActiveRadius: 0.3
-    - _CirclesCount: 5
-    - _CirclesOffset: 0
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EnableOrbPathLine: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _LineWidth: 0.3
-    - _MergeTargetRadius: 0.18
-    - _MergeWeight: 0
     - _Metallic: 0
     - _Mode: 0
-    - _NoiseStrength: 0.05
     - _OcclusionStrength: 1
-    - _OrbCount: 5
-    - _OrbPathLineThickness: 0.005
-    - _OrbPathRadius: 0.287
-    - _OrbRadius: 0.039
-    - _OrbSpeed: 1
-    - _OrbitCircleCount: 3
-    - _OrbitCircleRadius: 0.0181
-    - _OrbitCount: 10.8
-    - _OrbitLineEnable: 1
-    - _OrbitLineThickness: 0.005
-    - _OrbitLineWidth: 0.001
-    - _OrbitRadius: 0.325
-    - _OrbitSpeed: 1.01
-    - _OutlineThickness: 0.0277
     - _Parallax: 0.02
-    - _PathLineThickness: 0.0122
-    - _ProximityBlendSharpness: 2
-    - _Radius: 0.161
-    - _RadiusLineOffset: 0
-    - _RadiusLineThickness: 0.01
-    - _ShowOrbitLine: 1
-    - _ShowPathLine: 1
-    - _ShowRadiusLine: 0
-    - _Smoothness: 0.001
+    - _PinchStrength: -0.3
+    - _PixelationStrength: 1
+    - _Radius: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _Speed: 0.65
     - _SrcBlend: 1
+    - _Strength: 0.126
+    - _SwirlStrength: 0.33
+    - _TwirlStrength: 16.7
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _BottomColor: {r: 0, g: 0, b: 0, a: 0}
-    - _CircleColor: {r: 1, g: 1, b: 1, a: 0.5}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Center: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _Color: {r: 0.9245283, g: 0.46575293, b: 0.46575293, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _MergePartner: {r: 0, g: 0, b: 0, a: 0}
-    - _MergeTargetPos: {r: 0.14, g: 0.5, b: 0, a: 0}
-    - _MergeTargetUV: {r: 0, g: 0, b: 0, a: 0}
-    - _OrbColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OrbPathLineColor: {r: 1, g: 1, b: 1, a: 0.2}
-    - _OrbitCircleColor: {r: 1, g: 0.92316735, b: 0.6094339, a: 1}
-    - _OrbitLineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _PathLineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _ProximityColor: {r: 1, g: 0.5, b: 0, a: 1}
-    - _RadiusLineColor: {r: 0.2905661, g: 0.2905661, b: 0.2905661, a: 1}
-    - _TopColor: {r: 0, g: 0, b: 0, a: 0}
+    - _VortexCenter: {r: 1.09, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
