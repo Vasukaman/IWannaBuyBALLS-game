@@ -14,7 +14,7 @@ public class Gadget : MonoBehaviour, IGadgetSellable
     public GadgetData Data;
 
     // --- Injected Dependencies ---
-    [Inject] private IMoneyService _moneyService;
+   public StoreManager storeManager;
 
     // --- IGadgetSellable Implementation ---
     public GameObject Instance => gameObject;
@@ -54,6 +54,7 @@ public class Gadget : MonoBehaviour, IGadgetSellable
     /// </summary>
     public void Sell()
     {
+        storeManager.RefundPurchase(Data);
         // Use the injected money service to add the funds.
    //     _moneyService.Add(SellPrice);
 

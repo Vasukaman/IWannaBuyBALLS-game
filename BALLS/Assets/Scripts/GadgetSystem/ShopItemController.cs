@@ -145,9 +145,11 @@ public class ShopItemController : MonoBehaviour
 
         if (_data != null && _data.prefab != null)
         {
+            //TODO: this must be done with factory
             _gadgetInstance = Instantiate(_data.prefab, transform);
             _gadgetInstance.transform.localPosition = Vector3.zero;
             _gadgetInstance.SetActive(false);
+            _gadgetInstance.GetComponent<Gadget>().storeManager = _store;
         }
     }
 

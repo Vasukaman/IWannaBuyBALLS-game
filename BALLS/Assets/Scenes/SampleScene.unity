@@ -283,8 +283,8 @@ Transform:
   m_GameObject: {fileID: 102500622}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.0927, y: 4.7853, z: 0}
-  m_LocalScale: {x: 2.9411407, y: 2.1744373, z: 1}
+  m_LocalPosition: {x: 3.81, y: 5.048, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -303,8 +303,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timeToSell: 3
   _speedAcceleration: 3
+  _stiffness: 1000
+  _damping: 0.234
+  _maxTrackingDistance: 3
+  _capturePadding: 0.5
   _sellingDashColor: {r: 0, g: 1, b: 0, a: 1}
   _sellingLineColor: {r: 0, g: 1, b: 0, a: 0.5921569}
+  _sellingLineThickness: 3
+  _sellingLineSpacing: 0.05
 --- !u!61 &102500627
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2697,7 +2703,7 @@ Transform:
   m_GameObject: {fileID: 1534408897}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.049, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.44726402, y: 0.44726402, z: 0.44726402}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -18,13 +18,13 @@ public class GateLogic : MonoBehaviour
 
     [SerializeField] private GateType gateType;
     [SerializeField] private float value = 1;
-    [SerializeField] private TMP_Text text;
+   // [SerializeField] private TMP_Text text;
 
     private HashSet<Ball> _passedBalls = new HashSet<Ball>();
 
     private void Start()
     {
-        UpdateGateText();
+      //  UpdateGateText();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -64,20 +64,20 @@ public class GateLogic : MonoBehaviour
         }
     }
 
-    private void UpdateGateText()
-    {
-        if (!text) return;
+    //private void UpdateGateText()
+    //{
+    //    if (!text) return;
 
-        string sign = gateType switch
-        {
-            GateType.Add => "+",
-            GateType.Subtract => "-",
-            GateType.Multiply => "x",
-            _ => ""
-        };
+    //    string sign = gateType switch
+    //    {
+    //        GateType.Add => "+",
+    //        GateType.Subtract => "-",
+    //        GateType.Multiply => "x",
+    //        _ => ""
+    //    };
 
-        text.text = $"{sign}{value}";
-    }
+    //    text.text = $"{sign}{value}";
+    //}
 
     private void OnDestroy()
     {
