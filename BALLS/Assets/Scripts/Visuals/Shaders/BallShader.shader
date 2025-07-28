@@ -9,12 +9,19 @@ Shader "Custom/BallWithInternalOrbs"
         _OutlineColor ("Outline Color", Color) = (0, 0, 0, 1)
         _OutlineThickness ("Outline Thickness", Range(0, 0.2)) = 0.05
 
-        [Header(Internal Orbs)]
+        [Header(Tier 1 Orbs)]
         _OrbCount ("Orb Count", Int) = 3
         _OrbColor ("Orb Color", Color) = (1, 0.5, 0, 0.5)
         _OrbRadius ("Orb Radius", Range(0.001, 0.2)) = 0.04
         _OrbPathRadius ("Orb Path Radius", Range(0, 1)) = 0.3
         _OrbSpeed ("Orb Speed", Float) = 2.0
+
+        [Header(Tier 2 Orbs)]
+        _OrbCountTier2("Orb Count (Tier 2)", Int) = 0
+        _OrbColorTier2("Orb Color (Tier 2)", Color) = (0.2, 0.8, 1, 0.7)
+        _OrbRadiusTier2("Orb Radius (Tier 2)", Range(0.001, 0.2)) = 0.08
+        _OrbPathRadiusTier2("Orb Path Radius (Tier 2)", Range(0, 1)) = 0.15
+        _OrbSpeedTier2("Orb Speed (Tier 2)", Float) = -1.0
 
         [Header(Orb Path Line)]
         _ShowPathLine ("Show Path Line", Range(0, 1)) = 0
@@ -49,11 +56,15 @@ Shader "Custom/BallWithInternalOrbs"
             #define MAX_NEIGHBORS 10
 
             // --- Properties ---
-            fixed4 _Color, _OutlineColor, _OrbColor, _PathLineColor;
+            fixed4 _Color, _OutlineColor, _OrbColor, _PathLineColor, _OrbColorTier2;
             float _Radius, _Smoothness, _OutlineThickness, _OrbRadius, _OrbPathRadius, _OrbSpeed;
             float _ShowPathLine, _PathLineThickness, _MergeTargetRadius, _MergeWeight;
             int _OrbCount;
             float4 _MergeTargetPos;
+
+            // Tier 2 Properties
+            int _OrbCountTier2;
+            float _OrbRadiusTier2, _OrbPathRadiusTier2, _OrbSpeedTier2;
 
             // --- This Ball's Properties (NEW) ---
             uniform float4 _ObjectWorldPos;
@@ -79,7 +90,6 @@ Shader "Custom/BallWithInternalOrbs"
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.localPos = v.vertex.xy;
-                // We no longer pass the rotating worldPos
                 return o;
             }
 
@@ -107,22 +117,15 @@ Shader "Custom/BallWithInternalOrbs"
                 float fillAlpha = smoothstep(_Radius, _Radius - _Smoothness, dist);
                 fixed3 finalColor = lerp(_OutlineColor.rgb, _Color.rgb, fillAlpha);
 
-                // 2. --- PROXIMITY COLOR BLENDING (CORRECTED) ---
+                // 2. --- PROXIMITY COLOR BLENDING ---
                 for (int n = 0; n < _NeighborCount; n++)
                 {
-                    // Reconstruct this pixel's world position without rotation
                     float3 pixelWorldPos = _ObjectWorldPos.xyz + float3(i.localPos.xy * _ObjectWorldRadius * 2.0, 0);
-
                     float3 neighborPos = _NeighborPositions[n].xyz;
                     float neighborRadius = _NeighborPositions[n].z;
-                    
                     float distToNeighbor = length(pixelWorldPos - neighborPos);
-                    
-                    // Normalize distance based on this ball's world radius
                     float normalizedDistance = saturate((distToNeighbor - neighborRadius) / _ObjectWorldRadius);
-                    
                     float influence = 1.0 - smoothstep(0.0, 1.0, normalizedDistance * _ProximityBlendSharpness);
-                    
                     finalColor = lerp(finalColor, _NeighborColors[n].rgb, influence * _NeighborColors[n].a);
                 }
 
@@ -135,14 +138,33 @@ Shader "Custom/BallWithInternalOrbs"
 
                 // 4. --- INTERNAL ORBS ---
                 float totalOrbAlpha = 0.0;
+                fixed3 orbColor = finalColor; // Start with the current color
+
+                // Tier 1 Orbs
                 for (int j = 0; j < _OrbCount; j++) {
                     float angle = ((float)j / (float)_OrbCount) * 2.0 * 3.14159 + _Time.y * _OrbSpeed;
                     float2 orbCenter = center + float2(cos(angle), sin(angle)) * _OrbPathRadius;
                     float orbDist = length(uv - orbCenter) - _OrbRadius;
                     float orbAlpha = smoothstep(_Smoothness, 0.0, orbDist);
-                    totalOrbAlpha = max(totalOrbAlpha, orbAlpha);
+                    if(orbAlpha > totalOrbAlpha) {
+                        totalOrbAlpha = orbAlpha;
+                        orbColor = _OrbColor.rgb;
+                    }
                 }
-                finalColor = lerp(finalColor, _OrbColor.rgb, totalOrbAlpha * _OrbColor.a);
+
+                // Tier 2 Orbs
+                for (int k = 0; k < _OrbCountTier2; k++) {
+                    float angle = ((float)k / (float)_OrbCountTier2) * 2.0 * 3.14159 + _Time.y * _OrbSpeedTier2;
+                    float2 orbCenter = center + float2(cos(angle), sin(angle)) * _OrbPathRadiusTier2;
+                    float orbDist = length(uv - orbCenter) - _OrbRadiusTier2;
+                    float orbAlpha = smoothstep(_Smoothness, 0.0, orbDist);
+                    if(orbAlpha > totalOrbAlpha) {
+                        totalOrbAlpha = orbAlpha;
+                        orbColor = _OrbColorTier2.rgb;
+                    }
+                }
+
+                finalColor = lerp(finalColor, orbColor, totalOrbAlpha * _OrbColor.a);
                 
                 // 5. --- FINAL COMPOSITION ---
                 return fixed4(finalColor, outlineAlpha);

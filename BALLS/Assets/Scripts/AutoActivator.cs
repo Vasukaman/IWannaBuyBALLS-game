@@ -1,13 +1,21 @@
+using Game.Economy;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
+using System; // Required for Action
 
-public class AutoActivator : MonoBehaviour
+
+
+public class AutoActivator : MonoBehaviour, IActivator
 {
     [Tooltip("How often (in seconds) to automatically activate the nearest IActivatable.")]
     [SerializeField] private float interval = 1f;
 
-    private IActivatable target;
+    private IActivatable _currentTarget;
+
+    public event Action OnActivate;
+    public Transform GetStartTransform => this.transform;
+    public Transform GetTargetTransform => _currentTarget.ActivationTransform;
 
     private void Update()
     {
@@ -24,7 +32,7 @@ public class AutoActivator : MonoBehaviour
         }
 
         // pick the nearest one
-        target = all
+        _currentTarget = all
             .OrderBy(a => Vector3.Distance(
                 a.ActivationTransform.position,
                 transform.position))
@@ -42,13 +50,17 @@ public class AutoActivator : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(interval);
-            if (target != null)
-                target.Activate();
+            if (_currentTarget != null)
+            {
+                _currentTarget.Activate();
+                OnActivate?.Invoke();
+            }
+
         }
     }
 
     /// <summary>
     /// Expose the position of the current target for your rope-dots to consume.
     /// </summary>
-    public Transform TargetTransform => target?.ActivationTransform;
+    public Transform TargetTransform => _currentTarget?.ActivationTransform;
 }

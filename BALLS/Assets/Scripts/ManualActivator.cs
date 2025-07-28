@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using System; // Required for Action
 
-public class ManualActivator : MonoBehaviour, ICanConnect
+public class ManualActivator : MonoBehaviour, IActivator
 {
     private IActivatable _currentTarget;
     [Inject] private IButton _button;
@@ -14,7 +14,7 @@ public class ManualActivator : MonoBehaviour, ICanConnect
     public event Action OnActivate;
 
     public Transform GetStartTransform => this.transform;
-    public Transform GetEndTransform => _currentTarget.ActivationTransform;
+    public Transform GetTargetTransform => _currentTarget.ActivationTransform;
 
 
     private void OnDestroy()

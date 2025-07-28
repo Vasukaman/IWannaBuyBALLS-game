@@ -1,0 +1,147 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: LiquidGateAbove
+  m_Shader: {fileID: 4800000, guid: 7b90fee3d3472874aaa6928e8e37ac06, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _ENABLEBOTTOMXRAY_ON
+  - _ENABLETOPXRAY_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 1
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _B0_Pos: 0.514
+    - _B0_Size: 0.71
+    - _B0_Width: 0.321
+    - _B1_Pos: 0.5
+    - _B1_Size: 0.46
+    - _B1_Width: 0.2
+    - _B2_Pos: 0.5
+    - _B2_Size: 0.43
+    - _B2_Width: 0.2
+    - _B3_Pos: 0.54
+    - _B3_Size: -0.6
+    - _B3_Width: 0.84
+    - _BallCount: 0
+    - _BallInfluenceRadius: 0.8
+    - _BallRadii: 0.1
+    - _BulgeAngle: -50
+    - _BulgeCentres: 1.08
+    - _BulgeCount: 0
+    - _BulgeIntensity: 0.7
+    - _BulgePos: 0.559
+    - _BulgeSize: 0
+    - _BulgeSizes: 3.72
+    - _BulgeSmooth: 0.001
+    - _BulgeWidth: 0.619
+    - _BulgeWidths: 0.2
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DeformIntensity: 0.3
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _EdgeSmoothness: 0.05
+    - _EdgeWidth: 0.05
+    - _EnableBottomXRay: 1
+    - _EnableTopXRay: 1
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _HighlightPower: 1
+    - _HighlightWidth: 0.05
+    - _LineWidth: 0.092
+    - _Metallic: 0
+    - _Mode: 0
+    - _NoiseAmp: 0
+    - _NoiseSpeed: 3
+    - _NoiseStrength: 0.05
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _RecoverySpeed: 2
+    - _RippleIntensity: 0.3
+    - _RippleSize: 0.5
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _WaveAmplitude: 0.15
+    - _WaveDecay: 5
+    - _WaveFrequency: 15
+    - _WaveSpeed: 1.5
+    - _XRayBottomEnable: 1
+    - _XRayTopEnable: 1
+    - _ZWrite: 1
+    m_Colors:
+    - _BallColors: {r: 1, g: 1, b: 1, a: 1}
+    - _BallPositions: {r: 0, g: 0, b: 0, a: 0}
+    - _BottomColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 1, g: 0.41176474, b: 0, a: 1}
+    - _ColorAbove: {r: 0.6377357, g: 0.2875827, b: 0.2875827, a: 1}
+    - _ColorBelow: {r: 1, g: 1, b: 1, a: 1}
+    - _EdgeColor: {r: 0.8, g: 0.9, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FillAbove: {r: 0, g: 0, b: 0, a: 0}
+    - _FillBelow: {r: 0, g: 0, b: 0, a: 0}
+    - _HighlightColor: {r: 1, g: 1, b: 0.5, a: 1}
+    - _HighlightColorBottom: {r: 1, g: 0.5, b: 0.8, a: 0}
+    - _HighlightColorTop: {r: 0.5, g: 1, b: 1, a: 0}
+    - _MainColor: {r: 0.19999996, g: 0.6, b: 1, a: 1}
+    - _TopColor: {r: 0.86415094, g: 0.48751146, b: 0.48751146, a: 0}
+    - _XRayBottomColor: {r: 0.8, g: 0.9, b: 1, a: 0.3}
+    - _XRayColorBottom: {r: 0.19999996, g: 0, b: 0.09999997, a: 1}
+    - _XRayColorTop: {r: 0.111221045, g: 0.28422594, b: 0.4641509, a: 1}
+    - _XRayTopColor: {r: 0.8, g: 0.9, b: 1, a: 0.3}
+  m_BuildTextureStacks: []

@@ -97,7 +97,7 @@ public class MagnetToLocalPoint2D : MonoBehaviour
 
         if ((maxAllowedDistance - limitRampUpDistance) < maxForceDistance)
         {
-            Debug.LogWarning($"MagnetToLocalPoint2D on {gameObject.name}: Outer limit ramp-up starts before basic magnetism reaches its peak. This might create a less distinct transition. Consider adjusting maxForceDistance or limitRampUpDistance.", this);
+         //   Debug.LogWarning($"MagnetToLocalPoint2D on {gameObject.name}: Outer limit ramp-up starts before basic magnetism reaches its peak. This might create a less distinct transition. Consider adjusting maxForceDistance or limitRampUpDistance.", this);
         }
     }
 

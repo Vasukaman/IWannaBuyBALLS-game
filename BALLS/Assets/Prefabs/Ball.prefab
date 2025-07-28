@@ -117,8 +117,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orbSpeed: 2
   showPathLine: 1
-  baseOutlineThickness: 0.01
   baseOrbRadius: 0.03
+  tier2Threshold: 50
+  tier2OrbSpeed: -1
+  tier2BaseOrbRadius: 0.08
+  baseOutlineThickness: 0.04
   basePathLineThickness: 0.005
   neighborDetectionRadius: 2
   proximityBlendSharpness: 2
@@ -177,7 +180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basePrice: 1
   priceText: {fileID: 982763685316105472}
-  color: {r: 1, g: 1, b: 1, a: 1}
+  color: {r: 0, g: 0.1764706, b: 0.23137257, a: 0}
 --- !u!58 &5195835019627671488
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -212,7 +215,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.32
+  m_Radius: 0.27
 --- !u!50 &400522906468279838
 Rigidbody2D:
   serializedVersion: 4
@@ -264,10 +267,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a1d73cd149e8904982eb569e5452992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minScale: 0.7
-  baseScale: 0.15
-  scaleFactor: 0.5
+  minScale: 0.71
+  baseScale: 0.1
+  scaleFactor: 0.4
   maxScale: 5
+  scaleSpeed: 16
 --- !u!114 &-1044825380979928625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,9 +286,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allowMerge: 1
   mergeDuration: 0.15
-  mergeCooldownAfterSpawn: 0.5
+  mergeCooldownAfterSpawn: 2
   visualRadiusMultiplier: 0.4
-  positionCorrectionFactor: 1
+  positionCorrectionFactor: 0.7
   maxVelocityToMerge: 2
   ballRenderer: {fileID: 4839928598268190080}
 --- !u!114 &-7348541638402304473
@@ -326,7 +330,7 @@ RectTransform:
   m_GameObject: {fileID: 3177938666313022737}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.45404, y: 0.45404, z: 0.45404}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5060833482062007503}
@@ -373,8 +377,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -551,3 +555,5 @@ MonoBehaviour:
   target: {fileID: 2074214188388373660}
   worldOffset: {x: 0, y: 0, z: 0}
   tmp: {fileID: 982763685316105472}
+  baseScaleMult: 0.45
+  maxScale: 0.56
