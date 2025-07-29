@@ -1050,7 +1050,7 @@ MonoBehaviour:
   damper: 4
   lerpSpeed: 4
   velocitySensitivity: 0.05
-  maxVelocityBulge: 0.15
+  maxVelocityBulge: 0.23
   noiseAmplitude: 0
   maxTiltAngle: 80
   tiltLerpSpeed: 5

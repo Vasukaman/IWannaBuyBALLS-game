@@ -1,92 +1,142 @@
+// Filename: RotatorOnActivate.cs
+using System.Collections;
 using UnityEngine;
 
-public class PusherOnActivate : MonoBehaviour
+namespace Gameplay.Gadgets
 {
-    [Header("Dependencies")]
-    [Tooltip("Assign the ManualActivator script that will trigger the push.")]
-    public ManualActivator manualActivator;
-
-    [Tooltip("The Rigidbody2D to push. If null, it will search on this GameObject.")]
-    public Rigidbody2D bodyToPush;
-
-    [Header("Push Settings")]
-    [Tooltip("The maximum force applied as a single impulse.")]
-    [Range(0.1f, 50f)]
-    public float maxImpulse = 5f;
-
-    void Awake()
-    {
-        // If bodyToPush is not assigned, try to find it on this GameObject.
-        if (bodyToPush == null)
-        {
-            bodyToPush = GetComponent<Rigidbody2D>();
-        }
-
-        // Log a warning if no Rigidbody2D is found.
-        if (bodyToPush == null)
-        {
-            Debug.LogWarning("PusherOnActivate: Rigidbody2D not found or assigned. The push will not work.", this);
-        }
-    }
-
-    void OnEnable()
-    {
-        // Subscribe to the OnActivate event.
-        if (manualActivator != null)
-        {
-            manualActivator.OnActivate += HandleActivation;
-        }
-        else
-        {
-            Debug.LogWarning("PusherOnActivate: ManualActivator not assigned. The push will not be triggered.", this);
-        }
-    }
-
-    void OnDisable()
-    {
-        // Unsubscribe from the event to prevent memory leaks.
-        if (manualActivator != null)
-        {
-            manualActivator.OnActivate -= HandleActivation;
-        }
-    }
-
     /// <summary>
-    /// Called when the ManualActivator's OnActivate event is invoked.
+    /// A component that smoothly rotates a target GameObject by a specified amount
+    /// when a linked activator's OnActivate event is triggered.
     /// </summary>
-    private void HandleActivation()
+    public class RotatorOnActivate : MonoBehaviour
     {
-        // Ensure we have a Rigidbody2D to push before proceeding.
-        if (bodyToPush == null)
+        [Header("Dependencies")]
+        // TODO: [Coupling] This component is tightly coupled to the 'ManualActivator' class.
+        // A more flexible design would be to depend on an interface (e.g., IActivatable),
+        // allowing this rotator to be triggered by any type of activator.
+        [Tooltip("The activator that will trigger the rotation.")]
+        [SerializeField] private ManualActivator _activator;
+
+        [Tooltip("The GameObject to rotate. If null, this GameObject will be rotated.")]
+        [SerializeField] private GameObject _objectToRotate;
+
+        [Header("Rotation Settings")]
+        [Tooltip("Degrees to rotate each time the activator is triggered.")]
+        [Range(1f, 360f)]
+        [SerializeField] private float _rotationDegreesPerActivate = 90f;
+
+        [Tooltip("Time in seconds for the rotation to complete smoothly.")]
+        [SerializeField] private float _rotationDuration = 0.5f;
+
+        [Tooltip("An animation curve to control the easing of the rotation.")]
+        [SerializeField] private AnimationCurve _rotationCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
+
+        // --- State ---
+        private Quaternion _targetRotation;
+        private bool _isRotating = false;
+        private Transform _cachedTransformToRotate;
+
+        // --- Unity Methods ---
+
+        private void Awake()
         {
-            return;
+            // If objectToRotate is not assigned, default to this GameObject.
+            if (_objectToRotate == null)
+            {
+                _objectToRotate = this.gameObject;
+            }
+            _cachedTransformToRotate = _objectToRotate.transform;
+
+            // Initialize target rotation to the current rotation to prevent snapping on start.
+            _targetRotation = _cachedTransformToRotate.rotation;
         }
 
-        // 1. Get a random direction vector.
-        // Random.insideUnitCircle returns a random point within a circle of radius 1.
-        // .normalized ensures the vector has a magnitude of 1, so we get a pure direction.
-        Vector2 randomDirection = Random.insideUnitCircle.normalized;
-
-        // 2. Calculate the final impulse vector.
-        Vector2 impulse = randomDirection * maxImpulse;
-
-        // 3. Apply the force to the Rigidbody2D.
-        // ForceMode2D.Impulse applies the force instantly, which is ideal for a "push" or "kick".
-        bodyToPush.AddForce(impulse, ForceMode2D.Impulse);
-    }
-
-    /// <summary>
-    /// Draws a gizmo in the editor to visualize which Rigidbody2D will be pushed.
-    /// </summary>
-    void OnDrawGizmosSelected()
-    {
-        if (bodyToPush != null)
+        private void OnEnable()
         {
-            Gizmos.color = Color.red;
-            // Draw a circle around the object to indicate it's the target.
-            Gizmos.DrawWireSphere(bodyToPush.transform.position, 0.5f);
-            // Draw an arrow from this script's object to the target Rigidbody2D.
-            Gizmos.DrawLine(transform.position, bodyToPush.transform.position);
+            // Subscribe to the activator's event.
+            if (_activator != null)
+            {
+                _activator.OnActivate += HandleActivation;
+            }
+            else
+            {
+                Debug.LogWarning("RotatorOnActivate: Activator not assigned. Rotations will not be triggered.", this);
+            }
+        }
+
+        private void OnDisable()
+        {
+            // Unsubscribe from the event to prevent errors and memory leaks.
+            if (_activator != null)
+            {
+                _activator.OnActivate -= HandleActivation;
+            }
+        }
+
+        // --- Private Methods ---
+
+        /// <summary>
+        /// Called when the assigned activator's OnActivate event is invoked.
+        /// </summary>
+        private void HandleActivation()
+        {
+            // Ignore new activations if a rotation is already in progress.
+            if (_isRotating)
+            {
+                return;
+            }
+
+            // Calculate the new target rotation by applying the rotation increment.
+            _targetRotation *= Quaternion.Euler(0, 0, _rotationDegreesPerActivate); // Rotates around the Z-axis for 2D.
+
+            // Start the smooth rotation coroutine.
+            StartCoroutine(SmoothRotateCoroutine(_targetRotation));
+        }
+
+        /// <summary>
+        /// Smoothly animates the object from its current rotation to the target rotation over a set duration.
+        /// </summary>
+        private IEnumerator SmoothRotateCoroutine(Quaternion endRotation)
+        {
+            _isRotating = true;
+            float timer = 0f;
+            Quaternion startRotation = _cachedTransformToRotate.rotation;
+
+            while (timer < _rotationDuration)
+            {
+                timer += Time.deltaTime;
+                float progress = Mathf.Clamp01(timer / _rotationDuration);
+
+                // Use the animation curve to get an eased progress value.
+                float easedProgress = _rotationCurve.Evaluate(progress);
+
+                // Spherically interpolate between the start and end rotations.
+                _cachedTransformToRotate.rotation = Quaternion.Slerp(startRotation, endRotation, easedProgress);
+
+                yield return null; // Wait for the next frame.
+            }
+
+            // Snap to the final rotation to ensure precision.
+            _cachedTransformToRotate.rotation = endRotation;
+            _isRotating = false;
+        }
+
+        // --- Editor-Only Methods ---
+
+        private void OnDrawGizmosSelected()
+        {
+            if (_objectToRotate != null)
+            {
+                Transform targetTransform = _objectToRotate.transform;
+                Gizmos.color = Color.cyan;
+                Gizmos.DrawWireCube(targetTransform.position, targetTransform.lossyScale * 1.1f);
+
+                // Draw lines to represent the local axes.
+                Gizmos.color = Color.red; // X-axis (right)
+                Gizmos.DrawLine(targetTransform.position, targetTransform.position + targetTransform.right * 0.5f);
+                Gizmos.color = Color.green; // Y-axis (up)
+                Gizmos.DrawLine(targetTransform.position, targetTransform.position + targetTransform.up * 0.5f);
+            }
         }
     }
 }

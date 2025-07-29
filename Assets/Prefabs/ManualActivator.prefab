@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8901961, g: 0.15294118, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -205,7 +205,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8901961, g: 0.15294118, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -277,6 +277,7 @@ GameObject:
   - component: {fileID: 8635955573252886507}
   - component: {fileID: 6881230900433264036}
   - component: {fileID: 1350213925731245442}
+  - component: {fileID: 1930526231230707813}
   m_Layer: 8
   m_Name: ManualActivator
   m_TagString: Untagged
@@ -341,7 +342,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2135585597343286014, guid: 5aa8b770bc43046bc8d993d0d5b7f4a5, type: 3}
-  m_Color: {r: 1, g: 0.33773577, b: 0.33773577, a: 1}
+  m_Color: {r: 0.8867924, g: 0.15215246, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -408,31 +409,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b41773e505d2a4e8672cde86fe5836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dotPrefab: {fileID: 1414012486697283763, guid: 5e0f9391076d28b4c89a0a58df1a21b7, type: 3}
-  maxDots: 1000
-  spawnInterval: 0.01
-  baseAmplitude: 0.2
-  baseFrequency: 2
-  baseSpeed: 7
-  baseGlobalWaveSpeed: -2
-  enableRandomness: 1
-  randomAmplitudeDeviation: 0.028
-  randomFrequencyDeviation: 0
-  randomSpeedDeviation: 0
-  randomScaleDeviation: 0
-  enableGradualChange: 1
-  startFrequencyMultiplier: 1
-  endFrequencyMultiplier: 2
-  startAmplitudeMultiplier: 1
-  endAmplitudeMultiplier: 0.5
-  startSpeedMultiplier: 1
-  endSpeedMultiplier: 1
-  startScaleMultiplier: 1
-  endScaleMultiplier: 0.5
-  enableGradualGlobalWaveSpeed: 0
-  startGlobalWaveSpeedMultiplier: 1
-  endGlobalWaveSpeedMultiplier: 1
-  globalWaveSpeedDuration: 10
+  styleProfile: {fileID: 11400000, guid: 7fd72a6d7a2045d4cb32b89a5193bb22, type: 2}
+  target: {fileID: 0}
+  _dotMesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  _dotMaterial: {fileID: 2100000, guid: c0e126a5cd4e1c7478fdf947dbee5a0f, type: 2}
 --- !u!50 &3082716990764103822
 Rigidbody2D:
   serializedVersion: 4
@@ -484,23 +464,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c15d22c836a605448b3388fdd9c0bca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetLocalPosition: {x: 0, y: 0}
-  minMagnetForce: 10
-  minForceDistance: 0.0001
-  maxMagnetForce: 100
-  maxForceDistance: 0.35
-  maxAllowedDistance: 0.45
-  limitRampUpDistance: 0.1
-  maxLimitForceMagnitude: 100
-  limitForcePower: 2
-  dampingFactor: 0.949
-  snapDistance: 0.002
-  zeroVelocityOnSnap: 0
-  drawGizmo: 1
-  gizmoColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  gizmoRadius: 0.1
-  limitGizmoColor: {r: 1, g: 0, b: 0, a: 1}
-  snapGizmoColor: {r: 0, g: 1, b: 0, a: 1}
+  _targetLocalPosition: {x: 0, y: 0}
+  _minMagnetForce: 1
+  _minForceDistance: 0.1
+  _maxMagnetForce: 100
+  _maxForceDistance: 0.37
+  _maxAllowedDistance: 0.56
+  _limitRampUpDistance: 0.01
+  _maxLimitForceMagnitude: 200
+  _limitForcePower: 1
+  _dampingFactor: 0.92
+  _snapDistance: 0.001
+  _zeroVelocityOnSnap: 0
+  _drawGizmos: 1
+  _gizmoColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  _gizmoRadius: 0.1
+  _limitGizmoColor: {r: 1, g: 0, b: 0, a: 1}
+  _snapGizmoColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!114 &6881230900433264036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,9 +533,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6590976433a3561478737c8fdc3c49f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manualActivator: {fileID: 2696167215214748804}
-  bodyToPush: {fileID: 3082716990764103822}
-  maxImpulse: 5
+  _activator: {fileID: 2696167215214748804}
+  _bodyToPush: {fileID: 0}
+  _maxImpulse: 5
+--- !u!114 &1930526231230707813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7241246645530130766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 733f3d02d9141764f90c0f094a218433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7915456721971866408
 GameObject:
   m_ObjectHideFlags: 0
@@ -631,7 +623,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8901961, g: 0.15294118, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -761,7 +753,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8901961, g: 0.15294118, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -940,6 +932,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdeac38293301734a942cb78cd081f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _disableGravityWhileDragging: 1
+  _dragTimeout: 0.2
 --- !u!61 &3008559362081685827
 BoxCollider2D:
   m_ObjectHideFlags: 0
