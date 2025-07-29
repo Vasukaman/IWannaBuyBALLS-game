@@ -11,15 +11,7 @@ using UnityEngine;
         /// </summary>
         GameObject Instance { get; }
 
-        /// <summary>
-        /// The price for which this item will be sold.
-        /// </summary>
-        int SellPrice { get; }
 
-        /// <summary>
-        /// The renderer used to apply visual effects, like the selling shader.
-        /// </summary>
-        Renderer ObjectRenderer { get; }
 
         /// <summary>
         /// The collider that defines the physical bounds of the item.

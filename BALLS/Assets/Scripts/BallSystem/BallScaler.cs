@@ -1,66 +1,104 @@
+// Filename: BallScaler.cs
+using Gameplay.BallSystem;
 using UnityEngine;
 
-[RequireComponent(typeof(Ball))]
-public class BallScaler : MonoBehaviour
+namespace Gameplay.BallSystem
 {
-    [Header("Scaling Logic")]
-    [SerializeField] private float minScale = 0.1f;      // The absolute minimum scale the ball can have
-    [SerializeField] private float baseScale = 0.5f;     // Scale at price 1, before considering minScale
-    [SerializeField] private float scaleFactor = 0.5f;   // How much logarithm contributes to scale
-    [SerializeField] private float maxScale = 5.0f;      // Explicit maximum scale to prevent absurdity
-
-    [Header("Animation")]
-    [Tooltip("How quickly the ball animates to its new size.")]
-    [SerializeField] private float scaleSpeed = 8f;
-
-    private Ball _ball;
-    private Vector3 _targetScale; // The scale we are animating towards
-
-    private void Awake()
-    {
-        _ball = GetComponent<Ball>();
-        _ball.OnPriceChanged += HandlePriceChanged;
-
-        // Calculate and set the initial scale immediately without animation
-        float initialScaleValue = CalculateScaleForPrice(_ball.CurrentPrice);
-        transform.localScale = Vector3.one * initialScaleValue;
-        _targetScale = transform.localScale; // Sync target scale to prevent animation on start
-    }
-
-    private void OnDestroy()
-    {
-        if (_ball != null)
-            _ball.OnPriceChanged -= HandlePriceChanged;
-    }
-
-    private void Update()
-    {
-        // In each frame, smoothly move the current scale towards the target scale.
-        // This creates the smooth scaling animation.
-        transform.localScale = Vector3.Lerp(transform.localScale, _targetScale, Time.deltaTime * scaleSpeed);
-    }
-
     /// <summary>
-    /// This is called when the ball's price changes. It sets the new target scale.
+    /// Manages the visual scale of the ball based on its price.
+    /// It listens for price changes and smoothly animates the ball to its new size.
     /// </summary>
-    private void HandlePriceChanged(int newPrice)
+    [RequireComponent(typeof(Ball))]
+    public class BallScaler : MonoBehaviour
     {
-        float finalScaleValue = CalculateScaleForPrice(newPrice);
-        _targetScale = Vector3.one * finalScaleValue;
-    }
+        [Header("Scaling Logic")]
+        [SerializeField] private float _minScale = 0.1f;
+        [SerializeField] private float _baseScale = 0.5f;
+        [SerializeField] private float _scaleFactor = 0.5f;
+        [SerializeField] private float _maxScale = 5.0f;
 
-    /// <summary>
-    /// Calculates the desired scale based on a given price.
-    /// </summary>
-    private float CalculateScaleForPrice(int price)
-    {
-        // Ensure newPrice is at least 1 to avoid issues with log(0) or log(negative).
-        float logScaledValue = scaleFactor * Mathf.Log(Mathf.Max(1, price));
+        [Header("Animation")]
+        [Tooltip("How quickly the ball animates to its new size.")]
+        [SerializeField] private float _scaleAnimationSpeed = 8f;
 
-        // Add the base scale
-        float calculatedScale = baseScale + logScaledValue;
+        private Ball _ball;
+        private Vector3 _targetScale;
 
-        // Clamp the final scale between minScale and maxScale
-        return Mathf.Clamp(calculatedScale, minScale, maxScale);
+        // --- Unity Methods ---
+
+        private void Awake()
+        {
+            _ball = GetComponent<Ball>();
+            
+            // Subscribe to events
+            _ball.OnPriceChanged += HandlePriceChanged;
+            _ball.OnInitialize += HandleInitialized;
+        }
+
+        private void OnDestroy()
+        {
+            // Always unsubscribe from events to prevent memory leaks
+            if (_ball != null)
+            {
+                _ball.OnPriceChanged -= HandlePriceChanged;
+                _ball.OnInitialize -= HandleInitialized;
+            }
+        }
+
+        private void Update()
+        {
+            // TODO: This Lerp is frame-rate dependent. For more precise animation, consider
+            // using Vector3.MoveTowards or a dedicated tweening library (like DOTween/LeanTween).
+            // For this project's style, this approach is simple and visually effective.
+            if (transform.localScale != _targetScale)
+            {
+                transform.localScale = Vector3.Lerp(transform.localScale, _targetScale, Time.deltaTime * _scaleAnimationSpeed);
+            }
+        }
+        
+        // --- Event Handlers ---
+
+        /// <summary>
+        /// Responds to the ball being initialized, setting its scale immediately without animation.
+        /// This is crucial for when the ball is recycled from an object pool.
+        /// </summary>
+        private void HandleInitialized(Ball initializedBall)
+        {
+            SetInitialScale();
+        }
+
+        /// <summary>
+        /// Responds to the ball's price changing by calculating and setting a new target scale.
+        /// </summary>
+        private void HandlePriceChanged(int newPrice)
+        {
+            float finalScaleValue = CalculateScaleForPrice(newPrice);
+            _targetScale = Vector3.one * finalScaleValue;
+        }
+        
+        // --- Private Methods ---
+
+        /// <summary>
+        /// Calculates and immediately sets the ball's scale based on its current price.
+        /// </summary>
+        private void SetInitialScale()
+        {
+            float initialScaleValue = CalculateScaleForPrice(_ball.CurrentPrice);
+            _targetScale = Vector3.one * initialScaleValue;
+            transform.localScale = _targetScale; // Set scale directly, no animation
+        }
+
+        /// <summary>
+        /// The core logic for determining the scale from a given price value.
+        /// </summary>
+        private float CalculateScaleForPrice(int price)
+        {
+            // Using Log provides a nice curve where scale increases are larger at lower prices
+            // and smaller at higher prices, preventing runaway sizes.
+            float logScaledValue = _scaleFactor * Mathf.Log(Mathf.Max(1, price));
+            float calculatedScale = _baseScale + logScaledValue;
+
+            return Mathf.Clamp(calculatedScale, _minScale, _maxScale);
+        }
     }
 }

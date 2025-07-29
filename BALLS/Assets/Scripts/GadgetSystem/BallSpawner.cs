@@ -1,32 +1,54 @@
-using UnityEngine;
+// Filename: BallSpawner.cs
+using Gameplay.BallSystem;
 using Reflex.Attributes;
+using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
-public class BallSpawner : MonoBehaviour, IActivatable
+namespace Gameplay.Gadgets
 {
-    [Header("Spawner Settings")]
-    [Tooltip("Base offset from this transform at which to spawn.")]
-    [SerializeField] private Vector3 spawnOffset = Vector3.zero;
+    /// <summary>
+    /// A gadget that spawns a ball when activated.
+    /// It uses a BallFactory to create the ball instance.
+    /// </summary>
 
-    [Header("Randomness")]
-    [Tooltip("Maximum random offset (X, Y, Z) added to spawn position.")]
-    [SerializeField] private Vector3 spawnRandomRange = Vector3.zero;
-
-    [Inject] private IBallFactory ballFactory;
-
-    public void Activate()
+    public class BallSpawner : MonoBehaviour, IActivatable
     {
-        // Compute a random offset within the specified ranges
-        Vector3 randomOffset = new Vector3(
-            Random.Range(-spawnRandomRange.x, spawnRandomRange.x),
-            Random.Range(-spawnRandomRange.y, spawnRandomRange.y),
-            Random.Range(-spawnRandomRange.z, spawnRandomRange.z)
-        );
+        [Header("Spawner Settings")]
+        [Tooltip("Base offset from this transform's position at which to spawn.")]
+        [SerializeField] private Vector3 _spawnOffset = Vector3.zero;
 
-        Vector3 spawnPos = transform.position + spawnOffset + randomOffset;
-        ballFactory.SpawnBall(spawnPos, 1);
+        [Header("Randomness")]
+        [Tooltip("Maximum random offset applied to the spawn position on each axis.")]
+        [SerializeField] private Vector3 _spawnRandomRange = Vector3.zero;
+        [Inject] private IBallFactory _ballFactory;
+
+        // --- IActivatable Implementation ---
+
+        /// <summary>
+        /// Spawns a new ball at a calculated position.
+        /// </summary>
+        public void Activate()
+        {
+            Vector3 spawnPosition = GetSpawnPosition();
+            _ballFactory.SpawnBall(spawnPosition, 1);
+        }
+
+        public Transform ActivationTransform => this.transform;
+
+        // --- Private Methods ---
+
+        /// <summary>
+        /// Calculates the final world-space position for the new ball, including offsets and randomness.
+        /// </summary>
+        /// <returns>The calculated world-space spawn position.</returns>
+        private Vector3 GetSpawnPosition()
+        {
+            Vector3 randomOffset = new Vector3(
+                Random.Range(-_spawnRandomRange.x, _spawnRandomRange.x),
+                Random.Range(-_spawnRandomRange.y, _spawnRandomRange.y),
+                Random.Range(-_spawnRandomRange.z, _spawnRandomRange.z)
+            );
+
+            return transform.position + _spawnOffset + randomOffset;
+        }
     }
-
-    // satisfy the interface
-    public Transform ActivationTransform => this.transform;
 }

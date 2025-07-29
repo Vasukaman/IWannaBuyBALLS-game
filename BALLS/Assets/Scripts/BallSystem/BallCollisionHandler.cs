@@ -1,23 +1,40 @@
-// BallCollisionHandler.cs - Handles collision detection
+// Filename: BallCollisionHandler.cs
 using UnityEngine;
 
-[RequireComponent(typeof(Ball), typeof(BallMerger))]
-public class BallCollisionHandler : MonoBehaviour
+namespace Gameplay.BallSystem
 {
-    private Ball _ball;
-    private BallMerger _merger;
-
-    private void Awake()
+    /// <summary>
+    /// Detects collisions with other balls and delegates the handling to the BallMerger component.
+    /// This component acts as a dedicated entry point for physics collision events.
+    /// </summary>
+    [RequireComponent(typeof(Ball), typeof(BallMerger))]
+    public class BallCollisionHandler : MonoBehaviour
     {
-        _ball = GetComponent<Ball>();
-        _merger = GetComponent<BallMerger>();
-    }
+        private Ball _ball;
+        private BallMerger _merger;
 
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-        Ball other = col.collider.GetComponent<Ball>();
-        if (other == null || other == _ball) return;
+        private void Awake()
+        {
+            _ball = GetComponent<Ball>();
+            _merger = GetComponent<BallMerger>();
+        }
 
-        _merger.TryMerge(other);
+        /// <summary>
+        /// Called by the Unity physics engine when a 2D collision occurs.
+        /// </summary>
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            // Attempt to get a Ball component from the object we collided with.
+            if (collision.collider.TryGetComponent<Ball>(out Ball otherBall))
+            {
+                // Ensure the other ball is not null and not this ball itself.
+                if (otherBall != null && otherBall != _ball)
+                {
+                    // Pass the valid ball to the merger to handle the logic.
+                    // In a previous refactor, we renamed TryMerge to InitiateMergeWith
+                    _merger.InitiateMergeWith(otherBall);
+                }
+            }
+        }
     }
 }

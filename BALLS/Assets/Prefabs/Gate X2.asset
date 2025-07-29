@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 105773fdfa066bc478d2d475778c4249, type: 3}
   m_Name: Gate X2
   m_EditorClassIdentifier: 
-  displayName: '*2'
-  price: 100
-  prefab: {fileID: 1031354085885845365, guid: a685296c47261a2419135fb91d30ac39, type: 3}
-  icon: {fileID: 21300000, guid: 6ea4a26d7ed6e804182ca5b588bd6eb7, type: 3}
+  DisplayName: X2
+  Price: 200
+  Prefab: {fileID: 1031354085885845365, guid: a685296c47261a2419135fb91d30ac39, type: 3}
+  Icon: {fileID: 21300000, guid: 6ea4a26d7ed6e804182ca5b588bd6eb7, type: 3}

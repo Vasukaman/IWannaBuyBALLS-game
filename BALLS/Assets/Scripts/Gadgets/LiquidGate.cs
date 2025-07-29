@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Gameplay.BallSystem;
 
 [RequireComponent(typeof(Renderer), typeof(Collider2D))]
 public class LiquidGate : MonoBehaviour
@@ -146,7 +147,7 @@ public class LiquidGate : MonoBehaviour
             float uvRadius = b.GetShaderTrueSize() / transform.lossyScale.x;
 
             ballDataArray[validBallIdx] = new Vector4(uvPos.x, uvPos.y, uvRadius, 0);
-            ballColorArray[validBallIdx] = b.color;
+            ballColorArray[validBallIdx] = b.Color;
             validBallIdx++;
 
             // Find closest ball for bulge effect

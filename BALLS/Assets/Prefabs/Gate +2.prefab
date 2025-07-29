@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2623251722762874566}
   - component: {fileID: 7155942066572362634}
   - component: {fileID: 6260232294120838238}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BodyRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +288,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1000000
-  m_LinearDrag: 1000
+  m_LinearDrag: 1000000
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -314,6 +314,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdeac38293301734a942cb78cd081f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _disableGravityWhileDragging: 1
+  _dragTimeout: 0.2
 --- !u!114 &839168356506201197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,8 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96315a919cafa6e49af4fb0bc3ca36a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: {fileID: 11400000, guid: ff9a0375ba923fe478a57c2dbbca1b8c, type: 2}
-  storeManager: {fileID: 0}
+  _storeManager: {fileID: 0}
 --- !u!61 &244035992964841577
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -437,7 +438,7 @@ GameObject:
   - component: {fileID: 7954339687942485932}
   - component: {fileID: 3806311545951910626}
   - component: {fileID: 4978417298361605182}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -588,7 +589,7 @@ GameObject:
   - component: {fileID: 5927426784849852018}
   - component: {fileID: 1086401626373820829}
   - component: {fileID: 3346930206705836816}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Border Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -749,7 +750,7 @@ GameObject:
   - component: {fileID: 7581119227698298782}
   - component: {fileID: 5580154791408378358}
   - component: {fileID: 16309205758449012}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Border Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -910,7 +911,7 @@ GameObject:
   - component: {fileID: 201975221215680808}
   - component: {fileID: 5844681849653062305}
   - component: {fileID: 8027230230185628416}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Border Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1204,7 +1205,7 @@ GameObject:
   - component: {fileID: 6679961363939901490}
   - component: {fileID: 5780714104794904175}
   - component: {fileID: 1150936685248600652}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BodyLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}

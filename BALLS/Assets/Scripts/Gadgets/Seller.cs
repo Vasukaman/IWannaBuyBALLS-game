@@ -2,7 +2,7 @@ using Game.Economy;
 using Reflex.Attributes;
 using System.Collections;
 using UnityEngine;
-
+using Gameplay.BallSystem;
 public class Seller : MonoBehaviour
 {
     [Inject] private IMoneyService _moneyService;

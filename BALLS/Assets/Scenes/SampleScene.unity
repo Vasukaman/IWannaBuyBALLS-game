@@ -219,6 +219,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: 4ae1cf1717b12eb4ea8070583253cb5a, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
 --- !u!4 &42228402
 Transform:
   m_ObjectHideFlags: 0
@@ -228,7 +233,7 @@ Transform:
   m_GameObject: {fileID: 42228400}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.345051, y: 2.0076962, z: -0.031437077}
+  m_LocalPosition: {x: 0.61, y: 1.22, z: -0.031437077}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -682,8 +687,8 @@ Transform:
   m_GameObject: {fileID: 293391900}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.53, y: 0.8863, z: 0}
-  m_LocalScale: {x: 1, y: 17.773207, z: 1}
+  m_LocalPosition: {x: -5.53, y: 1.6373, z: 0}
+  m_LocalScale: {x: 1, y: 16.27137, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -840,8 +845,8 @@ Transform:
   m_GameObject: {fileID: 406353290}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.14, y: -5.17, z: 0}
-  m_LocalScale: {x: 20, y: 2.4621, z: 1}
+  m_LocalPosition: {x: 1.9384, y: -5.17, z: 0}
+  m_LocalScale: {x: 15.844001, y: 2.4621, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1128,6 +1133,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 519420032}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 0
+  antialiasingMode: 0
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
 --- !u!1 &539597715
 GameObject:
   m_ObjectHideFlags: 0
@@ -1159,8 +1212,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ca371c7473575749a8e4b9b54cda526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnOffset: {x: 0, y: -0.5, z: 0}
-  spawnRandomRange: {x: 0.015, y: 0, z: 0}
+  _spawnOffset: {x: 0, y: 0, z: 0}
+  _spawnRandomRange: {x: 0, y: 0, z: 0}
 --- !u!61 &539597717
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2714,6 +2767,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdeac38293301734a942cb78cd081f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _disableGravityWhileDragging: 1
+  _dragTimeout: 1
 --- !u!50 &1451160000
 Rigidbody2D:
   serializedVersion: 4
@@ -2934,8 +2989,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2543d9656fa2f040b12ea4d7001a6df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballPrefab: {fileID: 1971972945256430267, guid: c1208757b4e86554bb0542b901f08d54, type: 3}
-  initialPoolSize: 20
+  _ballPrefab: {fileID: 1971972945256430267, guid: c1208757b4e86554bb0542b901f08d54, type: 3}
+  _initialPoolSize: 20
 --- !u!4 &1608829669
 Transform:
   m_ObjectHideFlags: 0
@@ -3525,6 +3580,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdeac38293301734a942cb78cd081f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _disableGravityWhileDragging: 1
+  _dragTimeout: 1
 --- !u!50 &1982299916
 Rigidbody2D:
   serializedVersion: 4
@@ -3562,7 +3619,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2015460877}
   - component: {fileID: 2015460876}
-  - component: {fileID: 2015460875}
   - component: {fileID: 2015460874}
   m_Layer: 0
   m_Name: Spawner
@@ -3583,53 +3639,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ca371c7473575749a8e4b9b54cda526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnOffset: {x: 0, y: -0.5, z: 0}
-  spawnRandomRange: {x: 0.015, y: 0, z: 0}
---- !u!61 &2015460875
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2015460873}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 0.8828125}
-    newSize: {x: 1, y: 0.8828125}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.8828125}
-  m_EdgeRadius: 0
+  _spawnOffset: {x: 0, y: 0, z: 0}
+  _spawnRandomRange: {x: 0.01, y: 0, z: 0}
 --- !u!212 &2015460876
 SpriteRenderer:
   m_ObjectHideFlags: 0

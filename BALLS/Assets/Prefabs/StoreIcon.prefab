@@ -398,6 +398,7 @@ MonoBehaviour:
   _priceText: {fileID: 8673354536601465056}
   _iconImage: {fileID: 2434837378312980399}
   _iconRoot: {fileID: 4358062886437566465}
+  _gameplayAreaBoundary: 0.25
   _animationDuration: 0.08
 --- !u!1 &6272611266985708857
 GameObject:
@@ -506,7 +507,7 @@ Transform:
   m_GameObject: {fileID: 8917148595408354237}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0869751, y: 0.02746582, z: -0.009487427}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

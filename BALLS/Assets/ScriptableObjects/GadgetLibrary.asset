@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f1c224d2d3da214c91cc133b90180f8, type: 3}
   m_Name: GadgetLibrary
   m_EditorClassIdentifier: 
-  gadgets:
+  AllGadgets:
   - {fileID: 11400000, guid: ff9a0375ba923fe478a57c2dbbca1b8c, type: 2}
   - {fileID: 11400000, guid: 6f4f6452a3ad7f64e9edc0cc76b2dd9f, type: 2}
   - {fileID: 11400000, guid: 492cbfd97269b044292dc493586fa288, type: 2}

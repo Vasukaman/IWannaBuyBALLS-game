@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 105773fdfa066bc478d2d475778c4249, type: 3}
   m_Name: AutoActivator
   m_EditorClassIdentifier: 
-  displayName: AutoActivator
-  price: 500
-  prefab: {fileID: 3973453174210186642, guid: 089f680c8b687e44f8fe62bbc612cbc9, type: 3}
-  icon: {fileID: 21300000, guid: 209420a018ee06e4189680b09c528398, type: 3}
+  DisplayName: AutoActivator
+  Price: 50
+  Prefab: {fileID: 3973453174210186642, guid: 089f680c8b687e44f8fe62bbc612cbc9, type: 3}
+  Icon: {fileID: 21300000, guid: 6ee1c71fff9c432479371a33e20de30c, type: 3}

@@ -76,6 +76,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _EdgeSmoothness: 0.01
     - _EnableOrbPathLine: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -88,13 +89,21 @@ Material:
     - _NoiseStrength: 0.05
     - _OcclusionStrength: 1
     - _OrbCount: 5
+    - _OrbCountT1: 3
+    - _OrbCountT2: 0
     - _OrbCountTier2: 10
     - _OrbPathLineThickness: 0.005
     - _OrbPathRadius: 0.252
+    - _OrbPathRadiusT1: 0.3
+    - _OrbPathRadiusT2: 0.15
     - _OrbPathRadiusTier2: 0.15
     - _OrbRadius: 0.034
+    - _OrbRadiusT1: 0.04
+    - _OrbRadiusT2: 0.08
     - _OrbRadiusTier2: 0.036
     - _OrbSpeed: 1
+    - _OrbSpeedT1: 2
+    - _OrbSpeedT2: -1
     - _OrbSpeedTier2: 1
     - _OrbitCircleCount: 3
     - _OrbitCircleRadius: 0.0181
@@ -121,14 +130,18 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BottomColor: {r: 0, g: 0, b: 0, a: 0}
     - _CircleColor: {r: 1, g: 1, b: 1, a: 0.5}
     - _Color: {r: 0, g: 0.17647055, b: 0.23137254, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _MainColor: {r: 1, g: 1, b: 1, a: 1}
     - _MergePartner: {r: 0, g: 0, b: 0, a: 0}
     - _MergeTargetPos: {r: 0.14, g: 0.5, b: 0, a: 0}
     - _MergeTargetUV: {r: 0, g: 0, b: 0, a: 0}
     - _OrbColor: {r: 1, g: 1, b: 1, a: 1}
+    - _OrbColorT1: {r: 1, g: 0.5, b: 0, a: 0.5}
+    - _OrbColorT2: {r: 0.19999996, g: 0.8, b: 1, a: 0.7}
     - _OrbColorTier2: {r: 0.19999996, g: 0.8, b: 1, a: 0.7}
     - _OrbPathLineColor: {r: 1, g: 1, b: 1, a: 0.2}
     - _OrbitCircleColor: {r: 1, g: 0.92316735, b: 0.6094339, a: 1}
