@@ -26,7 +26,7 @@ This project serves as a portfolio piece to demonstrate a deep understanding of 
 
 #### Wobbly Gates
 *A dynamic distortion effect on the gates, making them feel alive.*
-*(place your Wobbly Gates GIF here)*
+https://imgur.com/a/0mG6fTW
 
 #### Gadget Sell Zone
 *A custom shader that creates a visual field for selling gadgets.*
