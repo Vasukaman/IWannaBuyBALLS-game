@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using System; // Required for Action
 
-public class ManualActivator : MonoBehaviour, IActivator
+public class ManualActivator : MonoBehaviour, ICanConnect
 {
     private IActivatable _currentTarget;
     [Inject] private IButton _button;

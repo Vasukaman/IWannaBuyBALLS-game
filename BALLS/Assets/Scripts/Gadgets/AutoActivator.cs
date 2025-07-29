@@ -6,7 +6,7 @@ using System; // Required for Action
 
 
 
-public class AutoActivator : MonoBehaviour, IActivator
+public class AutoActivator : MonoBehaviour, ICanConnect
 {
     [Tooltip("How often (in seconds) to automatically activate the nearest IActivatable.")]
     [SerializeField] private float interval = 1f;
