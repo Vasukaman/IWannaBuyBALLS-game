@@ -22,19 +22,23 @@ This project serves as a portfolio piece to demonstrate a deep understanding of 
 
 #### Ball Merging (Metaball Effect)
 *A smooth, liquid-like merge effect when two balls combine.*
-*(place your Ball Merging GIF here)*
+
+![Merging_git](https://github.com/user-attachments/assets/65438e40-9194-475e-a5e2-e824c688f529)
 
 #### Wobbly Gates
-*A dynamic distortion effect on the gates, making them feel alive.*
-https://imgur.com/a/0mG6fTW
+
+![wibbly gates](https://github.com/user-attachments/assets/86a4d903-0a17-48f6-9e3a-c1fc16c1dd1c)
+
 
 #### Gadget Sell Zone
 *A custom shader that creates a visual field for selling gadgets.*
-*(place your Sell Zone GIF here)*
 
-#### Ball Appearance
-*The core ball shader uses multiple layers of procedural effects, including internal orbiting orbs that represent the ball's value.*
-*(place your Ball Appearance GIF here)*
+![Seller_git](https://github.com/user-attachments/assets/740ba7d8-9697-402e-becb-d03a6635ea59)
+
+#### Seller Suck In
+![Sellet_git](https://github.com/user-attachments/assets/75fb8afe-e02b-458c-ac3b-9866911c0830)
+
+
 
 ## Future Improvements
 
