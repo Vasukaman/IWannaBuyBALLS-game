@@ -2,7 +2,7 @@ using Game.Economy;
 using Reflex.Core;
 using UnityEngine;
 using UnityEngine.UIElements;
-using BallMania.Core;
+//using BallMania.Core;
 public class ProjectInstaller : MonoBehaviour, IInstaller
 {
 
