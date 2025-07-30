@@ -273,12 +273,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bccd089435cd554abeacc5cf52a77b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetLayers:
+  _targetLayers:
     serializedVersion: 2
-    m_Bits: 8
-  forceDirection: {x: 1, y: 0}
-  forceMagnitude: 10
-  forceMode: 0
+    m_Bits: 0
+  _forceDirection: {x: 0, y: 1}
+  _forceMagnitude: 10
+  _forceMode: 0
 --- !u!1 &1280033987647558474
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,12 +583,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bccd089435cd554abeacc5cf52a77b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetLayers:
+  _targetLayers:
     serializedVersion: 2
-    m_Bits: 8
-  forceDirection: {x: 0, y: -1}
-  forceMagnitude: 15
-  forceMode: 0
+    m_Bits: 0
+  _forceDirection: {x: 0, y: 1}
+  _forceMagnitude: 10
+  _forceMode: 0
 --- !u!1 &5567881392683330522
 GameObject:
   m_ObjectHideFlags: 0
@@ -1095,6 +1095,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4978417298361605182, guid: 47b09a980ff49b84fb6bdb85b17c69ca, type: 3}
       propertyPath: value
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978417298361605182, guid: 47b09a980ff49b84fb6bdb85b17c69ca, type: 3}
+      propertyPath: _gateOperation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978417298361605182, guid: 47b09a980ff49b84fb6bdb85b17c69ca, type: 3}
+      propertyPath: _modifierValue
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6106853045652111001, guid: 47b09a980ff49b84fb6bdb85b17c69ca, type: 3}

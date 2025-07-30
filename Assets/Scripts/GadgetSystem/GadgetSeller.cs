@@ -7,6 +7,11 @@ using UnityEngine;
 /// The zone continuously and dynamically resizes with a wobbly effect to track a gadget,
 /// then begins the selling process with visual feedback on itself.
 /// </summary>
+/// 
+
+
+//This is definetly a script I need to break into smaller ones. 
+//I'm leaving proper refactoring until then.
 [RequireComponent(typeof(BoxCollider2D), typeof(Renderer))]
 public class GadgetSeller : MonoBehaviour
 {

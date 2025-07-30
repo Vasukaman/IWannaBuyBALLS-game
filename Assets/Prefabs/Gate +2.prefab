@@ -569,14 +569,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fad283f48ad76e41a583d45d5cc2814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onFirstPass:
+  _gateOperation: 0
+  _modifierValue: 2
+  _onFirstPass:
     m_PersistentCalls:
       m_Calls: []
-  onRepeatPass:
+  _onRepeatPass:
     m_PersistentCalls:
       m_Calls: []
-  gateType: 0
-  value: 2
 --- !u!1 &6130020613649624175
 GameObject:
   m_ObjectHideFlags: 0

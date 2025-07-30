@@ -1,111 +1,142 @@
+// Filename: RotatorOnActivate.cs
+using System.Collections;
 using UnityEngine;
-using System.Collections; // Required for Coroutines
 
-public class RotatorOnActivate : MonoBehaviour
+namespace Gameplay.Gadgets
 {
-    [Header("Dependencies")]
-    [Tooltip("Assign the ManualActivator script that will trigger rotations.")]
-    public ManualActivator manualActivator;
-
-    [Tooltip("The GameObject to rotate. If null, this GameObject will rotate.")]
-    public GameObject objectToRotate;
-
-    [Header("Rotation Settings")]
-    [Tooltip("Degrees to rotate each time the activator is triggered.")]
-    [Range(1f, 360f)] // Ensure N is between 1 and 360
-    public float rotationDegreesPerActivate = 90f;
-
-    [Tooltip("Time in seconds for the rotation to complete smoothly.")]
-    public float rotationDuration = 0.5f;
-
-    [Tooltip("Type of easing for the rotation animation.")]
-    public AnimationCurve rotationCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
-
-    private Quaternion targetRotation; // The rotation we are smoothly moving towards
-    private bool isRotating = false; // Flag to prevent multiple rotations at once
-
-    void Awake()
+    /// <summary>
+    /// A component that smoothly rotates a target GameObject by a specified amount
+    /// when a linked activator's OnActivate event is triggered.
+    /// </summary>
+    public class RotatorOnActivate : MonoBehaviour
     {
-        // If objectToRotate is not assigned, default to this GameObject
-        if (objectToRotate == null)
+        [Header("Dependencies")]
+        // TODO: [Coupling] This component is tightly coupled to the 'ManualActivator' class.
+        // A more flexible design would be to depend on an interface (e.g., IActivatable),
+        // allowing this rotator to be triggered by any type of activator.
+        [Tooltip("The activator that will trigger the rotation.")]
+        [SerializeField] private ManualActivator _activator;
+
+        [Tooltip("The GameObject to rotate. If null, this GameObject will be rotated.")]
+        [SerializeField] private GameObject _objectToRotate;
+
+        [Header("Rotation Settings")]
+        [Tooltip("Degrees to rotate each time the activator is triggered.")]
+        [Range(1f, 360f)]
+        [SerializeField] private float _rotationDegreesPerActivate = 90f;
+
+        [Tooltip("Time in seconds for the rotation to complete smoothly.")]
+        [SerializeField] private float _rotationDuration = 0.5f;
+
+        [Tooltip("An animation curve to control the easing of the rotation.")]
+        [SerializeField] private AnimationCurve _rotationCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
+
+        // --- State ---
+        private Quaternion _targetRotation;
+        private bool _isRotating = false;
+        private Transform _cachedTransformToRotate;
+
+        // --- Unity Methods ---
+
+        private void Awake()
         {
-            objectToRotate = this.gameObject;
+            // If objectToRotate is not assigned, default to this GameObject.
+            if (_objectToRotate == null)
+            {
+                _objectToRotate = this.gameObject;
+            }
+            _cachedTransformToRotate = _objectToRotate.transform;
+
+            // Initialize target rotation to the current rotation to prevent snapping on start.
+            _targetRotation = _cachedTransformToRotate.rotation;
         }
 
-        // Initialize target rotation to current rotation to prevent immediate snap
-        targetRotation = objectToRotate.transform.rotation;
-    }
-
-    void OnEnable()
-    {
-        // Subscribe to the OnActivate event
-        if (manualActivator != null)
+        private void OnEnable()
         {
-            manualActivator.OnActivate += HandleActivation;
-        }
-        else
-        {
-            Debug.LogWarning("RotatorOnActivate: ManualActivator not assigned. Rotations will not be triggered.", this);
-        }
-    }
-
-    void OnDisable()
-    {
-        // Unsubscribe to prevent memory leaks or errors if activator is destroyed
-        if (manualActivator != null)
-        {
-            manualActivator.OnActivate -= HandleActivation;
-        }
-    }
-
-    private void HandleActivation()
-    {
-        // If already rotating, ignore new activation to avoid jerky movements
-        if (isRotating)
-        {
-            return;
+            // Subscribe to the activator's event.
+            if (_activator != null)
+            {
+                _activator.OnActivate += HandleActivation;
+            }
+            else
+            {
+                Debug.LogWarning("RotatorOnActivate: Activator not assigned. Rotations will not be triggered.", this);
+            }
         }
 
-        // Calculate the new target rotation
-        // We rotate around the Z-axis for 2D, or Y-axis for 3D vertical rotation
-        // Adjust based on your object's orientation and desired axis of rotation
-        targetRotation *= Quaternion.Euler(0, 0, rotationDegreesPerActivate); // For 2D (Z-axis)
-
-        // Start the smooth rotation coroutine
-        StartCoroutine(SmoothRotateCoroutine(objectToRotate.transform.rotation, targetRotation, rotationDuration));
-    }
-
-    private IEnumerator SmoothRotateCoroutine(Quaternion startRot, Quaternion endRot, float duration)
-    {
-        isRotating = true;
-        float timer = 0f;
-
-        while (timer < duration)
+        private void OnDisable()
         {
-            float progress = timer / duration;
-            // Use the animation curve to modify the progress for easing effects
-            float easedProgress = rotationCurve.Evaluate(progress);
-
-            objectToRotate.transform.rotation = Quaternion.Lerp(startRot, endRot, easedProgress);
-
-            timer += Time.deltaTime;
-            yield return null; // Wait for the next frame
+            // Unsubscribe from the event to prevent errors and memory leaks.
+            if (_activator != null)
+            {
+                _activator.OnActivate -= HandleActivation;
+            }
         }
 
-        // Ensure it snaps to the final rotation to avoid floating-point inaccuracies
-        objectToRotate.transform.rotation = endRot;
-        isRotating = false;
-    }
+        // --- Private Methods ---
 
-    // Optional: Draw gizmos to see which object is set to rotate
-    void OnDrawGizmosSelected()
-    {
-        if (objectToRotate != null)
+        /// <summary>
+        /// Called when the assigned activator's OnActivate event is invoked.
+        /// </summary>
+        private void HandleActivation()
         {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireCube(objectToRotate.transform.position, objectToRotate.transform.localScale * 1.1f);
-            Gizmos.DrawLine(objectToRotate.transform.position, objectToRotate.transform.position + objectToRotate.transform.right * 0.5f);
-            Gizmos.DrawLine(objectToRotate.transform.position, objectToRotate.transform.position + objectToRotate.transform.up * 0.5f);
+            // Ignore new activations if a rotation is already in progress.
+            if (_isRotating)
+            {
+                return;
+            }
+
+            // Calculate the new target rotation by applying the rotation increment.
+            _targetRotation *= Quaternion.Euler(0, 0, _rotationDegreesPerActivate); // Rotates around the Z-axis for 2D.
+
+            // Start the smooth rotation coroutine.
+            StartCoroutine(SmoothRotateCoroutine(_targetRotation));
+        }
+
+        /// <summary>
+        /// Smoothly animates the object from its current rotation to the target rotation over a set duration.
+        /// </summary>
+        private IEnumerator SmoothRotateCoroutine(Quaternion endRotation)
+        {
+            _isRotating = true;
+            float timer = 0f;
+            Quaternion startRotation = _cachedTransformToRotate.rotation;
+
+            while (timer < _rotationDuration)
+            {
+                timer += Time.deltaTime;
+                float progress = Mathf.Clamp01(timer / _rotationDuration);
+
+                // Use the animation curve to get an eased progress value.
+                float easedProgress = _rotationCurve.Evaluate(progress);
+
+                // Spherically interpolate between the start and end rotations.
+                _cachedTransformToRotate.rotation = Quaternion.Slerp(startRotation, endRotation, easedProgress);
+
+                yield return null; // Wait for the next frame.
+            }
+
+            // Snap to the final rotation to ensure precision.
+            _cachedTransformToRotate.rotation = endRotation;
+            _isRotating = false;
+        }
+
+        // --- Editor-Only Methods ---
+
+        private void OnDrawGizmosSelected()
+        {
+            if (_objectToRotate != null)
+            {
+                Transform targetTransform = _objectToRotate.transform;
+                Gizmos.color = Color.cyan;
+                Gizmos.DrawWireCube(targetTransform.position, targetTransform.lossyScale * 1.1f);
+
+                // Draw lines to represent the local axes.
+                Gizmos.color = Color.red; // X-axis (right)
+                Gizmos.DrawLine(targetTransform.position, targetTransform.position + targetTransform.right * 0.5f);
+                Gizmos.color = Color.green; // Y-axis (up)
+                Gizmos.DrawLine(targetTransform.position, targetTransform.position + targetTransform.up * 0.5f);
+            }
         }
     }
 }
