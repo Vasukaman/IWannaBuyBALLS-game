@@ -257,7 +257,9 @@ GameObject:
   - component: {fileID: 7031223137882854281}
   - component: {fileID: 7184064478836492161}
   - component: {fileID: 6233418169589858830}
-  - component: {fileID: 7096558164351232204}
+  - component: {fileID: 1894883982360304422}
+  - component: {fileID: 4853101776620253696}
+  - component: {fileID: 1953884164258308069}
   m_Layer: 5
   m_Name: StoreIconDraggable
   m_TagString: Untagged
@@ -383,7 +385,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7096558164351232204
+--- !u!114 &1894883982360304422
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -392,14 +394,44 @@ MonoBehaviour:
   m_GameObject: {fileID: 5012225413190747104}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60e80ad00a6bd284eac0c515f8cc8fcd, type: 3}
+  m_Script: {fileID: 11500000, guid: fc8b42afe51b234409c0e8be4cc51048, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _priceText: {fileID: 8673354536601465056}
   _iconImage: {fileID: 2434837378312980399}
   _iconRoot: {fileID: 4358062886437566465}
-  _gameplayAreaBoundary: 0.25
-  _animationDuration: 0.08
+  _canAffordColor: {r: 0, g: 1, b: 0, a: 1}
+  _cannotAffordColor: {r: 1, g: 0, b: 0, a: 1}
+  _cannotAffordAlpha: 0.5
+--- !u!114 &4853101776620253696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5012225413190747104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdeac38293301734a942cb78cd081f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _disableGravityWhileDragging: 1
+  _dragTimeout: 0.2
+  _disableDragOnTimeout: 0
+--- !u!114 &1953884164258308069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5012225413190747104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d32f0edb9ffb7249989eaf9a3502c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameplayAreaBoundary: 0.15
+  _animationDuration: 0.15
 --- !u!1 &6272611266985708857
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 // Filename: Ball.cs
+using Reflex.Attributes;
 using System;
 using UnityEngine;
 
@@ -29,7 +30,7 @@ namespace Gameplay.BallSystem
         //AI is screaming at me here:(((( Yeah, I'll fix this later
         // TODO: [Circular Dependency] The Ball should not know about the factory that creates it.
         // A better approach is for the Ball to only fire an event, and the Factory listens for it.
-        private IBallFactory _ballFactory;
+        [Inject] private IBallFactory _ballFactory;
 
         // --- Properties ---
 

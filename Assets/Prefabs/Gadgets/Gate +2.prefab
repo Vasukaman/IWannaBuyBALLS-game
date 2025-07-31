@@ -243,9 +243,9 @@ GameObject:
   - component: {fileID: 8959947271022880251}
   - component: {fileID: 1453183132106967360}
   - component: {fileID: 4842137849111473240}
-  - component: {fileID: 839168356506201197}
   - component: {fileID: 244035992964841577}
   - component: {fileID: 8375010391804416651}
+  - component: {fileID: 4534871421784273589}
   m_Layer: 7
   m_Name: Gate +2
   m_TagString: Untagged
@@ -316,19 +316,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _disableGravityWhileDragging: 1
   _dragTimeout: 0.2
---- !u!114 &839168356506201197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4396587226895492728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96315a919cafa6e49af4fb0bc3ca36a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _storeManager: {fileID: 0}
 --- !u!61 &244035992964841577
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -426,6 +413,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4534871421784273589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4396587226895492728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33ed0fc12397df642a0eb85a49966015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5790169369672092255
 GameObject:
   m_ObjectHideFlags: 0

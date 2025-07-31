@@ -1,5 +1,8 @@
 ﻿// Filename: BallFactory.cs
 using Gameplay.BallSystem;
+using Reflex.Attributes;
+using Reflex.Core;
+using Reflex.Injectors;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,7 +22,7 @@ namespace Gameplay.BallSystem
         // --- State ---
         private readonly Queue<Ball> _pooledBalls = new Queue<Ball>();
         private readonly HashSet<Ball> _activeBalls = new HashSet<Ball>();
-
+        [Inject] private Container _container;
         // --- Properties ---
 
         /// <summary>
@@ -109,7 +112,9 @@ namespace Gameplay.BallSystem
             // This creates a tight coupling between the creator and the product. A better pattern is
             // for the factory to subscribe to the ball's 'OnRequestDespawn' event, and the ball
             // would have no knowledge of the factory.
-            ball.SetBallFactory(this);
+           // ball.SetBallFactory(this);
+
+            GameObjectInjector.InjectObject(ball.gameObject, _container);
             ball.OnRequestDespawn += ReturnBallToPool;
 
             ball.gameObject.SetActive(true);
