@@ -8,21 +8,32 @@ namespace Gameplay.BallSystem
     /// Listens to a Ball's OnPriceChanged event and updates a TextMeshPro component.
     /// This keeps UI logic separate from the ball's core data model.
     /// </summary>
-    [RequireComponent(typeof(Ball))]
+    [RequireComponent(typeof(BallView))]
     public class BallUIController : MonoBehaviour
     {
         [Header("References")]
         [SerializeField] private TMP_Text _priceText;
 
-        private Ball _ball;
+        private BallView _ball;
 
         private void Awake()
         {
-            _ball = GetComponent<Ball>();
+            _ball = GetComponent<BallView>();
 
             // Subscribe to the event to receive updates
-            _ball.OnPriceChanged += HandlePriceChanged;
+           
+        }
+
+        private void OnEnable()
+        {
+            _ball.Data.OnPriceChanged += HandlePriceChanged;
             _ball.OnInitialize += HandleInitialized;
+        }
+
+        private void OnDisable()
+        {
+            _ball.Data.OnPriceChanged -= HandlePriceChanged;
+            _ball.OnInitialize -= HandleInitialized;
         }
 
         private void OnDestroy()
@@ -30,7 +41,7 @@ namespace Gameplay.BallSystem
             // Always unsubscribe from events when the object is destroyed to prevent errors
             if (_ball != null)
             {
-                _ball.OnPriceChanged -= HandlePriceChanged;
+                _ball.Data.OnPriceChanged -= HandlePriceChanged;
                 _ball.OnInitialize -= HandleInitialized;
             }
         }
@@ -38,9 +49,9 @@ namespace Gameplay.BallSystem
         /// <summary>
         /// Called when the ball is first initialized to set the starting text.
         /// </summary>
-        private void HandleInitialized(Ball ball)
+        private void HandleInitialized(BallView ball)
         {
-            UpdatePriceText(ball.CurrentPrice);
+            UpdatePriceText(ball.Data.CurrentPrice);
         }
 
         /// <summary>

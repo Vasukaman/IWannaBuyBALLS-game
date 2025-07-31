@@ -25,10 +25,10 @@ namespace Gameplay.BallSystem
             int oldPrice = CurrentPrice;
             CurrentPrice = Math.Max(1, newPrice);
 
-            if (CurrentPrice != oldPrice)
-            {
+           // if (CurrentPrice != oldPrice)
+           // {
                 OnPriceChanged?.Invoke(CurrentPrice);
-            }
+            //}
         }
 
         public void ModifyPrice(Func<int, int> modifier) => SetPrice(modifier(CurrentPrice));

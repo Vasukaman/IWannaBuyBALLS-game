@@ -27,7 +27,7 @@ namespace Gameplay.Gadgets
         [Inject] private IMoneyService _moneyService;
 
         // --- State ---
-        private readonly HashSet<Ball> _ballsBeingProcessed = new();
+        private readonly HashSet<BallView> _ballsBeingProcessed = new();
 
         // --- Unity Methods ---
 
@@ -42,7 +42,7 @@ namespace Gameplay.Gadgets
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.TryGetComponent<Ball>(out var ball))
+            if (other.TryGetComponent<BallView>(out var ball))
             {
                 // Start the selling process only if we aren't already handling this ball.
                 // This prevents bugs from multiple trigger events for the same object.
@@ -58,7 +58,7 @@ namespace Gameplay.Gadgets
         /// <summary>
         /// Handles the entire lifecycle of selling a ball, from animation to despawn.
         /// </summary>
-        private IEnumerator AnimateAndSellBall(Ball ball)
+        private IEnumerator AnimateAndSellBall(BallView ball)
         {
             // Prepare the ball for animation by disabling its physics interactions.
             PrepareBallForAnimation(ball);
@@ -85,7 +85,7 @@ namespace Gameplay.Gadgets
             // Finalize the transaction.
             if (ball != null)
             {
-                _moneyService.Add(ball.CurrentPrice);
+                _moneyService.Add(ball.Data.CurrentPrice);
                 ball.Despawn();
             }
 
@@ -96,7 +96,7 @@ namespace Gameplay.Gadgets
         /// <summary>
         /// Disables physics components on the ball so it can be animated freely.
         /// </summary>
-        private void PrepareBallForAnimation(Ball ball)
+        private void PrepareBallForAnimation(BallView ball)
         {
             // TODO: [Architecture] This component directly manipulates the ball's state (disabling physics,
             // changing transform). A more decoupled approach would be for the ball to have its own

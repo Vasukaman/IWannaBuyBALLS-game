@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 394379449441737378}
   - component: {fileID: 4839928598268190080}
   - component: {fileID: 2381936044798404419}
+  - component: {fileID: 1803769310976174520}
   m_Layer: 3
   m_Name: Ball_Visual
   m_TagString: Untagged
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -97,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a71e33974571b42bd2fc837d7be344, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ball: {fileID: 1971972945256430267}
+  _ballView: {fileID: 2283885112739142917}
   _orbSpeed: 2
   _baseOrbRadius: 0.04
   _tier2Threshold: 50
@@ -106,6 +107,22 @@ MonoBehaviour:
   _baseOutlineThickness: 0.05
   _showPathLine: 0
   _basePathLineThickness: 0.005
+--- !u!114 &1803769310976174520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078741799298553027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d95c525941570641abc214d1af678fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _proximityRadius: 0
+  _proximityColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 0}
+  _maxProximityStrength: 0
+  _maxNeighbors: 10
 --- !u!1 &2663361385200861499
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,7 +132,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2074214188388373660}
-  - component: {fileID: 1971972945256430267}
   - component: {fileID: 5195835019627671488}
   - component: {fileID: 400522906468279838}
   - component: {fileID: 3437420552485668431}
@@ -148,20 +164,6 @@ Transform:
   - {fileID: 5060833482062007503}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1971972945256430267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2663361385200861499}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6805872a6e7bfe648b0c90471c73d6cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _basePrice: 10
-  _baseColor: {r: 0, g: 0.18039216, b: 0.23529413, a: 0}
 --- !u!58 &5195835019627671488
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -268,9 +270,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3fdfc8cfbfa2384ca19fb6a6a75c6f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _allowMerge: 1
   _mergeDuration: 0.2
-  _mergeCooldownAfterSpawn: 0.5
+  _mergeCooldownAfterSpawn: 1
   _maxVelocityToMerge: 3
   _ballRenderer: {fileID: 4839928598268190080}
   _visualRadiusMultiplier: 0.4
@@ -313,7 +314,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _basePrice: 1
-  _baseColor: {r: 1, g: 1, b: 1, a: 1}
+  _baseColor: {r: 0, g: 0.1764706, b: 0.23137257, a: 1}
+  _appearanceController: {fileID: 2381936044798404419}
 --- !u!1 &3177938666313022737
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ namespace Gameplay.BallSystem
     /// Manages the visual scale of the ball based on its price.
     /// It listens for price changes and smoothly animates the ball to its new size.
     /// </summary>
-    [RequireComponent(typeof(Ball))]
+    [RequireComponent(typeof(BallView))]
     public class BallScaler : MonoBehaviour
     {
         [Header("Scaling Logic")]
@@ -21,49 +21,72 @@ namespace Gameplay.BallSystem
         [Tooltip("How quickly the ball animates to its new size.")]
         [SerializeField] private float _scaleAnimationSpeed = 8f;
 
-        private Ball _ball;
+        private BallView _ballView;
         private Vector3 _targetScale;
 
         // --- Unity Methods ---
 
         private void Awake()
         {
-            _ball = GetComponent<Ball>();
-            
-            // Subscribe to events
-            _ball.OnPriceChanged += HandlePriceChanged;
-            _ball.OnInitialize += HandleInitialized;
+            _ballView = GetComponent<BallView>();
         }
 
-        private void OnDestroy()
+        private void OnEnable()
         {
-            // Always unsubscribe from events to prevent memory leaks
-            if (_ball != null)
+            // Subscribing in OnEnable is the most robust pattern for pooled objects.
+            // It ensures we are listening whenever the object is active.
+            if (_ballView != null)
             {
-                _ball.OnPriceChanged -= HandlePriceChanged;
-                _ball.OnInitialize -= HandleInitialized;
+                _ballView.OnInitialize += HandleInitialized;
+
+                // We must check if the Data model exists before subscribing.
+                if (_ballView.Data != null)
+                {
+                    _ballView.Data.OnPriceChanged += HandlePriceChanged;
+                }
+            }
+        }
+
+        private void OnDisable()
+        {
+            // Always unsubscribe in OnDisable to match OnEnable subscriptions.
+            if (_ballView != null)
+            {
+                _ballView.OnInitialize -= HandleInitialized;
+                if (_ballView.Data != null)
+                {
+                    _ballView.Data.OnPriceChanged -= HandlePriceChanged;
+                }
             }
         }
 
         private void Update()
         {
+            // Avoids running the Lerp if the scale is already at its target.
+            if (transform.localScale == _targetScale) return;
+
             // TODO: This Lerp is frame-rate dependent. For more precise animation, consider
             // using Vector3.MoveTowards or a dedicated tweening library (like DOTween/LeanTween).
             // For this project's style, this approach is simple and visually effective.
-            if (transform.localScale != _targetScale)
-            {
-                transform.localScale = Vector3.Lerp(transform.localScale, _targetScale, Time.deltaTime * _scaleAnimationSpeed);
-            }
+            transform.localScale = Vector3.Lerp(transform.localScale, _targetScale, Time.deltaTime * _scaleAnimationSpeed);
         }
-        
+
         // --- Event Handlers ---
 
         /// <summary>
         /// Responds to the ball being initialized, setting its scale immediately without animation.
         /// This is crucial for when the ball is recycled from an object pool.
         /// </summary>
-        private void HandleInitialized(Ball initializedBall)
+        private void HandleInitialized(BallView initializedBall)
         {
+            // It's possible the Data object was just created, so we subscribe here as well
+            // to be absolutely safe. We remove first to prevent double-subscription.
+            if (initializedBall.Data != null)
+            {
+                initializedBall.Data.OnPriceChanged -= HandlePriceChanged;
+                initializedBall.Data.OnPriceChanged += HandlePriceChanged;
+            }
+
             SetInitialScale();
         }
 
@@ -75,7 +98,7 @@ namespace Gameplay.BallSystem
             float finalScaleValue = CalculateScaleForPrice(newPrice);
             _targetScale = Vector3.one * finalScaleValue;
         }
-        
+
         // --- Private Methods ---
 
         /// <summary>
@@ -83,9 +106,11 @@ namespace Gameplay.BallSystem
         /// </summary>
         private void SetInitialScale()
         {
-            float initialScaleValue = CalculateScaleForPrice(_ball.CurrentPrice);
+            if (_ballView.Data == null) return;
+
+            float initialScaleValue = CalculateScaleForPrice(_ballView.Data.CurrentPrice);
             _targetScale = Vector3.one * initialScaleValue;
-            transform.localScale = _targetScale; // Set scale directly, no animation
+            transform.localScale = _targetScale; // Set scale directly, no animation.
         }
 
         /// <summary>

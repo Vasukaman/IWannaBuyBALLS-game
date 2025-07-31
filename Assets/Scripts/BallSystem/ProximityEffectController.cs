@@ -1,92 +1,98 @@
-//// Filename: BallProximityVisuals.cs
-//using Gameplay.BallSystem;
-//using System.Linq;
-//using UnityEngine;
+// Filename: BallProximityVisuals.cs
+using Gameplay.BallSystem;
+using UnityEngine;
 
-//namespace VFX.BallEffects
-//{
-//    /// <summary>
-//    /// Controls a visual shader effect based on the proximity of other balls.
-//    /// It finds nearby balls and sends their data to the material.
-//    /// </summary>
-//    [RequireComponent(typeof(Renderer))]
-//    public class BallProximityVisuals : MonoBehaviour
-//    {
-//        [Header("Configuration")]
-//        [SerializeField] private float _proximityRadius = 1f;
-//        [SerializeField] private Color _proximityColor = Color.yellow;
-//        [SerializeField] private float _maxProximityStrength = 0.5f;
-//        [Tooltip("The maximum number of neighbors to send to the shader.")]
-//        [SerializeField] private int _maxNeighbors = 3;
+namespace VFX.BallEffects
+{
+    /// <summary>
+    /// Controls a visual shader effect based on the proximity of other balls.
+    /// It uses an efficient physics query to find nearby balls and sends their data to the material.
+    /// </summary>
+    [RequireComponent(typeof(Renderer))]
+    public class BallProximityVisuals : MonoBehaviour
+    {
+        [Header("Configuration")]
+        [Tooltip("The radius within which to detect other balls.")]
+        [SerializeField] private float _proximityRadius = 2f;
+        [Tooltip("The maximum number of neighbors to send to the shader. MUST match the shader array size.")]
+        [SerializeField] private int _maxNeighbors = 4;
 
-//        [Header("References")]
-//        // TODO: [Dependency] This component should not need a direct reference to the Ball's data model
-//        // just to get the factory. This creates unnecessary coupling.
-//        [SerializeField] private Ball _ball;
+        // --- State & Cache ---
+        private Renderer _renderer;
+        private MaterialPropertyBlock _propertyBlock;
 
-//        // --- State & Cache ---
-//        private Renderer _renderer;
-//        private MaterialPropertyBlock _props;
-//        private Vector4[] _neighborPositions;
-//        private float[] _neighborStrengths;
+        // Data arrays to be sent to the shader
+        private Vector4[] _neighborPositions;
+        private Vector4[] _neighborColors; // Assuming the shader needs color too
 
-//        // --- Shader Property IDs ---
-//        private static readonly int NeighborPositionsID = Shader.PropertyToID("_NeighborPositions");
-//        private static readonly int NeighborStrengthsID = Shader.PropertyToID("_NeighborStrengths");
-//        private static readonly int NeighborCountID = Shader.PropertyToID("_NeighborCount");
-//        private static readonly int ProximityColorID = Shader.PropertyToID("_ProximityColor");
+        // A pre-allocated buffer for the physics query to prevent generating garbage memory.
+        private Collider2D[] _queryResults;
 
-//        private void Awake()
-//        {
-//            _renderer = GetComponent<Renderer>();
-//            _props = new MaterialPropertyBlock();
+        // --- Shader Property IDs ---
+        // This component fulfills a contract with a shader that expects the following properties:
+        // - uniform int _NeighborCount;
+        // - uniform float4 _NeighborPositions[MAX_NEIGHBORS]; // (x, y, z=radius, w=unused)
+        // - uniform fixed4 _NeighborColors[MAX_NEIGHBORS];
+        private static readonly int NeighborPositionsID = Shader.PropertyToID("_NeighborPositions");
+        private static readonly int NeighborColorsID = Shader.PropertyToID("_NeighborColors");
+        private static readonly int NeighborCountID = Shader.PropertyToID("_NeighborCount");
 
-//            // Correctly initialize arrays based on the inspector setting.
-//            _neighborPositions = new Vector4[_maxNeighbors];
-//            _neighborStrengths = new float[_maxNeighbors];
-//        }
+        private void Awake()
+        {
+            _renderer = GetComponent<Renderer>();
+            _propertyBlock = new MaterialPropertyBlock();
 
-//        // TODO: [Performance] Using LateUpdate() is inefficient. Use a timed InvokeRepeating or a Coroutine.
-//        //blah blah blah. It's fine, it's will look laggy if I NOT update it not every frame. Balls move EVERY FRAME.
-//        //I hope I'm right....
+            // Initialize all arrays to the correct size based on the inspector setting.
+            _neighborPositions = new Vector4[_maxNeighbors];
+            _neighborColors = new Vector4[_maxNeighbors];
+            _queryResults = new Collider2D[_maxNeighbors + 1]; // +1 to account for possibly hitting our own collider
+        }
 
-//        private void LateUpdate()
-//        {
-//            // TODO: [SRP Violation] This component should not be responsible for querying the state of the entire game.
-//            // A physics-based query would be a more decoupled and performant solution.
-//            //I think I just need to do an injection here.
-//            if (_ball.BallFactory == null) return;
+        private void LateUpdate()
+        {
+            // The entire process is now self-contained and much more efficient.
+            FindNeighborsAndApplyVisuals();
+        }
 
-//            FindAndSendNeighborData();
-//        }
+        /// <summary>
+        /// Uses a non-allocating physics circle query to find nearby balls and updates the shader.
+        /// </summary>
+        private void FindNeighborsAndApplyVisuals()
+        {
+            // This is the key performance improvement. Instead of iterating all balls,
+            // we ask the physics engine for only the colliders within our radius.
+            int hitCount = Physics2D.OverlapCircleNonAlloc(transform.position, _proximityRadius, _queryResults);
 
-//        private void FindAndSendNeighborData()
-//        {
-//            System.Array.Clear(_neighborPositions, 0, _neighborPositions.Length);
-//            System.Array.Clear(_neighborStrengths, 0, _neighborStrengths.Length);
+            int neighborCount = 0;
+            for (int i = 0; i < hitCount && neighborCount < _maxNeighbors; i++)
+            {
+                // Skip our own collider.
+                if (_queryResults[i].gameObject == gameObject) continue;
 
-//            var nearbyBalls = _ball.BallFactory.GetActiveBalls()
-//                .Where(b => b != null && b.gameObject != gameObject)
-//                .OrderBy(b => Vector3.Distance(transform.position, b.transform.position))
-//                .Take(_maxNeighbors)
-//                .ToList();
+                // Check if the object found is a ball.
+                if (_queryResults[i].TryGetComponent<BallView>(out var neighborBall))
+                {
+                    // Populate the data arrays for the shader.
+                    _neighborPositions[neighborCount] = new Vector4(
+                        neighborBall.transform.position.x,
+                        neighborBall.transform.position.y,
+                        neighborBall.Radius, // Send the actual radius for more accurate effects
+                        0
+                    );
+                    _neighborColors[neighborCount] = neighborBall.Color;
+                    neighborCount++;
+                }
+            }
 
-//            for (int i = 0; i < nearbyBalls.Count; i++)
-//            {
-//                Vector3 pos = nearbyBalls[i].transform.position;
-//                float distance = Vector3.Distance(transform.position, pos);
-//                float strength = 1 - Mathf.Clamp01(distance / _proximityRadius);
-
-//                _neighborPositions[i] = new Vector4(pos.x, pos.y, pos.z, 0);
-//                _neighborStrengths[i] = strength * _maxProximityStrength;
-//            }
-
-//            _renderer.GetPropertyBlock(_props);
-//            _props.SetVectorArray(NeighborPositionsID, _neighborPositions);
-//            _props.SetFloatArray(NeighborStrengthsID, _neighborStrengths);
-//            _props.SetInt(NeighborCountID, nearbyBalls.Count);
-//            _props.SetColor(ProximityColorID, _proximityColor);
-//            _renderer.SetPropertyBlock(_props);
-//        }
-//    }
-//}
+            // Apply the collected data to the renderer's material property block.
+            _renderer.GetPropertyBlock(_propertyBlock);
+            _propertyBlock.SetInt(NeighborCountID, neighborCount);
+            if (neighborCount > 0)
+            {
+                _propertyBlock.SetVectorArray(NeighborPositionsID, _neighborPositions);
+                _propertyBlock.SetVectorArray(NeighborColorsID, _neighborColors);
+            }
+            _renderer.SetPropertyBlock(_propertyBlock);
+        }
+    }
+}

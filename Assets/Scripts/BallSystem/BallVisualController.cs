@@ -6,13 +6,14 @@ namespace VFX.BallEffects
 {
     /// <summary>
     /// Controls the primary appearance of the ball based on its price and scale.
-    /// Manages shader properties like orb count, speed, and outline thickness.
+    /// It listens for events and updates the shader properties accordingly.
     /// </summary>
     [RequireComponent(typeof(Renderer))]
-    public class BallVisualController : MonoBehaviour
+    public class BallAppearanceController : MonoBehaviour
     {
         [Header("References")]
-        [SerializeField] private Ball _ball;
+   
+        [SerializeField] private BallView _ballView;
 
         [Header("Tier 1 Orb Settings")]
         [SerializeField] private float _orbSpeed = 2.0f;
@@ -30,11 +31,22 @@ namespace VFX.BallEffects
 
         // --- State & Cache ---
         private Renderer _renderer;
-        private MaterialPropertyBlock _mpb;
-        private int _lastKnownPrice = -1;
-        private float _lastKnownObjectScale = -1f;
+        private MaterialPropertyBlock _propertyBlock;
+        private float _lastKnownScale = -1f;
 
-        // --- Shader Property IDs ---
+
+        // --- Shader Contract ---
+        // This component fulfills a contract with a shader that expects the following properties:
+        // - fixed4 _Color;
+        // - float _OutlineThickness;
+        // - int _OrbCount;
+        // - float _OrbSpeed;
+        // - float _OrbRadius;
+        // - int _OrbCountTier2;
+        // - float _OrbSpeedTier2;
+        // - float _OrbRadiusTier2;
+        // - float _ShowPathLine;
+        // - float _PathLineThickness;
         private static readonly int BaseColorID = Shader.PropertyToID("_Color");
         private static readonly int OutlineThicknessID = Shader.PropertyToID("_OutlineThickness");
         private static readonly int OrbCountID = Shader.PropertyToID("_OrbCount");
@@ -48,56 +60,116 @@ namespace VFX.BallEffects
 
         private void Awake()
         {
-            if (_ball == null) _ball = GetComponentInParent<Ball>(); //TODO: It's probably bad that I acessing it like this. Oh well..
+            if (_ballView == null) _ballView = GetComponentInParent<BallView>();
             _renderer = GetComponent<Renderer>();
-            _mpb = new MaterialPropertyBlock();
+            _propertyBlock = new MaterialPropertyBlock();
         }
 
+        private void OnEnable()
+        {
+            if (_ballView == null) return;
+
+            // Subscribe to the View's lifecycle event
+            _ballView.OnInitialize += HandleBallInitialized;
+
+            // Subscribe to the Model's data event
+            if (_ballView.Data != null)
+            {
+                _ballView.Data.OnPriceChanged += HandlePriceChanged;
+            }
+        }
+
+        /// <summary>
+        /// This public method allows the parent (BallView) to provide its reference.
+        /// </summary>
+        public void SetParentView(BallView parentView)
+        {
+            _ballView = parentView;
+        }
+
+
+        private void OnDisable()
+        {
+            if (_ballView == null) return;
+            _ballView.OnInitialize -= HandleBallInitialized;
+            if (_ballView.Data != null)
+            {
+                _ballView.Data.OnPriceChanged -= HandlePriceChanged;
+            }
+        }
+
+        // The Update loop is now only for checking scale, which is a transform property.
         private void Update()
         {
+            // We still need to check the scale every frame, as there's no "OnScaleChanged" event.
             float currentScale = transform.lossyScale.x;
-            if (_ball.CurrentPrice != _lastKnownPrice || !Mathf.Approximately(currentScale, _lastKnownObjectScale))
+            if (!Mathf.Approximately(currentScale, _lastKnownScale))
             {
-                ApplyVisualsToShader(currentScale);
-
-                _lastKnownPrice = _ball.CurrentPrice;
-                _lastKnownObjectScale = currentScale;
+                ApplyVisualsToShader();
             }
         }
 
-        private void ApplyVisualsToShader(float currentScale)
+        private void HandleBallInitialized(BallView ball)
         {
-            _renderer.GetPropertyBlock(_mpb);
-
-            int tier1OrbCount = _ball.CurrentPrice;
-            int tier2OrbCount = 0;
-
-            if (_tier2Threshold > 0 && _ball.CurrentPrice >= _tier2Threshold)
+            // Ensure we are subscribed to the new Data model's events
+            if (ball.Data != null)
             {
-                tier2OrbCount = _ball.CurrentPrice / _tier2Threshold;
-                tier1OrbCount = _ball.CurrentPrice % _tier2Threshold;
+                ball.Data.OnPriceChanged -= HandlePriceChanged;
+                ball.Data.OnPriceChanged += HandlePriceChanged;
+            }
+            ApplyVisualsToShader();
+        }
+
+        private void HandlePriceChanged(int newPrice)
+        {
+            ApplyVisualsToShader();
+        }
+
+        /// <summary>
+        /// Calculates and applies all appearance-related properties to the shader.
+        /// This is now called by events instead of being polled in Update.
+        /// </summary>
+        private void ApplyVisualsToShader()
+        {
+            if (_ballView == null || _ballView.Data == null) return;
+
+            _renderer.GetPropertyBlock(_propertyBlock);
+
+            int currentPrice = _ballView.Data.CurrentPrice;
+            float currentScale = transform.lossyScale.x;
+            _lastKnownScale = currentScale; // Cache the scale
+
+            // --- Orb Distribution ---
+            int tier1OrbCount = currentPrice;
+            int tier2OrbCount = 0;
+            if (_tier2Threshold > 0 && currentPrice >= _tier2Threshold)
+            {
+                tier2OrbCount = currentPrice / _tier2Threshold;
+                tier1OrbCount = currentPrice % _tier2Threshold;
             }
 
+            // --- Scale Compensation ---
             float safeScale = Mathf.Max(currentScale, 0.001f);
             float adjustedOutlineThickness = _baseOutlineThickness / safeScale;
             float adjustedPathThickness = _basePathLineThickness / safeScale;
             float adjustedTier1OrbRadius = _baseOrbRadius / safeScale;
             float adjustedTier2OrbRadius = _tier2BaseOrbRadius / safeScale;
 
-            _mpb.SetColor(BaseColorID, _ball.Color);
-            _mpb.SetFloat(OutlineThicknessID, adjustedOutlineThickness);
-            _mpb.SetFloat(PathLineThicknessID, adjustedPathThickness);
-            _mpb.SetFloat(ShowPathLineID, _showPathLine ? 1.0f : 0.0f);
+            // --- Set Shader Properties ---
+            _propertyBlock.SetColor(BaseColorID, _ballView.Color);
+            _propertyBlock.SetFloat(OutlineThicknessID, adjustedOutlineThickness);
+            _propertyBlock.SetFloat(PathLineThicknessID, adjustedPathThickness);
+            _propertyBlock.SetFloat(ShowPathLineID, _showPathLine ? 1.0f : 0.0f);
 
-            _mpb.SetInt(OrbCountID, tier1OrbCount);
-            _mpb.SetFloat(OrbSpeedID, _orbSpeed);
-            _mpb.SetFloat(OrbRadiusID, adjustedTier1OrbRadius);
+            _propertyBlock.SetInt(OrbCountID, tier1OrbCount);
+            _propertyBlock.SetFloat(OrbSpeedID, _orbSpeed);
+            _propertyBlock.SetFloat(OrbRadiusID, adjustedTier1OrbRadius);
 
-            _mpb.SetInt(OrbCountTier2ID, tier2OrbCount);
-            _mpb.SetFloat(OrbSpeedTier2ID, _tier2OrbSpeed);
-            _mpb.SetFloat(OrbRadiusTier2ID, adjustedTier2OrbRadius);
+            _propertyBlock.SetInt(OrbCountTier2ID, tier2OrbCount);
+            _propertyBlock.SetFloat(OrbSpeedTier2ID, _tier2OrbSpeed);
+            _propertyBlock.SetFloat(OrbRadiusTier2ID, adjustedTier2OrbRadius);
 
-            _renderer.SetPropertyBlock(_mpb);
+            _renderer.SetPropertyBlock(_propertyBlock);
         }
     }
 }

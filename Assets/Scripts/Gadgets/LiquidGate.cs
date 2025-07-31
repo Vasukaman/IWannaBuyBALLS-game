@@ -136,7 +136,7 @@ public class LiquidGate : MonoBehaviour
         {
             if (validBallIdx >= MAX_BALLS) break;
 
-            Ball b = colliders[i].GetComponent<Ball>();
+            BallView b = colliders[i].GetComponent<BallView>();
             if (!b) continue;
 
             // Convert ball world position to gate's local UV space (0-1)

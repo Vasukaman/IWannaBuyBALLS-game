@@ -26,12 +26,12 @@ namespace Gameplay.Gadgets
 
         [Header("Events")]
         [Tooltip("Invoked the first time any ball passes through the gate.")]
-        [SerializeField] private UnityEvent<Ball> _onFirstPass;
+        [SerializeField] private UnityEvent<BallView> _onFirstPass;
         [Tooltip("Invoked when a ball that has already passed through enters the trigger again.")]
-        [SerializeField] private UnityEvent<Ball> _onRepeatPass;
+        [SerializeField] private UnityEvent<BallView> _onRepeatPass;
 
         // --- State ---
-        private readonly HashSet<Ball> _processedBalls = new HashSet<Ball>();
+        private readonly HashSet<BallView> _processedBalls = new HashSet<BallView>();
 
         // --- Unity Methods ---
 
@@ -46,7 +46,7 @@ namespace Gameplay.Gadgets
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (!other.TryGetComponent<Ball>(out var ball))
+            if (!other.TryGetComponent<BallView>(out var ball))
             {
                 return;
             }
@@ -82,18 +82,18 @@ namespace Gameplay.Gadgets
         /// <summary>
         /// Modifies the ball's price based on the gate's configured operation and value.
         /// </summary>
-        private void ApplyGateEffect(Ball ball)
+        private void ApplyGateEffect(BallView ball)
         {
             switch (_gateOperation)
             {
                 case GateOperation.Add:
-                    ball.AddPrice(Mathf.RoundToInt(_modifierValue));
+                    ball.Data.AddPrice(Mathf.RoundToInt(_modifierValue));
                     break;
                 case GateOperation.Multiply:
-                    ball.MultiplyPrice(_modifierValue);
+                    ball.Data.MultiplyPrice(_modifierValue);
                     break;
                 case GateOperation.Subtract:
-                    ball.SubtractPrice(Mathf.RoundToInt(_modifierValue));
+                    ball.Data.SubtractPrice(Mathf.RoundToInt(_modifierValue));
                     break;
             }
         }
@@ -102,7 +102,7 @@ namespace Gameplay.Gadgets
         /// Called when a ball we've processed is despawned. This allows it to be processed again
         /// if it is respawned from a pool and re-enters the gate.
         /// </summary>
-        private void HandleBallDespawned(Ball ball)
+        private void HandleBallDespawned(BallView ball)
         {
             // Remove the ball from the processed set and unsubscribe from its event.
             if (_processedBalls.Remove(ball))

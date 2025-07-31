@@ -1,25 +1,18 @@
 // Filename: BallMerger.cs
+using Core;
 using Gameplay.BallSystem;
 using System.Collections;
 using UnityEngine;
-using Core;
 
-
-// I definetty could have written this better. After asking AI for architectural mistakes it said it HATES this scipt.
-//Yeah, acessing the other ball's merger is kinda bad, but I think it's ok solution for now.
-//I'm pretty sure it CAN cause problems if I'm gonna do anything else with merging, BUT I'm not in close future.
-//So I think it's fine to fix later.
-    
 namespace Gameplay.BallSystem
 {
     /// <summary>
     /// Handles the logic and visual effect for merging two balls of the same price.
     /// </summary>
-    [RequireComponent(typeof(Ball))]
+    [RequireComponent(typeof(BallView))]
     public class BallMerger : MonoBehaviour
     {
         [Header("Configuration")]
-        [SerializeField] private bool _allowMerge = true;
         [SerializeField] private float _mergeDuration = 0.35f;
         [SerializeField] private float _mergeCooldownAfterSpawn = 0.5f;
         [SerializeField] private float _maxVelocityToMerge = 5f;
@@ -29,13 +22,11 @@ namespace Gameplay.BallSystem
         [SerializeField] private float _visualRadiusMultiplier = 0.8f;
         [SerializeField] private float _positionCorrectionFactor = 1.2f;
 
-        // --- State ---
-        private Ball _ball;
-        private Rigidbody2D _rb;
-        private MaterialPropertyBlock _mpb;
-        private bool _isReadyForMerge = false;
+        // --- State & Cache ---
+        private BallView _ballView;
+        private MaterialPropertyBlock _propertyBlock;
 
-        // --- Shader Property IDs (Cached for performance) ---
+        // --- Shader Property IDs ---
         private static readonly int MergeTargetPosID = Shader.PropertyToID("_MergeTargetPos");
         private static readonly int MergeTargetRadiusID = Shader.PropertyToID("_MergeTargetRadius");
         private static readonly int MergeWeightID = Shader.PropertyToID("_MergeWeight");
@@ -44,22 +35,31 @@ namespace Gameplay.BallSystem
 
         private void Awake()
         {
-            _ball = GetComponent<Ball>();
-            _rb = GetComponent<Rigidbody2D>();
+            _ballView = GetComponent<BallView>();
 
             if (_ballRenderer != null)
             {
-                _mpb = new MaterialPropertyBlock();
-                _ballRenderer.GetPropertyBlock(_mpb);
+                _propertyBlock = new MaterialPropertyBlock();
+                _ballRenderer.GetPropertyBlock(_propertyBlock);
             }
-
-            _ball.OnInitialize += HandleBallInitialized;
         }
 
-        private void OnDestroy()
+        private void OnEnable()
         {
-            if (_ball != null)
-                _ball.OnInitialize -= HandleBallInitialized;
+            if (_ballView != null)
+            {
+                _ballView.OnInitialize += HandleBallInitialized;
+                _ballView.OnDespawned += HandleBallDespawned;
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (_ballView != null)
+            {
+                _ballView.OnInitialize -= HandleBallInitialized;
+                _ballView.OnDespawned -= HandleBallDespawned;
+            }
         }
 
         // --- Public API ---
@@ -67,157 +67,136 @@ namespace Gameplay.BallSystem
         /// <summary>
         /// Called by the BallCollisionHandler to attempt a merge with another ball.
         /// </summary>
-        public void InitiateMergeWith(Ball other)
+        public void InitiateMergeWith(BallView otherBall)
         {
-            if (!CanMergeWith(other)) return;
+            if (!CanMergeWith(otherBall)) return;
 
-            // TODO: [Encapsulation Violation] This component reaches across to another BallMerger to modify its state.
-            // A better architecture would use a central event bus or have the Ball class mediate,
-            // for example: `other.StartMerge(this._ball);` which would handle its own internal state.
-            var otherMerger = other.GetComponent<BallMerger>();
-            if (otherMerger == null || !otherMerger._isReadyForMerge) return;
+            // Set the state on the public API of both BallViews. This is clean and decoupled.
+            _ballView.CanMerge = false;
+            otherBall.CanMerge = false;
 
-            // Prevent both balls from trying to merge again until this one is complete
-            otherMerger._isReadyForMerge = false;
-            _isReadyForMerge = false;
-
-            StartCoroutine(MergeCoroutine(other));
+            StartCoroutine(MergeCoroutine(otherBall));
         }
 
         // --- Event Handlers ---
 
-        /// <summary>
-        /// Resets the merge state when the ball is initialized (e.g., from a pool).
-        /// </summary>
-        private void HandleBallInitialized(Ball ball)
+        private void HandleBallInitialized(BallView ball)
         {
-            _isReadyForMerge = false;
-            StopAllCoroutines(); // Ensure no old coroutines are running on this pooled object
+            // The ball is not ready to merge immediately after spawning.
+            _ballView.CanMerge = false;
+            StopAllCoroutines();
             StartCoroutine(EnableMergeAfterCooldown());
+        }
+
+        /// <summary>
+        /// When our ball despawns, ensure its shader is reset.
+        /// </summary>
+        private void HandleBallDespawned(BallView ball)
+        {
+            ResetMergeShader();
         }
 
         // --- Private Logic & Coroutines ---
 
-        /// <summary>
-        /// Checks all pre-conditions to determine if a merge is possible.
-        /// </summary>
-        private bool CanMergeWith(Ball other)
+        private bool CanMergeWith(BallView otherBall)
         {
-            // TODO: [Coupling] This directly gets a component from the 'other' ball.
-            // A better approach would be to pass the velocity in the InitiateMergeWith call,
-            // or have the Ball class expose a 'Velocity' property.
-            var otherRb = other.GetComponent<Rigidbody2D>();
-            if (otherRb == null) return false;
-
-            return _allowMerge &&
-                   _isReadyForMerge &&
-                   _ball.CurrentPrice == other.CurrentPrice &&
-                   _rb.velocity.magnitude <= _maxVelocityToMerge &&
-                   otherRb.velocity.magnitude <= _maxVelocityToMerge &&
+            return _ballView.CanMerge &&
+                   otherBall.CanMerge &&
+                   _ballView.Data.CurrentPrice == otherBall.Data.CurrentPrice &&
+                   _ballView.Velocity <= _maxVelocityToMerge &&
+                   otherBall.Velocity <= _maxVelocityToMerge &&
                    // Use InstanceID to ensure only one of two colliding balls initiates the merge.
-                   GetInstanceID() > other.GetInstanceID();
+                   GetInstanceID() > otherBall.GetInstanceID();
         }
 
         private IEnumerator EnableMergeAfterCooldown()
         {
             yield return new WaitForSeconds(_mergeCooldownAfterSpawn);
-            _isReadyForMerge = true;
+            if (this != null) // Failsafe in case the object was destroyed during the wait
+            {
+                _ballView.CanMerge = true;
+            }
         }
 
-        private IEnumerator MergeCoroutine(Ball other)
+        private IEnumerator MergeCoroutine(BallView otherBall)
         {
-            // TODO: [Magic Numbers] Layer indices are hardcoded. These should be defined in a
-            // static class like 'GameLayers.cs' to avoid errors and improve readability.
-            gameObject.layer = GameLayers.MergingBall; // Set to "MergingBall" layer
-            other.gameObject.layer = GameLayers.MergingBall;
+            var originalLayer = gameObject.layer;
+            gameObject.layer = GameLayers.MergingBall;
+            otherBall.gameObject.layer = GameLayers.MergingBall;
 
-            // TODO: [Encapsulation Violation] Directly gets the other merger component again.
-            var otherMerger = other.GetComponent<BallMerger>();
+            var otherMerger = otherBall.GetComponent<BallMerger>();
             if (otherMerger == null)
             {
-                // Failsafe if the other ball somehow lost its merger component mid-process
-                FinalizeMerge(other);
+                FinalizeMerge(otherBall, originalLayer);
                 yield break;
             }
 
             float elapsedTime = 0f;
             Vector3 thisStartPosition = transform.position;
-            Vector3 otherStartPosition = other.transform.position;
+            Vector3 otherStartPosition = otherBall.transform.position;
 
             while (elapsedTime < _mergeDuration)
             {
+                // Failsafe in case the other ball is destroyed mid-animation
+                if (otherBall == null) { FinalizeMerge(null, originalLayer); yield break; }
+
                 elapsedTime += Time.deltaTime;
                 float weight = Mathf.SmoothStep(0, 1, elapsedTime / _mergeDuration);
                 Vector3 mergeCenter = Vector3.Lerp(thisStartPosition, otherStartPosition, 0.5f);
 
-                // Animate both balls towards the center
                 transform.position = Vector3.Lerp(thisStartPosition, mergeCenter, weight);
-                other.transform.position = Vector3.Lerp(otherStartPosition, mergeCenter, weight);
+                otherBall.transform.position = Vector3.Lerp(otherStartPosition, mergeCenter, weight);
 
-                // Update shaders for the visual effect
-                UpdateMergeShader(other);
-                otherMerger.UpdateMergeShader(_ball);
+                UpdateMergeShader(otherBall);
+                otherMerger.UpdateMergeShader(_ballView);
 
                 yield return null;
             }
 
-            FinalizeMerge(other);
+            FinalizeMerge(otherBall, originalLayer);
         }
 
-        /// <summary>
-        /// Completes the merge process: updates price, despawns the other ball, and resets state.
-        /// </summary>
-        private void FinalizeMerge(Ball other)
+        private void FinalizeMerge(BallView otherBall, int originalLayer)
         {
-            _ball.MultiplyPrice(2f);
-            other.Despawn();
+            // Only modify our ball and despawn the other.
+            if (otherBall != null)
+            {
+                _ballView.Data.MultiplyPrice(2f);
+                otherBall.Despawn();
+            }
 
-            gameObject.layer = GameLayers.Ball; // Reset to "Ball" layer
-            other.gameObject.layer = GameLayers.Ball; // Reset to "Ball" layer
-            _isReadyForMerge = true;
-
+            gameObject.layer = originalLayer;
             ResetMergeShader();
 
-            // TODO: [Encapsulation Violation] Should not be responsible for resetting another object's shader.
-            // The 'other' ball should handle its own reset via its OnDespawned event.
-            var otherMerger = other.GetComponent<BallMerger>();
-            if (otherMerger != null)
-            {
-                otherMerger.ResetMergeShader();
-            }
+            // Start the cooldown again for this newly merged ball.
+            StartCoroutine(EnableMergeAfterCooldown());
         }
 
         // --- Shader Update Methods ---
 
-        /// <summary>
-        /// Updates this ball's material properties to visualize the merge.
-        /// </summary>
-        public void UpdateMergeShader(Ball other)
+        public void UpdateMergeShader(BallView otherBall)
         {
             if (_ballRenderer == null) return;
 
-            float otherWorldRadius = other.Radius * _visualRadiusMultiplier;
-            Vector3 otherLocalPos = transform.InverseTransformPoint(other.transform.position);
+            float otherWorldRadius = otherBall.Radius * _visualRadiusMultiplier;
+            Vector3 otherLocalPos = transform.InverseTransformPoint(otherBall.transform.position);
             Vector2 otherUV = new Vector2(
                 0.5f + (otherLocalPos.x * _positionCorrectionFactor) / transform.lossyScale.x,
                 0.5f + (otherLocalPos.y * _positionCorrectionFactor) / transform.lossyScale.y
             );
             float uvRadius = otherWorldRadius / Mathf.Max(transform.lossyScale.x, 0.001f);
 
-            _mpb.SetVector(MergeTargetPosID, otherUV);
-            _mpb.SetFloat(MergeTargetRadiusID, uvRadius);
-            _mpb.SetFloat(MergeWeightID, 1); // Weight is 1 during the merge visual
-            _ballRenderer.SetPropertyBlock(_mpb);
+            _propertyBlock.SetVector(MergeTargetPosID, otherUV);
+            _propertyBlock.SetFloat(MergeTargetRadiusID, uvRadius);
+            _propertyBlock.SetFloat(MergeWeightID, 1);
+            _ballRenderer.SetPropertyBlock(_propertyBlock);
         }
 
-        /// <summary>
-        /// Resets the merge effect on this ball's material.
-        /// </summary>
         public void ResetMergeShader()
         {
             if (_ballRenderer == null) return;
-            _mpb.SetFloat(MergeWeightID, 0);
-            _ballRenderer.SetPropertyBlock(_mpb);
+            _propertyBlock.SetFloat(MergeWeightID, 0);
+            _ballRenderer.SetPropertyBlock(_propertyBlock);
         }
     }
 }

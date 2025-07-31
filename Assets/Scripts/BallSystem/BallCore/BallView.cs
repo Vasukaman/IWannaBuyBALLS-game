@@ -1,6 +1,8 @@
 // Filename: BallView.cs (replaces Ball.cs)
+using Core;
 using System;
 using UnityEngine;
+using VFX.BallEffects;
 
 namespace Gameplay.BallSystem
 {
@@ -16,11 +18,15 @@ namespace Gameplay.BallSystem
         public event Action<BallView> OnRequestDespawn;
         public event Action<BallView> OnDespawned;
         public event Action<BallView> OnInitialize;
+        public bool CanMerge { get; set; } = false;
 
         // --- Configuration ---
         [Header("Configuration")]
         [SerializeField] private int _basePrice = 1;
         [SerializeField] private Color _baseColor = Color.white;
+
+        [Header("Component References")]
+       [SerializeField] private BallAppearanceController _appearanceController;
 
         // --- Properties ---
 
@@ -30,17 +36,31 @@ namespace Gameplay.BallSystem
         public BallData Data { get; private set; }
 
         public CircleCollider2D Collider { get; private set; }
+
         public float Radius => Collider.radius * transform.lossyScale.x;
+
+        private Rigidbody2D _rigidbody;
+        public float Velocity => _rigidbody.velocity.magnitude;
         public Color Color { get; private set; }
 
         // --- Unity Methods ---
         private void Awake()
         {
             Collider = GetComponent<CircleCollider2D>();
+            _rigidbody = GetComponent<Rigidbody2D>();
             Color = _baseColor;
 
             // The View creates its own Brain upon waking up.
             Data = new BallData(_basePrice);
+
+            if (_appearanceController != null)
+            {
+                _appearanceController.SetParentView(this);
+            }
+            else
+            {
+                Debug.LogWarning("BallView is missing a reference to its BallAppearanceController.", this);
+            }
         }
 
         // --- Public API ---
@@ -60,8 +80,9 @@ namespace Gameplay.BallSystem
         public void Initialize()
         {
             Data.ResetToBase();
-            GetComponent<Rigidbody2D>().isKinematic = false;
+            _rigidbody.isKinematic = false;
             OnInitialize?.Invoke(this);
+            gameObject.layer = GameLayers.Ball;
         }
 
         /// <summary>
@@ -73,5 +94,7 @@ namespace Gameplay.BallSystem
             OnDespawned?.Invoke(this);
             OnRequestDespawn?.Invoke(this);
         }
+
+        public float GetShaderTrueSize() => Radius;
     }
 }

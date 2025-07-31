@@ -23,11 +23,11 @@ public class ProjectInstaller : MonoBehaviour, IInstaller
         Debug.Log("[ProjectInstaller] InstallBindings running!");
 
         // Register a literal value
-        IBallFactory fballFactory = GameObject
-                .FindObjectOfType<BallFactory>(true)  // search scene for your BallFactory
-                as IBallFactory; 
+        //IBallFactory fballFactory = GameObject
+        //        .FindObjectOfType<BallFactory>(true)  // search scene for your BallFactory
+        //        as IBallFactory; 
 
-        builder.AddSingleton<IBallFactory>(ctr => fballFactory);
+        //builder.AddSingleton<IBallFactory>(ctr => fballFactory);
 
         //IGadgetFactory fgadgetFactory = GameObject
         //.FindObjectOfType<GadgetFactory>(true)  // search scene for your BallFactory
