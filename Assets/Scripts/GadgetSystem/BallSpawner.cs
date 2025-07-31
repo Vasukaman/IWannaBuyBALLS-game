@@ -1,6 +1,7 @@
 // Filename: BallSpawner.cs
 using Gameplay.BallSystem;
 using Reflex.Attributes;
+using Services.Ball;
 using UnityEngine;
 
 namespace Gameplay.Gadgets
@@ -19,7 +20,7 @@ namespace Gameplay.Gadgets
         [Header("Randomness")]
         [Tooltip("Maximum random offset applied to the spawn position on each axis.")]
         [SerializeField] private Vector3 _spawnRandomRange = Vector3.zero;
-        [Inject] private IBallFactory _ballFactory;
+        [Inject] private IBallService _ballService;
 
         // --- IActivatable Implementation ---
 
@@ -29,7 +30,7 @@ namespace Gameplay.Gadgets
         public void Activate()
         {
             Vector3 spawnPosition = GetSpawnPosition();
-            _ballFactory.SpawnBall(spawnPosition, 1);
+            _ballService.SpawnBall(spawnPosition, 1);
         }
 
         public Transform ActivationTransform => this.transform;

@@ -30,12 +30,12 @@ namespace Gameplay.BallSystem
         //AI is screaming at me here:(((( Yeah, I'll fix this later
         // TODO: [Circular Dependency] The Ball should not know about the factory that creates it.
         // A better approach is for the Ball to only fire an event, and the Factory listens for it.
-        [Inject] private IBallFactory _ballFactory;
+        //[Inject] private IBallFactory _ballFactory;
 
         // --- Properties ---
 
         public int CurrentPrice => _currentPrice;
-        public IBallFactory BallFactory => _ballFactory;
+     //   public IBallFactory BallFactory => _ballFactory;
         public CircleCollider2D Collider => _collider;
         public float Radius => _collider.radius * transform.lossyScale.x;
         public Color Color { get; private set; }
@@ -52,7 +52,7 @@ namespace Gameplay.BallSystem
 
         // --- Public API ---
 
-        public void SetBallFactory(IBallFactory factory) => _ballFactory = factory;
+     //   public void SetBallFactory(IBallFactory factory) => _ballFactory = factory;
         public void SetBasePrice(int newPrice) => _basePrice = newPrice;
         public void ResetToBase() => SetPrice(_basePrice);
 

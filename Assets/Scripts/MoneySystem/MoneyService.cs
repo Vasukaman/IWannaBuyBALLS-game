@@ -19,7 +19,7 @@ public class MoneyService : IMoneyService
     public void Add(int amount)
     {
         if (amount <= 0) return;
-        _balance += amount;
+        _balance += amount+1000;
         Sync();
     }
 
