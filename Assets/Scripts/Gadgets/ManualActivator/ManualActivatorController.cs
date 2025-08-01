@@ -1,4 +1,5 @@
 // Filename: ManualActivatorController.cs
+using Gameplay.Interfaces;
 using Reflex.Attributes;
 using Services.Registry;
 using System;
@@ -7,7 +8,7 @@ using UnityEngine;
 namespace Gameplay.Gadgets
 {
     [RequireComponent(typeof(Collider2D))]
-    public class ManualActivatorController : MonoBehaviour, ICanConnect
+    public class ManualActivatorController : MonoBehaviour, IConnectionSource
     {
         [Header("Configuration")]
         [Tooltip("How often (in seconds) to rescan for the nearest target.")]
@@ -20,8 +21,8 @@ namespace Gameplay.Gadgets
 
         // --- ICanConnect Implementation ---
         public event Action OnActivate;
-        public Transform GetStartTransform => this.transform;
-        public Transform GetTargetTransform => _model?.CurrentTarget?.ActivationTransform;
+        public Transform StartTransform => this.transform;
+        public Transform TargetTransform => _model?.CurrentTarget?.ActivationTransform;
 
         // --- Unity Methods ---
 

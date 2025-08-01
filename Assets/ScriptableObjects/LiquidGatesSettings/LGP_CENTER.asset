@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d24ce23441baa34e898a79046df5be1, type: 3}
+  m_Name: LGP_CENTER
+  m_EditorClassIdentifier: 
+  MaxBulge: 0.000001
+  MaxBulgePos: 0.77
+  MinBulgePos: 0.37
+  Spring: 0
+  Damper: 4
+  LerpSpeed: 4
+  VelocitySensitivity: 0.00001
+  MaxVelocityBulge: 0.000001
+  NoiseAmplitude: 0
+  MaxTiltAngle: 80
+  TiltLerpSpeed: 5
+  XrayForTopZone: 1
+  XrayColorTop: {r: 0, g: 0.1, b: 0.2, a: 1}
+  HighlightColorTop: {r: 0.5, g: 1, b: 1, a: 1}
+  XrayForBottomZone: 1
+  XrayColorBottom: {r: 0, g: 0.10196079, b: 0.20000002, a: 1}
+  HighlightColorBottom: {r: 0.5019608, g: 1, b: 1, a: 1}

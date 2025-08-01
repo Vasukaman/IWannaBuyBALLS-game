@@ -7,7 +7,7 @@ using Services.Money;
 using Gameplay.Interfaces;
 namespace Gameplay.Gadgets
 {
-    public class AutoActivatorController : MonoBehaviour, ICanConnect, IActivationSource
+    public class AutoActivatorController : MonoBehaviour, IConnectionSource, IActivationSource
     {
         [Header("Configuration")]
         [SerializeField] private float _activationInterval = 1f;
@@ -21,8 +21,8 @@ namespace Gameplay.Gadgets
 
         // --- ICanConnect Implementation ---
         public event Action OnActivate;
-        public Transform GetStartTransform => this.transform;
-        public Transform GetTargetTransform => _model?.CurrentTarget?.ActivationTransform;
+        public Transform StartTransform => this.transform;
+        public Transform TargetTransform => _model?.CurrentTarget?.ActivationTransform;
 
         // --- Unity Methods ---
 

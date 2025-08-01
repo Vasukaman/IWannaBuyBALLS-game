@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: LiquidGate Center Full
   m_Shader: {fileID: 4800000, guid: 7b90fee3d3472874aaa6928e8e37ac06, type: 3}
-  m_Parent: {fileID: 2100000, guid: 64655da46249aad46abad6b3f2b74918, type: 2}
+  m_Parent: {fileID: 2100000, guid: 9c577c7fcc1ffe141a460cabfab1c310, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords:
