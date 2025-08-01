@@ -1,5 +1,5 @@
 using Core.Spawning;
-using Game.Economy;
+using Services.Money;
 using Gameplay.BallSystem;
 using Gameplay.Gadgets;
 using Reflex.Core;
@@ -8,6 +8,7 @@ using Services.Gadgets;
 using Services.Store;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Services.Registry;
 public class ProjectInstaller : MonoBehaviour, IInstaller
 {
     [SerializeField] private GadgetLibrary _gadgetLibrary;
@@ -33,7 +34,9 @@ public class ProjectInstaller : MonoBehaviour, IInstaller
         //.FindObjectOfType<GadgetFactory>(true)  // search scene for your BallFactory
         //as IGadgetFactory;
 
-      //  builder.AddSingleton<IGadgetFactory>(ctr => fgadgetFactory);
+        //  builder.AddSingleton<IGadgetFactory>(ctr => fgadgetFactory);
+        ActivatableRegistryService _activatableRegistryService = new ActivatableRegistryService();
+        builder.AddSingleton<IActivatableRegistry>(ctr => _activatableRegistryService);
 
         IButton fbutton = GameObject
         .FindObjectOfType<ClickableButton>(true)  // search scene for your BallFactory
@@ -59,6 +62,7 @@ public class ProjectInstaller : MonoBehaviour, IInstaller
         GadgetService gadgetService = new GadgetService(_prefabInstantiator, storeService, Container.ProjectContainer);
         builder.AddSingleton<IGadgetService>(ctr => gadgetService);
 
+
         // We pass it all the dependencies it needs from its constructor.
         BallService ballService = new BallService(
             _prefabInstantiator,
@@ -69,6 +73,11 @@ public class ProjectInstaller : MonoBehaviour, IInstaller
 
         // 2. Bind the instance to the IBallService interface.
         builder.AddSingleton<IBallService>(ctr => ballService);
+
+
+
+
+
 
 
 

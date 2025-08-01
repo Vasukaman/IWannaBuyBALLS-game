@@ -1,5 +1,5 @@
 // Filename: StoreService.cs
-using Game.Economy;
+using Services.Money;
 using Gameplay.Gadgets;
 using System;
 using System.Collections.Generic;

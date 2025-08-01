@@ -1,5 +1,7 @@
 // Filename: BallView.cs (replaces Ball.cs)
 using Core;
+using Reflex.Attributes;
+using Services.Money;
 using System;
 using UnityEngine;
 using VFX.BallEffects;
@@ -13,6 +15,7 @@ namespace Gameplay.BallSystem
     [RequireComponent(typeof(CircleCollider2D), typeof(Rigidbody2D))]
     public class BallView : MonoBehaviour
     {
+       // [Inject] IMoneyService money;
         // --- Events ---
         // These events are for other MonoBehaviours to listen to.
         public event Action<BallView> OnRequestDespawn;
@@ -79,10 +82,25 @@ namespace Gameplay.BallSystem
         /// </summary>
         public void Initialize()
         {
+           // money.Add(123);
             Data.ResetToBase();
             _rigidbody.isKinematic = false;
             OnInitialize?.Invoke(this);
             gameObject.layer = GameLayers.Ball;
+        }
+
+
+        /// <summary>
+        /// Disables physics components so the ball can be controlled by an animation.
+        /// </summary>
+        public void PrepareForSellingAnimation()
+        {
+
+            if (_rigidbody == null) return;
+                _rigidbody.isKinematic = true;
+                _rigidbody.velocity = Vector2.zero;
+                _rigidbody.angularVelocity = 0;
+            
         }
 
         /// <summary>
@@ -97,4 +115,8 @@ namespace Gameplay.BallSystem
 
         public float GetShaderTrueSize() => Radius;
     }
+
+
+
+
 }

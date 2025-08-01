@@ -1,4 +1,4 @@
-﻿namespace Game.Economy
+﻿namespace Services.Money
 {
     /// <summary>
     /// Abstraction for a simple in‑game currency wallet.

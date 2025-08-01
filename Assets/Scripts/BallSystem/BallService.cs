@@ -63,7 +63,7 @@ namespace Services.Ball
             GameObject instance = _instantiator.InstantiatePrefab(_ballPrefab.gameObject, Vector3.zero);
 
             // Then it tells the container to inject dependencies.
-            GameObjectInjector.InjectObject(instance, _container);
+            GameObjectInjector.InjectObject(instance, Container.ProjectContainer);
 
             return instance.GetComponent<BallView>();
         }

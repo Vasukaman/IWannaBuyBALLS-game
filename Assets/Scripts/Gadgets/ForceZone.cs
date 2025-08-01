@@ -4,17 +4,17 @@ using UnityEngine;
 namespace Gameplay.Gadgets
 {
     /// <summary>
-    /// A gadget that applies a constant force to any Rigidbody2D on specified layers
-    /// that enters its trigger volume.
+    /// A "Gadget Behaviour" that applies a constant force to any Rigidbody2D on specified layers
+    /// that remains within its trigger volume.
     /// </summary>
     [RequireComponent(typeof(Collider2D))]
     public class ForceZone : MonoBehaviour
     {
         [Header("Force Settings")]
-        [Tooltip("The layers that this force zone will affect.")]
+        [Tooltip("The physics layers that this force zone will affect.")]
         [SerializeField] private LayerMask _targetLayers;
 
-        [Tooltip("The world-space direction the force will be applied in. Will be normalized.")]
+        [Tooltip("The world-space direction the force will be applied in. This will be normalized.")]
         [SerializeField] private Vector2 _forceDirection = Vector2.up;
 
         [Tooltip("The strength of the force to apply.")]
@@ -24,23 +24,19 @@ namespace Gameplay.Gadgets
         [SerializeField] private ForceMode2D _forceMode = ForceMode2D.Force;
 
         // --- Cached Data ---
-        private Vector2 _forceVector;
+        private Vector2 _cachedForceVector;
 
         // --- Unity Methods ---
 
         private void Awake()
         {
-            // Ensure the collider attached to this object is configured as a trigger.
-            // This is necessary for OnTriggerStay2D to be called.
-            var triggerCollider = GetComponent<Collider2D>();
-            if (!triggerCollider.isTrigger)
+            // Ensure the collider is a trigger, which is required for OnTrigger events.
+            if (TryGetComponent<Collider2D>(out var triggerCollider))
             {
                 triggerCollider.isTrigger = true;
             }
 
-            // Cache the calculated force vector to avoid recalculating the normalization
-            // and multiplication on every physics update for every object in the trigger.
-            _forceVector = _forceDirection.normalized * _forceMagnitude;
+            _cachedForceVector = _forceDirection.normalized * _forceMagnitude;
         }
 
         /// <summary>
@@ -48,17 +44,29 @@ namespace Gameplay.Gadgets
         /// </summary>
         private void OnTriggerStay2D(Collider2D other)
         {
-            // Check if the other object's layer is included in our target layers mask.
-            // This is an efficient bitwise operation to see if the layer flag is set.
-            if ((_targetLayers.value & (1 << other.gameObject.layer)) > 0)
+            TryApplyForce(other);
+        }
+
+        // --- Private Methods ---
+
+        /// <summary>
+        /// Checks if the provided collider is a valid target and, if so, applies the cached force to it.
+        /// </summary>
+        private void TryApplyForce(Collider2D other)
+        {
+            // First, perform an efficient bitwise check to see if the object's layer is in our target mask.
+            // This is the fastest way to filter physics interactions.
+            if ((_targetLayers.value & (1 << other.gameObject.layer)) == 0)
             {
-                // If the layer matches, attempt to get the Rigidbody2D component from the other object.
-                // Using TryGetComponent is safe and avoids null exceptions if no rigidbody is present.
-                if (other.TryGetComponent<Rigidbody2D>(out var rb))
-                {
-                    // Apply the cached force vector to the rigidbody.
-                    rb.AddForce(_forceVector, _forceMode);
-                }
+                return; // Not a target layer, do nothing.
+            }
+
+            // If the layer matches, attempt to get the Rigidbody2D component.
+            // Using TryGetComponent is safe and avoids errors if the object doesn't have a rigidbody.
+            if (other.TryGetComponent<Rigidbody2D>(out var rb))
+            {
+                // Apply the pre-calculated force vector.
+                rb.AddForce(_cachedForceVector, _forceMode);
             }
         }
     }

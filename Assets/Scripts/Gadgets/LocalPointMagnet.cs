@@ -146,7 +146,8 @@ namespace Core.Physics
         {
             // TODO: [Architecture] This component's logic is tightly coupled to its parent's transform.
             // This is a common and acceptable Unity pattern, but it can be fragile. If this object is ever
-            // unparented at runtime, its behavior will change.
+            // unparented at runtime, its behavior will change. A more robust solution might involve
+            // passing in the target transform via a public method or property.
             if (transform.parent != null)
             {
                 return transform.parent.TransformPoint(_targetLocalPosition);

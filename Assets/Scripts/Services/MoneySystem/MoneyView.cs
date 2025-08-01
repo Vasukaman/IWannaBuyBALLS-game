@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;            // or UnityEngine.UI if you prefer Text
-using Game.Economy;
+using Services.Money;
 using Reflex.Attributes;
 
 [RequireComponent(typeof(TMP_Text))]

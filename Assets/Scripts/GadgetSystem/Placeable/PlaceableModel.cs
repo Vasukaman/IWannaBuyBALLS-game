@@ -1,7 +1,8 @@
-// Filename: GadgetModel.cs
+// Filename: PlaceableModel.cs
 using Gameplay.Gadgets;
 using Services.Store;
 using System;
+using UnityEngine.Playables;
 
 namespace Gameplay.Gadgets
 {
@@ -9,7 +10,7 @@ namespace Gameplay.Gadgets
     /// The pure data model for a Gadget. Contains all state and logic
     /// that is independent of the Unity engine.
     /// </summary>
-    public class GadgetModel
+    public class PlaceableModel
     {
         public event Action OnDestroyRequested;
 
@@ -17,8 +18,9 @@ namespace Gameplay.Gadgets
 
         private readonly IStoreService _storeService;
 
+
         // The service dependency is passed in when the model is created.
-        public GadgetModel(GadgetData data, IStoreService storeService)
+        public PlaceableModel(GadgetData data, IStoreService storeService)
         {
             Data = data;
             _storeService = storeService;

@@ -25,7 +25,7 @@ namespace UI.Store
         private Camera _mainCamera;
 
         private GadgetData _data;
-        private GadgetView _gadgetPreviewInstance;
+        private PlaceableView _gadgetPreviewInstance;
         private State _currentState = State.Idle;
         private bool _isPreviewingGadget = false;
 

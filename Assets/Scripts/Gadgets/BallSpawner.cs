@@ -2,15 +2,16 @@
 using Gameplay.BallSystem;
 using Reflex.Attributes;
 using Services.Ball;
+using Services.Registry;
 using UnityEngine;
 
 namespace Gameplay.Gadgets
 {
     /// <summary>
-    /// A gadget that spawns a ball when activated.
-    /// It uses a BallFactory to create the ball instance.
+    /// A "Gadget Behaviour" that spawns a ball when activated. It registers itself
+    /// as an activatable target for other systems to find.
     /// </summary>
-
+    [RequireComponent(typeof(Collider2D))]
     public class BallSpawner : MonoBehaviour, IActivatable
     {
         [Header("Spawner Settings")]
@@ -20,12 +21,15 @@ namespace Gameplay.Gadgets
         [Header("Randomness")]
         [Tooltip("Maximum random offset applied to the spawn position on each axis.")]
         [SerializeField] private Vector3 _spawnRandomRange = Vector3.zero;
+
+        // --- Injected Dependencies ---
         [Inject] private IBallService _ballService;
+        [Inject] private IActivatableRegistry _registry;
 
         // --- IActivatable Implementation ---
 
         /// <summary>
-        /// Spawns a new ball at a calculated position.
+        /// Spawns a new ball by calling the central BallService.
         /// </summary>
         public void Activate()
         {
@@ -33,14 +37,31 @@ namespace Gameplay.Gadgets
             _ballService.SpawnBall(spawnPosition, 1);
         }
 
+        /// <summary>
+        /// Provides this spawner's transform as the target for activators.
+        /// </summary>
         public Transform ActivationTransform => this.transform;
+
+        // --- Registry Management ---
+
+        private void OnEnable()
+        {
+            // When this spawner becomes active, it registers itself in the global "phone book"
+            // of activatable objects, so other systems (like AutoActivator) can find it.
+            _registry.Register(this);
+        }
+
+        private void OnDisable()
+        {
+            // It's crucial to unregister when disabled or destroyed to prevent errors.
+            _registry.Unregister(this);
+        }
 
         // --- Private Methods ---
 
         /// <summary>
-        /// Calculates the final world-space position for the new ball, including offsets and randomness.
+        /// Calculates the final world-space position for the new ball.
         /// </summary>
-        /// <returns>The calculated world-space spawn position.</returns>
         private Vector3 GetSpawnPosition()
         {
             Vector3 randomOffset = new Vector3(

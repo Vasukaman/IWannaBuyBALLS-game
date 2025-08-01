@@ -1,5 +1,5 @@
 using UnityEngine;
-using Game.Economy;
+using Services.Money;
 
 [UnityEngine.Scripting.Preserve] // for Reflex
 public class MoneyService : IMoneyService

@@ -1,22 +1,24 @@
-// Filename: GadgetView.cs (replaces Gadget.cs)
+// Filename: PlaceableView.cs (replaces Gadget.cs)
 using Reflex.Attributes;
+using Services.Money;
 using UnityEngine;
 
 namespace Gameplay.Gadgets
 {
     /// <summary>
     /// The MonoBehaviour component for a Gadget. It acts as the "bridge" between the
-    /// pure C# GadgetModel and the Unity engine (physics, rendering, lifecycle).
+    /// pure C# PlaceableModel and the Unity engine (physics, rendering, lifecycle).
     /// </summary>
     [RequireComponent(typeof(BoxCollider2D))]
-    public class GadgetView : MonoBehaviour, IGadgetSellable
+    public class PlaceableView : MonoBehaviour, IGadgetSellable
     {
         // --- Properties ---
-        public GadgetModel Model { get; private set; }
+        public PlaceableModel Model { get; private set; }
 
         // --- IGadgetSellable Implementation ---
         public GameObject Instance => gameObject;
         public Collider2D ObjectCollider { get; private set; }
+
 
         // --- Unity Methods ---
         private void Awake()
@@ -39,10 +41,15 @@ namespace Gameplay.Gadgets
         /// Initializes the View by connecting it to its Model.
         /// Called by the GadgetService upon creation.
         /// </summary>
-        public void Initialize(GadgetModel model)
+        public void Initialize(PlaceableModel model)
         {
             Model = model;
             Model.OnDestroyRequested += HandleDestroyRequested;
+        }
+
+        private void Update()
+        {
+           
         }
 
         /// <summary>

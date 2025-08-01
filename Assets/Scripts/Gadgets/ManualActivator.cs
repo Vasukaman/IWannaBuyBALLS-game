@@ -1,11 +1,12 @@
-using Game.Economy;
 using Reflex.Attributes;
+using Services.Money;
+using System; // Required for Action
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using System; // Required for Action
+using Gameplay.Interfaces;
 
-public class ManualActivator : MonoBehaviour, ICanConnect
+public class ManualActivator : MonoBehaviour, ICanConnect, IActivationSource
 {
     private IActivatable _currentTarget;
     [Inject] private IButton _button;

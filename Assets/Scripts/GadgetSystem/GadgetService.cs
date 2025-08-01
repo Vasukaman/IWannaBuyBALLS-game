@@ -22,7 +22,7 @@ namespace Services.Gadgets
         }
 
         // Implement the updated method signature
-        public GadgetView CreateGadget(GadgetData data, Vector3 position, Transform parent = null)
+        public PlaceableView CreateGadget(GadgetData data, Vector3 position, Transform parent = null)
         {
             if (data.Prefab == null)
             {
@@ -32,16 +32,16 @@ namespace Services.Gadgets
 
             // 1. CREATE THE BODY - Pass the parent transform to the instantiator
             GameObject instance = _instantiator.InstantiatePrefab(data.Prefab, position, parent);
-            GadgetView view = instance.GetComponent<GadgetView>();
+            PlaceableView view = instance.GetComponent<PlaceableView>();
 
             // 2. CREATE THE BRAIN
-            GadgetModel model = new GadgetModel(data, _storeService);
+            PlaceableModel model = new PlaceableModel(data, _storeService);
 
             // 3. CONNECT THEM
             view.Initialize(model);
 
             // 4. INJECT DEPENDENCIES
-            GameObjectInjector.InjectObject(instance, _container);
+            GameObjectInjector.InjectRecursive(instance, Container.ProjectContainer);
 
             return view;
         }
