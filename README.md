@@ -1,22 +1,21 @@
 # Unity 2D Incremental/Clicker Game
 
-This is a 2D incremental game developed in Unity, focusing on creating complex visual effects and building a scalable, clean architecture.
-
-This project is currently a work in progress. I am actively refactoring and polishing the codebase to adhere to the highest standards of software design and architecture.
+Unity 2D Incremental Game
+This is a 2D incremental game developed in Unity. The project serves as a portfolio piece to demonstrate a deep understanding of professional game development architecture, clean code practices, and advanced engine features.
 
 ## Key Features & Technical Highlights
 
-This project serves as a portfolio piece to demonstrate a deep understanding of professional game development practices.
+* **SOLID, Decoupled Architecture:** The project is built on a foundation of SOLID principles, with a clear separation between different layers of the application.
+* **Dependency Injection (DI):** Utilizes the **Reflex** framework to manage dependencies, creating a flexible and testable codebase where systems are decoupled from each other.
+* **Service Layer:** Core game systems (like the economy, ball spawning, and store logic) are abstracted into a pure C# **Service Layer**, separating logic from the Unity scene.
+* **Model-View-Presenter (MVP):** Employs the MVP pattern to separate pure C# data and logic (**Models**) from their `MonoBehaviour` representations in the scene (**Views** and **Presenters**).
+* **Event-Driven Communication:** Uses a **ScriptableObject-based Event Bus** for communication between systems, allowing for maximum decoupling (e.g., the `BallSellerZone` announces a sale, and the `MoneyService` listens, with neither knowing about the other).
+* **Data-Driven Design:** Leverages **Scriptable Objects** for all configuration (gadget stats, visual styles, event channels), allowing for easy iteration and designer-friendly workflows.
+* **Component-Based Prefabs:** Game objects are built by composing small, single-responsibility `MonoBehaviour` "behaviours" (`ForceZone`, `Draggable`, `RotatorOnActivate`), creating a library of reusable tools.
+* **GPU-Accelerated VFX:** Core visuals are driven by custom **HLSL shaders** and leverage **GPU Instancing** for high-performance particle-like effects.
 
-* **SOLID Architecture & Clean Code:** The project is structured with a strong emphasis on SOLID principles. Responsibilities are separated into distinct, decoupled components (e.g., `Ball`, `BallMerger`, `BallScaler`, `BallVisualController`). While I am still working to perfect it, the foundation is built for scalability and maintainability.
 
-* **Dependency Injection with Reflex:** The project leverages the **Reflex** framework for Dependency Injection. This allows for a decoupled architecture where dependencies like services (`IMoneyService`) and factories (`IBallFactory`) are injected at runtime, making the code cleaner and more testable.
 
-* **Scriptable Objects for Configuration:** Game design data (like gadget stats, visual styles, and libraries) is managed using Scriptable Objects. This decouples configuration from the scene, allowing designers to create and tweak new content without touching any code.
-
-* **GPU-Accelerated Visuals:** Many visual effects are offloaded to the GPU for maximum performance, using techniques like **GPU Instancing** for particle-like systems to render thousands of objects with minimal CPU overhead.
-
-* **Custom HLSL Shaders:** All core visuals are built on custom shaders written in HLSL to achieve unique and performant effects that are not possible with standard Unity materials.
 
 ### Shader Effects Showcase
 
@@ -38,10 +37,18 @@ This project serves as a portfolio piece to demonstrate a deep understanding of 
 #### Seller Suck In
 ![Sellet_git](https://github.com/user-attachments/assets/75fb8afe-e02b-458c-ac3b-9866911c0830)
 
+## Development Roadmap
 
+This project is an active work in progress, following a deliberate path of prototyping and professional refactoring.
 
-## Future Improvements
-
-* **Complete Decoupling:** Address all `TODO`s in the code to fully decouple components, such as removing the `Ball`'s knowledge of its factory.
-* **Performance Optimization:** Replace `Update()` loops for logic like neighbor-finding with timed coroutines or the C# Job System for better performance.
-* **UI Refinement:** Build out a more robust UI system, potentially using the MVVM pattern.
+1.  ✅ **Initial Prototype:** Build the core gameplay loop with a focus on functionality.
+2.  ✅ **Dependency Injection:** Integrate the Reflex framework to manage dependencies.
+3.  ✅ **Refactor to Model-View & SOLID:** Separate core entities (`Ball`, `Gadget`, `Store`) into pure C# Models and `MonoBehaviour` Views/Presenters.
+4.  ✅ **Implement Service Layer:** Abstract core logic into decoupled, testable services (`IMoneyService`, `IBallService`, `IGadgetService`).
+5.  ✅ **Decouple with Event Bus:** Implement a ScriptableObject-based event system to handle cross-system communication.
+6.  ✅ **Data-Driven Configuration:** Move all hardcoded settings into `ScriptableObject` assets for a designer-friendly workflow.
+7.  ✅ **Bootstrap Scene & Persistent Systems:** Create a professional startup flow with a persistent `ProjectScope` to manage the game's lifecycle.
+8.  ➡️ **Finalize Project Structure & Cleanup:** **<-- WE ARE HERE**
+9.  **Implement a Game State Machine (FSM):** Add a formal state machine to manage game states like `Playing`, `Paused`, and `Shop`.
+10. **Write Unit Tests:** Create EditMode tests for the pure C# services to verify their logic and ensure stability.
+11. **Modernize Asset Management:** Convert the prefab loading system to use Unity's Addressables for production-level asset management.
