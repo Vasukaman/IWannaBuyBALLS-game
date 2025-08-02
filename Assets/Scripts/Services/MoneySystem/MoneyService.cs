@@ -10,16 +10,17 @@ public class MoneyService : IMoneyService
     public int CurrentBalance => _balance;
     public event System.Action<int> OnBalanceChanged;
 
-    public MoneyService()
+    public MoneyService(EventChannels _eventChannels)
     {
         // load persisted balance (or zero)
         _balance = PlayerPrefs.GetInt(PlayerPrefsKey, 0);
+        _eventChannels.OnBallSold.RegisterListener(Add);
     }
 
     public void Add(int amount)
     {
         if (amount <= 0) return;
-        _balance += amount+1000;
+        _balance += amount;
         Sync();
     }
 

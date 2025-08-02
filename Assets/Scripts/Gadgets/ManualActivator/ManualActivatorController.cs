@@ -9,7 +9,7 @@ using UnityEngine;
 namespace Gameplay.Gadgets
 {
     [RequireComponent(typeof(Collider2D))]
-    public class ManualActivatorController : MonoBehaviour, IConnectionSource
+    public class ManualActivatorController : MonoBehaviour, IConnectionSource, IActivationSource
     {
         [Header("Event Channel")]
         [Tooltip("The GameEvent asset this component listens to for activation signals.")]

@@ -15,6 +15,8 @@ namespace Reflex.Core
 
         public void InstallBindings(ContainerBuilder containerBuilder)
         {
+
+
             using var pooledObject = ListPool<IInstaller>.Get(out var installers);
             GetComponentsInChildren<IInstaller>(installers);
             

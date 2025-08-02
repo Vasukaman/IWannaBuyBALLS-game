@@ -9,78 +9,75 @@ using Services.Store;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Services.Registry;
-public class ProjectInstaller : MonoBehaviour, IInstaller
-{
-    [SerializeField] private GadgetLibrary _gadgetLibrary;
-  //  [SerializeField] private PrefabInstantiator _prefabInstantiator;
 
-    [Header("Prefab Blueprints")]
-    [SerializeField] private BallView _ballPrefab; // Add this reference
+public class ProjectInstaller : MonoBehaviour, IInstaller
+
+{
+
+    [Header("Data & Asset References")]
+
+    [SerializeField] private EventChannels _eventChannels;
+
+    [SerializeField] private GadgetLibrary _gadgetLibrary;
+
+    [SerializeField] private BallView _ballPrefab;
+
+
+
+
 
     [Header("Game Configuration")]
+
     [SerializeField] private int _initialBallPoolSize = 20; // Add this setting
-    public void InstallBindings(ContainerBuilder builder)
+
+    public void InstallBindings(ContainerBuilder builder)
+
     {
+
         Debug.Log("[ProjectInstaller] InstallBindings running!");
 
-        // Register a literal value
-        //IBallFactory fballFactory = GameObject
-        //        .FindObjectOfType<BallFactory>(true)  // search scene for your BallFactory
-        //        as IBallFactory; 
 
-        //builder.AddSingleton<IBallFactory>(ctr => fballFactory);
+        ActivatableRegistryService _activatableRegistryService = new ActivatableRegistryService();
 
-        //IGadgetFactory fgadgetFactory = GameObject
-        //.FindObjectOfType<GadgetFactory>(true)  // search scene for your BallFactory
-        //as IGadgetFactory;
-
-        //  builder.AddSingleton<IGadgetFactory>(ctr => fgadgetFactory);
-        ActivatableRegistryService _activatableRegistryService = new ActivatableRegistryService();
         builder.AddSingleton<IActivatableRegistry>(ctr => _activatableRegistryService);
 
-        //IButton fbutton = GameObject
-        //.FindObjectOfType<ClickableButton>(true)  // search scene for your BallFactory
-        //as IButton;
+        builder.AddSingleton<EventChannels>(ctr => _eventChannels);
 
-     // builder.AddSingleton<IButton>(ctr => fbutton);
 
-        MoneyService moneyService = new MoneyService();
+        MoneyService moneyService = new MoneyService(_eventChannels);
         builder.AddSingleton<IMoneyService>(ctr => moneyService);
+
 
 
         StoreService storeService = new StoreService(moneyService, _gadgetLibrary);
         builder.AddSingleton<IStoreService>(ctr => storeService);
 
+
+        //Prob not the best way to do it.
         IPrefabInstantiator _prefabInstantiator = GameObject
-                .FindObjectOfType<PrefabInstantiator>(true)  // search scene for your BallFactory
-                as IPrefabInstantiator;
+            .FindObjectOfType<PrefabInstantiator>(true)  
+                    as IPrefabInstantiator;
+
+
 
         builder.AddSingleton<IPrefabInstantiator>(ctr => _prefabInstantiator);
 
-        // 2. Create the Gadget Service instance
-        // We pass it the dependencies it needs: the instantiator, the store service, and the container itself.
-        GadgetService gadgetService = new GadgetService(_prefabInstantiator, storeService, Container.ProjectContainer);
+        GadgetService gadgetService = new GadgetService(_prefabInstantiator, storeService, Container.ProjectContainer);
         builder.AddSingleton<IGadgetService>(ctr => gadgetService);
 
 
-        // We pass it all the dependencies it needs from its constructor.
-        BallService ballService = new BallService(
-            _prefabInstantiator,
-            Container.ProjectContainer,
-            _ballPrefab,
-            _initialBallPoolSize
-        );
-
-        // 2. Bind the instance to the IBallService interface.
-        builder.AddSingleton<IBallService>(ctr => ballService);
+        BallService ballService = new BallService(
+                                  _prefabInstantiator,
+                                  Container.ProjectContainer,
+                                  _ballPrefab,
+                                  _initialBallPoolSize
+                                );
 
 
 
-
-
-
-
+        builder.AddSingleton<IBallService>(ctr => ballService);
 
 
     }
+
 }

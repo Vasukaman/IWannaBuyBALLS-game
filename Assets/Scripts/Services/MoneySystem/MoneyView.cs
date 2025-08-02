@@ -14,6 +14,11 @@ public class MoneyView : MonoBehaviour
         _text = GetComponent<TMP_Text>();
     }
 
+    private void Start()
+    {
+      
+    }
+
     void OnEnable()
     {
         _moneyService.OnBalanceChanged += UpdateDisplay;

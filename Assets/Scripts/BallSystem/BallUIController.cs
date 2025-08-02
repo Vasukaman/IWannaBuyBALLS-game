@@ -26,7 +26,9 @@ namespace Gameplay.BallSystem
 
         private void OnEnable()
         {
+            if (_ball.Data != null) //TODO:THis can break stuff. but bc we are doing pooling, it doesn't. I should be careful.
             _ball.Data.OnPriceChanged += HandlePriceChanged;
+
             _ball.OnInitialize += HandleInitialized;
         }
 

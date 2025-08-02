@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: manualActivator
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1350213925731245442, guid: 3a765c67fac962a48ace4a64bf569431, type: 3}
+      propertyPath: _activationSource
+      value: 
+      objectReference: {fileID: 2645313731112218915}
     - target: {fileID: 2056610919657719013, guid: 3a765c67fac962a48ace4a64bf569431, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -88,6 +92,10 @@ PrefabInstance:
       propertyPath: manualActivator
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6881230900433264036, guid: 3a765c67fac962a48ace4a64bf569431, type: 3}
+      propertyPath: _activationSource
+      value: 
+      objectReference: {fileID: 2645313731112218915}
     - target: {fileID: 7241246645530130766, guid: 3a765c67fac962a48ace4a64bf569431, type: 3}
       propertyPath: m_Name
       value: AA_Core

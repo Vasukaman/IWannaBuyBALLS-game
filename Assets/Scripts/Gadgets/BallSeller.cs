@@ -1,4 +1,5 @@
 // Filename: BallSellerZone.cs
+using Core.Events;
 using Gameplay.BallSystem;
 using Reflex.Attributes;
 using Services.Money;
@@ -15,6 +16,11 @@ namespace Gameplay.Gadgets
     [RequireComponent(typeof(Collider2D))]
     public class BallSeller : MonoBehaviour
     {
+
+        [Header("Event Channel")]
+        [Tooltip("The event to raise when a ball is successfully sold.")]
+        [SerializeField] private IntGameEvent _onBallSold;
+
         [Header("Animation")]
         [Tooltip("How long the selling animation takes in seconds.")]
         [SerializeField] private float _animationDuration = 0.3f;
@@ -24,6 +30,8 @@ namespace Gameplay.Gadgets
 
         // --- State ---
         private readonly HashSet<BallView> _ballsBeingProcessed = new();
+
+
 
         // --- Unity Methods ---
 
@@ -87,7 +95,7 @@ namespace Gameplay.Gadgets
             // 3. Finalize the transaction.
             if (ball != null)
             {
-                _moneyService.Add(ball.Data.CurrentPrice);
+                _onBallSold.Raise(ball.Data.CurrentPrice);
                 ball.Despawn();
             }
 

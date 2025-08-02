@@ -17,5 +17,7 @@ namespace Services.Ball
         /// </summary>
         /// <returns>The BallView component of the spawned ball.</returns>
         BallView SpawnBall(Vector3 position, int price);
+
+        public void InitializePool(int poolSize);
     }
 }

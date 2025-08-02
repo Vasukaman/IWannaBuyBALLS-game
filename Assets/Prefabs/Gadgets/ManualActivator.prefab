@@ -465,7 +465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84110167bb935fc409528e6a655e5a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activationSource: {fileID: 0}
+  _activationSource: {fileID: 915699912338400600}
   _objectToRotate: {fileID: 7241246645530130766}
   _rotationDegreesPerActivate: 60
   _rotationDuration: 0.1
@@ -505,7 +505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6590976433a3561478737c8fdc3c49f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activationSource: {fileID: 0}
+  _activationSource: {fileID: 915699912338400600}
   _bodyToPush: {fileID: 0}
   _maxImpulse: 5
 --- !u!114 &915699912338400600

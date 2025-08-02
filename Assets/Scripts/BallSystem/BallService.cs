@@ -26,16 +26,18 @@ namespace Services.Ball
             _container = container;
             _ballPrefab = ballPrefab;
 
-            PopulateInitialPool(initialPoolSize);
         }
 
         public BallView SpawnBall(Vector3 position, int price)
         {
-            Debug.Log("Service Creating Ball");
             BallView ball = GetOrCreateBall();
             ConfigureBall(ball, position, price);
             _activeBalls.Add(ball);
             return ball;
+        }
+        public void InitializePool(int poolSize)
+        {
+            PopulateInitialPool(poolSize);
         }
 
         private void PopulateInitialPool(int poolSize)

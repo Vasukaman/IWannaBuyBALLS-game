@@ -1,8 +1,10 @@
 // Filename: StoreItemView.cs
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 namespace UI.Store
 {
@@ -50,6 +52,16 @@ namespace UI.Store
         {
             StopActiveAnimation();
             _activeAnimation = StartCoroutine(AnimateTransitionCoroutine(gadgetInstance, _iconRoot, duration));
+        }
+
+        //Transition in //TODO: It's late, I think I'm fucking up the names
+        //ANd its shouldn't be like this without delegate
+        //Icon still might not appear but this is a smaller bug then bore, I'll fix it tmr probably
+        public void AnimateIconAppearance(float duration)
+        {
+            // StopActiveAnimation();
+            _activeAnimation = StartCoroutine(AnimateScale(_iconRoot.transform, Vector3.zero, Vector3.one, duration));
+            _iconRoot.SetActive(true);
         }
 
         public void StopActiveAnimation()

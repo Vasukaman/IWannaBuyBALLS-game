@@ -88,7 +88,7 @@ namespace UI.Store
         {
             if (_currentState != State.Dragging) return;
 
-            _view.StopActiveAnimation();
+         //   _view.StopActiveAnimation();
 
             if (_isPreviewingGadget)
             {
@@ -102,7 +102,8 @@ namespace UI.Store
 
             _gadgetPreviewInstance = null;
             transform.localPosition = Vector3.zero;
-            _view.ResetIcon() ;
+            _view.ResetIcon();
+            _view.AnimateIconAppearance(_animationDuration);
             _view.transform.localScale = Vector3.one;
             _currentState = State.Idle;
         }
