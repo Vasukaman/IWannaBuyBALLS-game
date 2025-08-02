@@ -2011,6 +2011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddcea5c3c5109ee418cdeb159e86a1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interactionEvent: {fileID: 11400000, guid: 8e09b27c2d2a9b842852f853a698f2b5, type: 2}
 --- !u!1 &1082533605
 GameObject:
   m_ObjectHideFlags: 0

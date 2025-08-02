@@ -1,20 +1,25 @@
+// Filename: ClickableButton.cs
+using Core.Events;
 using UnityEngine;
-using UnityEngine.Events;
 
-public class ClickableButton : MonoBehaviour, IButton
+namespace Core.Input
 {
-    public event UnityAction OnClicked;
+    /// <summary>
+    /// A simple component that raises a specified GameEvent when its collider is clicked.
+    /// </summary>
 
-    // Call this method from your actual button component
-    public void TriggerClick()
+    public class ClickableButton : MonoBehaviour
     {
-        Debug.Log("Clicked!");
-        OnClicked?.Invoke();
-    }
+        [Header("Event Channel")]
+        [Tooltip("The GameEvent asset to raise when this button is clicked.")]
+        [SerializeField] private GameEvent _interactionEvent;
 
-    private void OnMouseDown()
-    {
-        TriggerClick();
+        public void TriggerClick()
+        {
+            if (_interactionEvent != null)
+            {
+                _interactionEvent.Raise();
+            }
+        }
     }
-
-    }
+}

@@ -38,11 +38,11 @@ public class ProjectInstaller : MonoBehaviour, IInstaller
         ActivatableRegistryService _activatableRegistryService = new ActivatableRegistryService();
         builder.AddSingleton<IActivatableRegistry>(ctr => _activatableRegistryService);
 
-        IButton fbutton = GameObject
-        .FindObjectOfType<ClickableButton>(true)  // search scene for your BallFactory
-        as IButton;
+        //IButton fbutton = GameObject
+        //.FindObjectOfType<ClickableButton>(true)  // search scene for your BallFactory
+        //as IButton;
 
-        builder.AddSingleton<IButton>(ctr => fbutton);
+     // builder.AddSingleton<IButton>(ctr => fbutton);
 
         MoneyService moneyService = new MoneyService();
         builder.AddSingleton<IMoneyService>(ctr => moneyService);
