@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2381936044798404419}
   - component: {fileID: 1803769310976174520}
   m_Layer: 3
-  m_Name: Ball_Visual
+  m_Name: BallVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,7 +98,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a71e33974571b42bd2fc837d7be344, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ballView: {fileID: 2283885112739142917}
   _orbSpeed: 2
   _baseOrbRadius: 0.04
   _tier2Threshold: 50
@@ -120,8 +119,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _proximityRadius: 0
-  _proximityColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 0}
-  _maxProximityStrength: 0
   _maxNeighbors: 10
 --- !u!1 &2663361385200861499
 GameObject:
@@ -313,9 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85a0cbfede065954ab6b2af951a93176, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _basePrice: 1
-  _baseColor: {r: 0, g: 0.1764706, b: 0.23137257, a: 1}
-  _appearanceController: {fileID: 2381936044798404419}
+  _profile: {fileID: 11400000, guid: f863aa3e1cb83e54daa0407533408a82, type: 2}
 --- !u!1 &3177938666313022737
 GameObject:
   m_ObjectHideFlags: 0

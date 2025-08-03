@@ -12,18 +12,14 @@ namespace Gameplay.BallSystem
     [RequireComponent(typeof(BallView))]
     public class BallMerger : MonoBehaviour
     {
-        [Header("Configuration")]
-        [SerializeField] private float _mergeDuration = 0.35f;
-        [SerializeField] private float _mergeCooldownAfterSpawn = 0.5f;
-        [SerializeField] private float _maxVelocityToMerge = 5f;
-
-        [Header("Visualization")]
+        
+        [Header("References")]
         [SerializeField] private Renderer _ballRenderer;
-        [SerializeField] private float _visualRadiusMultiplier = 0.8f;
-        [SerializeField] private float _positionCorrectionFactor = 1.2f;
 
-        // --- State & Cache ---
+        // --- References ---
         private BallView _ballView;
+        private BallMergingProfile _mergingProfile;
+
         private MaterialPropertyBlock _propertyBlock;
 
         // --- Shader Property IDs ---
@@ -35,12 +31,27 @@ namespace Gameplay.BallSystem
 
         private void Awake()
         {
+            // 1. Get the root component.
             _ballView = GetComponent<BallView>();
 
+            // 2. Pull the specific profile.
+            if (_ballView.Profile != null)
+            {
+                _mergingProfile = _ballView.Profile.Merging;
+            }
+
+            // 3. Validate.
+            if (_mergingProfile == null)
+            {
+                Debug.LogError("BallMergingProfile is not assigned in the master BallProfile! Disabling BallMerger.", this);
+                enabled = false;
+                return; // Return early to prevent further null errors
+            }
+
+            // Continue with other setup
             if (_ballRenderer != null)
             {
                 _propertyBlock = new MaterialPropertyBlock();
-                _ballRenderer.GetPropertyBlock(_propertyBlock);
             }
         }
 
@@ -103,15 +114,15 @@ namespace Gameplay.BallSystem
             return _ballView.CanMerge &&
                    otherBall.CanMerge &&
                    _ballView.Data.CurrentPrice == otherBall.Data.CurrentPrice &&
-                   _ballView.Velocity <= _maxVelocityToMerge &&
-                   otherBall.Velocity <= _maxVelocityToMerge &&
+                   _ballView.Velocity <= _mergingProfile.MaxVelocityToMerge &&
+                   otherBall.Velocity <= _mergingProfile.MaxVelocityToMerge &&
                    // Use InstanceID to ensure only one of two colliding balls initiates the merge.
                    GetInstanceID() > otherBall.GetInstanceID();
         }
 
         private IEnumerator EnableMergeAfterCooldown()
         {
-            yield return new WaitForSeconds(_mergeCooldownAfterSpawn);
+            yield return new WaitForSeconds(_mergingProfile.MergeCooldownAfterSpawn);
             if (this != null) // Failsafe in case the object was destroyed during the wait
             {
                 _ballView.CanMerge = true;
@@ -135,13 +146,13 @@ namespace Gameplay.BallSystem
             Vector3 thisStartPosition = transform.position;
             Vector3 otherStartPosition = otherBall.transform.position;
 
-            while (elapsedTime < _mergeDuration)
+            while (elapsedTime < _mergingProfile.MergeDuration)
             {
                 // Failsafe in case the other ball is destroyed mid-animation
                 if (otherBall == null) { FinalizeMerge(null, originalLayer); yield break; }
 
                 elapsedTime += Time.deltaTime;
-                float weight = Mathf.SmoothStep(0, 1, elapsedTime / _mergeDuration);
+                float weight = Mathf.SmoothStep(0, 1, elapsedTime / _mergingProfile.MergeDuration);
                 Vector3 mergeCenter = Vector3.Lerp(thisStartPosition, otherStartPosition, 0.5f);
 
                 transform.position = Vector3.Lerp(thisStartPosition, mergeCenter, weight);
@@ -178,11 +189,11 @@ namespace Gameplay.BallSystem
         {
             if (_ballRenderer == null) return;
 
-            float otherWorldRadius = otherBall.Radius * _visualRadiusMultiplier;
+            float otherWorldRadius = otherBall.Radius * _mergingProfile.VisualRadiusMultiplier;
             Vector3 otherLocalPos = transform.InverseTransformPoint(otherBall.transform.position);
             Vector2 otherUV = new Vector2(
-                0.5f + (otherLocalPos.x * _positionCorrectionFactor) / transform.lossyScale.x,
-                0.5f + (otherLocalPos.y * _positionCorrectionFactor) / transform.lossyScale.y
+                0.5f + (otherLocalPos.x * _mergingProfile.PositionCorrectionFactor) / transform.lossyScale.x,
+                0.5f + (otherLocalPos.y * _mergingProfile.PositionCorrectionFactor) / transform.lossyScale.y
             );
             float uvRadius = otherWorldRadius / Mathf.Max(transform.lossyScale.x, 0.001f);
 

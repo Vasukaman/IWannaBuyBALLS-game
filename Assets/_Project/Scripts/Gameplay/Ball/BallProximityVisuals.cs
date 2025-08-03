@@ -11,11 +11,10 @@ namespace VFX.BallEffects
     [RequireComponent(typeof(Renderer))]
     public class BallProximityVisuals : MonoBehaviour
     {
-        [Header("Configuration")]
-        [Tooltip("The radius within which to detect other balls.")]
-        [SerializeField] private float _proximityRadius = 2f;
-        [Tooltip("The maximum number of neighbors to send to the shader. MUST match the shader array size.")]
-        [SerializeField] private int _maxNeighbors = 4;
+        // --- References ---
+        private BallView _ballView;
+        private BallProximityProfile _proximityProfile;
+
 
         // --- State & Cache ---
         private Renderer _renderer;
@@ -39,15 +38,37 @@ namespace VFX.BallEffects
 
         private void Awake()
         {
+            // 1. Get the root component from the parent hierarchy.
+            _ballView = GetComponentInParent<BallView>();
             _renderer = GetComponent<Renderer>();
             _propertyBlock = new MaterialPropertyBlock();
 
-            // Initialize all arrays to the correct size based on the inspector setting.
-            _neighborPositions = new Vector4[_maxNeighbors];
-            _neighborColors = new Vector4[_maxNeighbors];
-            _queryResults = new Collider2D[_maxNeighbors + 1]; // +1 to account for possibly hitting our own collider
-        }
+            if (_ballView == null)
+            {
+                Debug.LogError("BallProximityVisuals must be a child of a BallView. Disabling component.", this);
+                enabled = false;
+                return;
+            }
 
+            // 2. Pull the specific profile.
+            if (_ballView.Profile != null)
+            {
+                _proximityProfile = _ballView.Profile.Proximity;
+            }
+
+            // 3. Validate.
+            if (_proximityProfile == null)
+            {
+                Debug.LogError("BallProximityProfile is not assigned in the master BallProfile! Disabling BallProximityVisuals.", this);
+                enabled = false;
+                return;
+            }
+
+            // Initialize arrays using the profile data
+            _neighborPositions = new Vector4[_proximityProfile.MaxNeighbors];
+            _neighborColors = new Vector4[_proximityProfile.MaxNeighbors];
+            _queryResults = new Collider2D[_proximityProfile.MaxNeighbors + 1];
+        }
         private void LateUpdate()
         {
             // The entire process is now self-contained and much more efficient.
@@ -61,10 +82,10 @@ namespace VFX.BallEffects
         {
             // This is the key performance improvement. Instead of iterating all balls,
             // we ask the physics engine for only the colliders within our radius.
-            int hitCount = Physics2D.OverlapCircleNonAlloc(transform.position, _proximityRadius, _queryResults);
+            int hitCount = Physics2D.OverlapCircleNonAlloc(transform.position, _proximityProfile.ProximityRadius, _queryResults);
 
             int neighborCount = 0;
-            for (int i = 0; i < hitCount && neighborCount < _maxNeighbors; i++)
+            for (int i = 0; i < hitCount && neighborCount < _proximityProfile.MaxNeighbors; i++)
             {
                 // Skip our own collider.
                 if (_queryResults[i].gameObject == gameObject) continue;

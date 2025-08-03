@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 398a7a9b80375334fa3dc8b39261ca2a, type: 3}
+  m_Name: MasterBallProfile
+  m_EditorClassIdentifier: 
+  BasePrice: 1
+  Scaling: {fileID: 11400000, guid: 51a307f6fee7a8f47a90e6e5766049db, type: 2}
+  Merging: {fileID: 11400000, guid: 5814785bda7e39243ad441f426281867, type: 2}
+  Appearance: {fileID: 11400000, guid: 26e3f90a178b28a4ab01fb25b636a455, type: 2}
+  Proximity: {fileID: 11400000, guid: 61a45d1ddc979ea4e961c84d90b4a53c, type: 2}

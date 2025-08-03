@@ -11,23 +11,11 @@ namespace VFX.BallEffects
     [RequireComponent(typeof(Renderer))]
     public class BallAppearanceController : MonoBehaviour
     {
-        [Header("References")]
-   
-        [SerializeField] private BallView _ballView;
+     
+        // --- References ---
+        private BallView _ballView;
+        private BallAppearanceProfile _appearanceProfile;
 
-        [Header("Tier 1 Orb Settings")]
-        [SerializeField] private float _orbSpeed = 2.0f;
-        [SerializeField] private float _baseOrbRadius = 0.04f;
-
-        [Header("Tier 2 Orb Settings")]
-        [SerializeField] private int _tier2Threshold = 50;
-        [SerializeField] private float _tier2OrbSpeed = -1.0f;
-        [SerializeField] private float _tier2BaseOrbRadius = 0.08f;
-
-        [Header("General Appearance")]
-        [SerializeField] private float _baseOutlineThickness = 0.05f;
-        [SerializeField] private bool _showPathLine = false;
-        [SerializeField] private float _basePathLineThickness = 0.005f;
 
         // --- State & Cache ---
         private Renderer _renderer;
@@ -60,7 +48,24 @@ namespace VFX.BallEffects
 
         private void Awake()
         {
-            if (_ballView == null) _ballView = GetComponentInParent<BallView>();
+            // The specialist is responsible for finding its parent/root.
+            _ballView = GetComponentInParent<BallView>();
+
+            if (_ballView == null)
+            {
+                Debug.LogError("BallAppearanceController must be a child of a BallView.", this);
+                enabled = false;
+                return;
+            }
+
+            _appearanceProfile = _ballView.Profile.Appearance;
+
+            if (_appearanceProfile == null)
+            {
+                Debug.LogError("BallAppearanceProfile is not assigned in the master BallProfile!", this);
+                enabled = false;
+                return;
+            }
             _renderer = GetComponent<Renderer>();
             _propertyBlock = new MaterialPropertyBlock();
         }
@@ -82,11 +87,6 @@ namespace VFX.BallEffects
         /// <summary>
         /// This public method allows the parent (BallView) to provide its reference.
         /// </summary>
-        public void SetParentView(BallView parentView)
-        {
-            _ballView = parentView;
-        }
-
 
         private void OnDisable()
         {
@@ -142,31 +142,31 @@ namespace VFX.BallEffects
             // --- Orb Distribution ---
             int tier1OrbCount = currentPrice;
             int tier2OrbCount = 0;
-            if (_tier2Threshold > 0 && currentPrice >= _tier2Threshold)
+            if (_appearanceProfile.Tier2Threshold > 0 && currentPrice >= _appearanceProfile.Tier2Threshold)
             {
-                tier2OrbCount = currentPrice / _tier2Threshold;
-                tier1OrbCount = currentPrice % _tier2Threshold;
+                tier2OrbCount = currentPrice / _appearanceProfile.Tier2Threshold;
+                tier1OrbCount = currentPrice % _appearanceProfile.Tier2Threshold;
             }
 
             // --- Scale Compensation ---
             float safeScale = Mathf.Max(currentScale, 0.001f);
-            float adjustedOutlineThickness = _baseOutlineThickness / safeScale;
-            float adjustedPathThickness = _basePathLineThickness / safeScale;
-            float adjustedTier1OrbRadius = _baseOrbRadius / safeScale;
-            float adjustedTier2OrbRadius = _tier2BaseOrbRadius / safeScale;
+            float adjustedOutlineThickness = _appearanceProfile.BaseOutlineThickness / safeScale;
+            float adjustedPathThickness = _appearanceProfile.BasePathLineThickness / safeScale;
+            float adjustedTier1OrbRadius = _appearanceProfile.BaseOrbRadius / safeScale;
+            float adjustedTier2OrbRadius = _appearanceProfile.Tier2BaseOrbRadius / safeScale;
 
             // --- Set Shader Properties ---
             _propertyBlock.SetColor(BaseColorID, _ballView.Color);
             _propertyBlock.SetFloat(OutlineThicknessID, adjustedOutlineThickness);
             _propertyBlock.SetFloat(PathLineThicknessID, adjustedPathThickness);
-            _propertyBlock.SetFloat(ShowPathLineID, _showPathLine ? 1.0f : 0.0f);
+            _propertyBlock.SetFloat(ShowPathLineID, _appearanceProfile.ShowPathLine ? 1.0f : 0.0f);
 
             _propertyBlock.SetInt(OrbCountID, tier1OrbCount);
-            _propertyBlock.SetFloat(OrbSpeedID, _orbSpeed);
+            _propertyBlock.SetFloat(OrbSpeedID, _appearanceProfile.OrbSpeed);
             _propertyBlock.SetFloat(OrbRadiusID, adjustedTier1OrbRadius);
 
             _propertyBlock.SetInt(OrbCountTier2ID, tier2OrbCount);
-            _propertyBlock.SetFloat(OrbSpeedTier2ID, _tier2OrbSpeed);
+            _propertyBlock.SetFloat(OrbSpeedTier2ID, _appearanceProfile.Tier2OrbSpeed);
             _propertyBlock.SetFloat(OrbRadiusTier2ID, adjustedTier2OrbRadius);
 
             _renderer.SetPropertyBlock(_propertyBlock);

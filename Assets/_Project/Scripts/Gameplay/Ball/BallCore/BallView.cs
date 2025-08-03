@@ -15,7 +15,7 @@ namespace Gameplay.BallSystem
     [RequireComponent(typeof(CircleCollider2D), typeof(Rigidbody2D))]
     public class BallView : MonoBehaviour
     {
-       // [Inject] IMoneyService money;
+        // [Inject] IMoneyService money;
         // --- Events ---
         // These events are for other MonoBehaviours to listen to.
         public event Action<BallView> OnRequestDespawn;
@@ -25,18 +25,20 @@ namespace Gameplay.BallSystem
 
         // --- Configuration ---
         [Header("Configuration")]
-        [SerializeField] private int _basePrice = 1;
-        [SerializeField] private Color _baseColor = Color.white;
+        [Tooltip("The master profile that defines all aspects of this ball.")]
+        [SerializeField] private BallProfile _profile;
 
-        [Header("Component References")]
-       [SerializeField] private BallAppearanceController _appearanceController;
+        public BallProfile Profile => _profile;
+        public BallData Data { get; private set; }
+        public Color Color { get; private set; }
+
 
         // --- Properties ---
 
         /// <summary>
         /// The "Brain" of the ball, containing its data and non-Unity logic.
         /// </summary>
-        public BallData Data { get; private set; }
+        /// 
 
         public CircleCollider2D Collider { get; private set; }
 
@@ -44,27 +46,27 @@ namespace Gameplay.BallSystem
 
         private Rigidbody2D _rigidbody;
         public float Velocity => _rigidbody.velocity.magnitude;
-        public Color Color { get; private set; }
 
         // --- Unity Methods ---
         private void Awake()
         {
             Collider = GetComponent<CircleCollider2D>();
             _rigidbody = GetComponent<Rigidbody2D>();
-            Color = _baseColor;
 
-            // The View creates its own Brain upon waking up.
-            Data = new BallData(_basePrice);
-
-            if (_appearanceController != null)
+            // The View now gets its color from the central data profile.
+            if (_profile != null && _profile.Appearance != null)
             {
-                _appearanceController.SetParentView(this);
+                Color = _profile.Appearance.BaseColor;
             }
             else
             {
-                Debug.LogWarning("BallView is missing a reference to its BallAppearanceController.", this);
+                Debug.LogError("BallProfile or its AppearanceProfile is not assigned!", this);
             }
+
+            // The View creates its own Brain.
+            Data = new BallData(_profile != null ? _profile.BasePrice : 1); // Use a base price from the profile
         }
+
 
         // --- Public API ---
 

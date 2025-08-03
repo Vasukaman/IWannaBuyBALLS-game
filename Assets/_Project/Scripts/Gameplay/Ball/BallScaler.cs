@@ -11,24 +11,31 @@ namespace Gameplay.BallSystem
     [RequireComponent(typeof(BallView))]
     public class BallScaler : MonoBehaviour
     {
-        [Header("Scaling Logic")]
-        [SerializeField] private float _minScale = 0.1f;
-        [SerializeField] private float _baseScale = 0.5f;
-        [SerializeField] private float _scaleFactor = 0.5f;
-        [SerializeField] private float _maxScale = 5.0f;
-
-        [Header("Animation")]
-        [Tooltip("How quickly the ball animates to its new size.")]
-        [SerializeField] private float _scaleAnimationSpeed = 8f;
 
         private BallView _ballView;
+        private BallScalingProfile _scalingProfile;
+
         private Vector3 _targetScale;
 
         // --- Unity Methods ---
 
         private void Awake()
         {
+            // 1. Get the root component on this GameObject.
             _ballView = GetComponent<BallView>();
+
+            // 2. Pull the specific profile it needs from the master profile.
+            if (_ballView.Profile != null)
+            {
+                _scalingProfile = _ballView.Profile.Scaling;
+            }
+
+            // 3. Validate that the required data exists.
+            if (_scalingProfile == null)
+            {
+                Debug.LogError("BallScalingProfile is not assigned in the master BallProfile! Disabling BallScaler.", this);
+                enabled = false; // Disable this component to prevent errors.
+            }
         }
 
         private void OnEnable()
@@ -68,7 +75,7 @@ namespace Gameplay.BallSystem
             // TODO: This Lerp is frame-rate dependent. For more precise animation, consider
             // using Vector3.MoveTowards or a dedicated tweening library (like DOTween/LeanTween).
             // For this project's style, this approach is simple and visually effective.
-            transform.localScale = Vector3.Lerp(transform.localScale, _targetScale, Time.deltaTime * _scaleAnimationSpeed);
+            transform.localScale = Vector3.Lerp(transform.localScale, _targetScale, Time.deltaTime * _scalingProfile.ScaleAnimationSpeed);
         }
 
         // --- Event Handlers ---
@@ -120,10 +127,10 @@ namespace Gameplay.BallSystem
         {
             // Using Log provides a nice curve where scale increases are larger at lower prices
             // and smaller at higher prices, preventing runaway sizes.
-            float logScaledValue = _scaleFactor * Mathf.Log(Mathf.Max(1, price));
-            float calculatedScale = _baseScale + logScaledValue;
+            float logScaledValue = _scalingProfile.ScaleFactor * Mathf.Log(Mathf.Max(1, price));
+            float calculatedScale = _scalingProfile.BaseScale + logScaledValue;
 
-            return Mathf.Clamp(calculatedScale, _minScale, _maxScale);
+            return Mathf.Clamp(calculatedScale, _scalingProfile.MinScale, _scalingProfile.MaxScale);
         }
     }
 }
