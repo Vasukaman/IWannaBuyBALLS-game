@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Effect:
     rid: 5109334954895474690
-  Ammount: 5
   references:
     version: 2
     RefIds:
     - rid: 5109334954895474690
       type: {class: AddValueEffect, ns: Gameplay.Gadgets.Effects, asm: Assembly-CSharp}
       data:
-        AmountToAdd: 0
+        AmountToAdd: 5

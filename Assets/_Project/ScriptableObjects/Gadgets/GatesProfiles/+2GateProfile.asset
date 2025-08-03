@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: +2GateProfile
   m_EditorClassIdentifier: 
   Effect:
-    rid: 5109334954895474688
-  Ammount: 2
+    rid: 5109334965684535297
   references:
     version: 2
     RefIds:
-    - rid: 5109334954895474688
+    - rid: 5109334965684535297
       type: {class: AddValueEffect, ns: Gameplay.Gadgets.Effects, asm: Assembly-CSharp}
       data:
-        AmountToAdd: 0
+        AmountToAdd: 2

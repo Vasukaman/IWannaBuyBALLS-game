@@ -14,35 +14,56 @@ public class SelectImplementationDrawer : PropertyDrawer
         var attribute = this.attribute as SelectImplementationAttribute;
         var fieldType = attribute.FieldType;
 
-        // Find all concrete types that implement the interface
+        // --- 1. Draw the Main Label and Dropdown ---
+        Rect dropdownRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
+
         var implementationTypes = TypeCache.GetTypesDerivedFrom(fieldType)
-            .Where(t => !t.IsAbstract && !t.IsInterface)
-            .ToList();
+            .Where(t => !t.IsAbstract && !t.IsInterface).ToList();
 
         var typeNames = implementationTypes.Select(t => t.Name).ToList();
-        int currentIndex = -1;
+        typeNames.Insert(0, "(None)"); // Add an option for null
+
+        int currentIndex = 0;
         if (property.managedReferenceValue != null)
         {
-            currentIndex = implementationTypes.FindIndex(t => t == property.managedReferenceValue.GetType());
+            currentIndex = implementationTypes.FindIndex(t => t == property.managedReferenceValue.GetType()) + 1;
         }
 
-        // Draw the dropdown menu
-        position.height = EditorGUIUtility.singleLineHeight;
-        int newIndex = EditorGUI.Popup(position, label.text, currentIndex, typeNames.ToArray());
+        int newIndex = EditorGUI.Popup(dropdownRect, label.text, currentIndex, typeNames.ToArray());
 
-        // If the user selects a new type, create a new instance
         if (newIndex != currentIndex)
         {
-            var newType = implementationTypes[newIndex];
-            property.managedReferenceValue = Activator.CreateInstance(newType);
+            if (newIndex == 0) // "(None)" was selected
+            {
+                property.managedReferenceValue = null;
+            }
+            else
+            {
+                var newType = implementationTypes[newIndex - 1];
+                property.managedReferenceValue = Activator.CreateInstance(newType);
+            }
         }
 
-        // Draw the properties of the currently selected object
-        EditorGUI.PropertyField(position, property, label, true);
+        // --- 2. Draw the Properties of the Selected Object (No Fold-out) ---
+        if (property.managedReferenceValue != null)
+        {
+            EditorGUI.indentLevel++;
+
+            // This iterates through the children of the serialized object (e.g., "AmountToAdd")
+            foreach (SerializedProperty child in property)
+            {
+                position.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
+                Rect childRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
+                EditorGUI.PropertyField(childRect, child, true);
+            }
+
+            EditorGUI.indentLevel--;
+        }
 
         EditorGUI.EndProperty();
     }
 
+    // This method is crucial for telling the Inspector how much vertical space our custom UI needs.
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
         return EditorGUI.GetPropertyHeight(property, true);

@@ -36,7 +36,7 @@ namespace Gameplay.Gadgets
                 return;
             }
 
-            _profile.Effect.Apply(ball.Data, _profile.Ammount);
+            _profile.Effect.Apply(ball.Data);
 
             _processedBalls.Add(ball);
             ball.OnDespawned += HandleBallDespawned;
