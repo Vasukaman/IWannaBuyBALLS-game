@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a23c4f09654428a49a17f9afe9462987, type: 3}
+  m_Name: +2GateProfile
+  m_EditorClassIdentifier: 
+  Effect:
+    rid: 5109334954895474688
+  Ammount: 2
+  references:
+    version: 2
+    RefIds:
+    - rid: 5109334954895474688
+      type: {class: AddValueEffect, ns: Gameplay.Gadgets.Effects, asm: Assembly-CSharp}
+      data:
+        AmountToAdd: 0

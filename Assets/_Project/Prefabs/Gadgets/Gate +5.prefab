@@ -755,6 +755,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4978417298361605182, guid: 47b09a980ff49b84fb6bdb85b17c69ca, type: 3}
+      propertyPath: _profile
+      value: 
+      objectReference: {fileID: 11400000, guid: b4adc4bf40135d9429de89a34c6e8243, type: 2}
+    - target: {fileID: 4978417298361605182, guid: 47b09a980ff49b84fb6bdb85b17c69ca, type: 3}
       propertyPath: _gateOperation
       value: 0
       objectReference: {fileID: 0}

@@ -633,8 +633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fad283f48ad76e41a583d45d5cc2814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gateOperation: 0
-  _modifierValue: 2
+  _profile: {fileID: 11400000, guid: 0f32e9db73ede9641874d6d9c12090c6, type: 2}
   _onFirstPass:
     m_PersistentCalls:
       m_Calls: []

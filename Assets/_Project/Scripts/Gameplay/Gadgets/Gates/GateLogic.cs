@@ -6,63 +6,41 @@ using UnityEngine.Events;
 
 namespace Gameplay.Gadgets
 {
-    /// <summary>
-    /// A trigger that modifies the price of a Ball a single time as it passes through.
-    /// It uses UnityEvents to allow for additional custom responses.
-    /// </summary>
     [RequireComponent(typeof(Collider2D))]
     public class GateLogic : MonoBehaviour
     {
-        public enum GateOperation
-        {
-            Add,
-            Multiply,
-            Subtract
-        }
+        [Header("Configuration")]
+        [SerializeField] private GateProfile _profile;
 
-        [Header("Gate Configuration")]
-        [SerializeField] private GateOperation _gateOperation;
-        [SerializeField] private float _modifierValue = 1;
 
-        [Header("Events")]
-        [Tooltip("Invoked the first time any ball passes through the gate.")]
-        [SerializeField] private UnityEvent<BallView> _onFirstPass;
-        [Tooltip("Invoked when a ball that has already passed through enters the trigger again.")]
-        [SerializeField] private UnityEvent<BallView> _onRepeatPass;
 
-        // --- State ---
         private readonly HashSet<BallView> _processedBalls = new HashSet<BallView>();
-
-        // --- Unity Methods ---
 
         private void Awake()
         {
-            // Ensure the collider is a trigger to receive OnTriggerEnter2D events.
-            if (TryGetComponent<Collider2D>(out var col))
+            if (_profile == null || _profile.Effect == null)
             {
-                col.isTrigger = true;
+                Debug.LogError("GateLogic is missing a Profile or the Profile is missing an Effect!", this);
+                enabled = false;
+                return;
             }
+            GetComponent<Collider2D>().isTrigger = true;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (!other.TryGetComponent<BallView>(out var ball))
-            {
-                return;
-            }
-
-            // If we have already processed this ball, invoke the repeat pass event and do nothing else.
+            if (!other.TryGetComponent<BallView>(out var ball)) return;
             if (_processedBalls.Contains(ball))
             {
-                _onRepeatPass?.Invoke(ball);
+   
                 return;
             }
 
-            // Apply the primary effect, add the ball to our set, and listen for its despawn event.
-            ApplyGateEffect(ball);
+            _profile.Effect.Apply(ball.Data, _profile.Ammount);
+
             _processedBalls.Add(ball);
             ball.OnDespawned += HandleBallDespawned;
-            _onFirstPass?.Invoke(ball);
+           
         }
 
         private void OnDestroy()
@@ -78,26 +56,6 @@ namespace Gameplay.Gadgets
         }
 
         // --- Private Methods ---
-
-        /// <summary>
-        /// Modifies the ball's price based on the gate's configured operation and value.
-        /// </summary>
-        private void ApplyGateEffect(BallView ball)
-        {
-            switch (_gateOperation)
-            {
-                case GateOperation.Add:
-                    ball.Data.AddPrice(Mathf.RoundToInt(_modifierValue));
-                    break;
-                case GateOperation.Multiply:
-                    ball.Data.MultiplyPrice(_modifierValue);
-                    break;
-                case GateOperation.Subtract:
-                    ball.Data.SubtractPrice(Mathf.RoundToInt(_modifierValue));
-                    break;
-            }
-        }
-
         /// <summary>
         /// Called when a ball we've processed is despawned. This allows it to be processed again
         /// if it is respawned from a pool and re-enters the gate.

@@ -29,7 +29,7 @@ Material:
     - _DashSpeed: 0.64
     - _DashThickness: 0.05
     - _GapLength: 0.31
-    - _LineAngle: 199
+    - _LineAngle: 216
     - _LineSpacing: 0.2
     - _LineThickness: 0.2
     m_Colors:

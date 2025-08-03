@@ -639,14 +639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fad283f48ad76e41a583d45d5cc2814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gateOperation: 1
-  _modifierValue: 2
-  _onFirstPass:
-    m_PersistentCalls:
-      m_Calls: []
-  _onRepeatPass:
-    m_PersistentCalls:
-      m_Calls: []
+  _profile: {fileID: 11400000, guid: b6377e986d805a94187699708838db4c, type: 2}
 --- !u!1001 &3698523857473222925
 PrefabInstance:
   m_ObjectHideFlags: 0

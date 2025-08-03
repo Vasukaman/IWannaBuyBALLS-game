@@ -1,4 +1,5 @@
 // Filename: SellZoneView.cs
+using Gameplay.Gadgets;
 using UnityEngine;
 
 namespace VFX.Gadgets
@@ -6,22 +7,21 @@ namespace VFX.Gadgets
     [RequireComponent(typeof(Renderer))]
     public class SellZoneView : MonoBehaviour
     {
-        [Header("Selling State Visuals")]
-        [SerializeField] private Color _sellingDashColor = Color.green;
-        [SerializeField] private Color _sellingLineColor = new Color(0, 1, 0, 0.25f);
-        [SerializeField] private float _sellingLineThickness = 3.0f; // Your value of 3
-        [SerializeField] private float _sellingLineSpacing = 0.05f;
-        [Tooltip("How much the line scroll speed increases each second.")]
-        [SerializeField] private float _speedAcceleration = 3.0f; // Setting moved here!
 
-        public float SpeedAcceleration => _speedAcceleration; // Public accessor for the Presenter
+        private SellZoneViewProfile _profile;
+
+        // Public accessor for the Presenter to read the acceleration value.
+        public float SpeedAcceleration => _profile.SpeedAcceleration;
 
         private Renderer _renderer;
         private MaterialPropertyBlock _propertyBlock;
+        
+        // Cached original values from the material
         private Color _originalDashColor, _originalLineColor;
         private Vector2 _originalLineSpeed;
         private float _originalLineThickness, _originalLineSpacing;
 
+        // Shader Property IDs
         private static readonly int DashColorID = Shader.PropertyToID("_DashColor");
         private static readonly int LineColorID = Shader.PropertyToID("_LineColor");
         private static readonly int LineScrollSpeedID = Shader.PropertyToID("_LineScrollSpeed");
@@ -31,54 +31,72 @@ namespace VFX.Gadgets
 
         private void Awake()
         {
+            // It pulls the master profile from the Presenter...
+            var presenter = GetComponent<GadgetSellZonePresenter>();
+            if (presenter != null)
+            {
+                _profile = presenter.Profile.View;
+            }
+
+            if (_profile == null)
+            {
+                Debug.LogError("Could not find a valid SellZoneViewProfile! Disabling component.", this);
+                enabled = false;
+                return;
+            }
+
             _renderer = GetComponent<Renderer>();
             _propertyBlock = new MaterialPropertyBlock();
-            CacheOriginalProperties();
         }
-        
+
+        private void Start()
+        {
+            // Apply the default appearance as soon as the game starts.
+            SetDefaultAppearance();
+        }
+
         private void Update()
         {
             _renderer.GetPropertyBlock(_propertyBlock);
-            _propertyBlock.SetVector(ObjectScaleID, transform.lossyScale);
+            _propertyBlock.SetVector("_ObjectScale", transform.lossyScale);
             _renderer.SetPropertyBlock(_propertyBlock);
         }
 
         public void SetDefaultAppearance()
         {
             _renderer.GetPropertyBlock(_propertyBlock);
-            _propertyBlock.SetColor(DashColorID, _originalDashColor);
-            _propertyBlock.SetColor(LineColorID, _originalLineColor);
-            _propertyBlock.SetVector(LineScrollSpeedID, _originalLineSpeed);
-            _propertyBlock.SetFloat(LineThicknessID, _originalLineThickness);
-            _propertyBlock.SetFloat(LineSpacingID, _originalLineSpacing);
+            // Read all default values directly from the profile.
+            _propertyBlock.SetColor(DashColorID, _profile.DefaultDashColor);
+            _propertyBlock.SetColor(LineColorID, _profile.DefaultLineColor);
+            _propertyBlock.SetVector(LineScrollSpeedID, _profile.DefaultLineSpeed);
+            _propertyBlock.SetFloat(LineThicknessID, _profile.DefaultLineThickness);
+            _propertyBlock.SetFloat(LineSpacingID, _profile.DefaultLineSpacing);
             _renderer.SetPropertyBlock(_propertyBlock);
         }
 
         public void UpdateSellingAppearance(float progress, float speedFactor)
         {
             _renderer.GetPropertyBlock(_propertyBlock);
-            
-       
-            float currentScale = Mathf.Max(transform.lossyScale.x, 0.001f);
-            float adjustedThickness = Mathf.Lerp(_originalLineThickness, _sellingLineThickness, progress) / currentScale;
-            float adjustedSpacing = Mathf.Lerp(_originalLineSpacing, _sellingLineSpacing, progress) / currentScale;
 
-            _propertyBlock.SetColor(DashColorID, _sellingDashColor);
-            _propertyBlock.SetColor(LineColorID, _sellingLineColor);
-            _propertyBlock.SetVector(LineScrollSpeedID, _originalLineSpeed * speedFactor);
+            float currentScale = Mathf.Max(transform.lossyScale.x, 0.001f);
+
+            // Lerp from the profile's default values to the profile's selling values.
+            float adjustedThickness = Mathf.Lerp(_profile.DefaultLineThickness, _profile.SellingLineThickness, progress) / currentScale;
+            float adjustedSpacing = Mathf.Lerp(_profile.DefaultLineSpacing, _profile.SellingLineSpacing, progress) / currentScale;
+
+
+            //We can lerp the colors but it doesn't look that good.
+            //Color currentDashColor = Color.Lerp(_originalDashColor, _profile.SellingDashColor, progress);
+            //Color currentLineColor = Color.Lerp(_originalLineColor, _profile.SellingLineColor, progress);
+
+            _propertyBlock.SetColor(DashColorID, _profile.SellingDashColor);
+            _propertyBlock.SetColor(LineColorID, _profile.SellingLineColor);
+            _propertyBlock.SetVector(LineScrollSpeedID, _profile.DefaultLineSpeed * speedFactor);
             _propertyBlock.SetFloat(LineThicknessID, adjustedThickness);
             _propertyBlock.SetFloat(LineSpacingID, adjustedSpacing);
             _renderer.SetPropertyBlock(_propertyBlock);
         }
 
-        private void CacheOriginalProperties()
-        {
-            var initialMaterial = _renderer.material;
-            _originalDashColor = initialMaterial.GetColor(DashColorID);
-            _originalLineColor = initialMaterial.GetColor(LineColorID);
-            _originalLineSpeed = initialMaterial.GetVector(LineScrollSpeedID);
-            _originalLineThickness = initialMaterial.GetFloat(LineThicknessID);
-            _originalLineSpacing = initialMaterial.GetFloat(LineSpacingID);
-        }
+        // The CacheOriginalProperties method is now completely GONE.
     }
 }
