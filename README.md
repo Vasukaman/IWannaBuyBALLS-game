@@ -48,7 +48,8 @@ This project is an active work in progress, following a deliberate path of proto
 5.  ✅ **Decouple with Event Bus:** Implement a ScriptableObject-based event system to handle cross-system communication.
 6.  ✅ **Data-Driven Configuration:** Move all hardcoded settings into `ScriptableObject` assets for a designer-friendly workflow.
 7.  ✅ **Bootstrap Scene & Persistent Systems:** Create a professional startup flow with a persistent `ProjectScope` to manage the game's lifecycle.
-8.  ➡️ **Finalize Project Structure & Cleanup:** **<-- WE ARE HERE**
-9.  **Implement a Game State Machine (FSM):** Add a formal state machine to manage game states like `Playing`, `Paused`, and `Shop`.
-10. **Write Unit Tests:** Create EditMode tests for the pure C# services to verify their logic and ensure stability.
-11. **Modernize Asset Management:** Convert the prefab loading system to use Unity's Addressables for production-level asset management.
+8.  ✅ **Data-driven Architecture**
+9.  **More Events using Event Channels + SOUNDS** Adding special events on things like BallMerge and ButGadget and using them for playing sounds for example. 
+10.  **Implement a Game State Machine (FSM):** Add states(menu, pause) and FSM for them **<-- WE ARE HERE**
+11. **Write Unit Tests:** Create EditMode tests for the pure C# services to verify their logic and ensure stability.
+12. **Modernize Asset Management:** Convert the prefab loading system to use Unity's Addressables for production-level asset management.
