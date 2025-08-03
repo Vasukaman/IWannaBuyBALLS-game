@@ -1,5 +1,7 @@
 # Unity 2D Incremental/Clicker Game
 
+PLAY IT HERE - https://vasuka.itch.io/i-want-to-buy-your-balls
+
 Unity 2D Incremental Game
 This is a 2D incremental game developed in Unity. The project serves as a portfolio piece to demonstrate a deep understanding of professional game development architecture, clean code practices, and advanced engine features.
 
