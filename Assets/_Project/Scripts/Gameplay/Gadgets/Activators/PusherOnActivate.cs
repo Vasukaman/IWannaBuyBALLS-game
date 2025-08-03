@@ -1,27 +1,25 @@
 // Filename: PusherOnActivate.cs
-using Gameplay.Interfaces; // Use the new interface namespace
+using Gameplay.Interfaces;
 using UnityEngine;
 
 namespace Gameplay.Gadgets
 {
     /// <summary>
     /// A "Gadget Behaviour" that applies a random impulse force to a Rigidbody2D
-    /// when it receives a signal from any IActivationSource.
+    /// when it receives a signal from an IActivationSource, configured by a PusherProfile.
     /// </summary>
     public class PusherOnActivate : MonoBehaviour
     {
+        [Header("Configuration")]
+        [Tooltip("The ScriptableObject asset that defines the behavior of this pusher.")]
+        [SerializeField] private PusherProfile _profile;
+
         [Header("Dependencies")]
-        // The dependency is now the flexible interface, not a concrete class.
-        [Tooltip("Assign any component that implements IActivationSource (e.g., ManualActivatorController or AutoActivatorController).")]
+        [Tooltip("Assign any component that implements IActivationSource.")]
         [SerializeField] private MonoBehaviour _activationSource;
 
         [Tooltip("The Rigidbody2D to push. If null, it will search on this GameObject.")]
         [SerializeField] private Rigidbody2D _bodyToPush;
-
-        [Header("Push Settings")]
-        [Tooltip("The maximum force applied as a single impulse.")]
-        [Range(0.1f, 50f)]
-        [SerializeField] private float _maxImpulse = 5f;
 
         // --- State ---
         private IActivationSource _source;
@@ -30,19 +28,24 @@ namespace Gameplay.Gadgets
 
         private void Awake()
         {
+            if (_profile == null)
+            {
+                Debug.LogError("PusherOnActivate is missing a PusherProfile! Disabling component.", this);
+                enabled = false;
+                return;
+            }
+
             if (_bodyToPush == null)
             {
                 _bodyToPush = GetComponent<Rigidbody2D>();
             }
 
-            // We get the interface from the assigned MonoBehaviour.
-            // This is a safe way to handle interface fields in the Inspector.
             _source = _activationSource as IActivationSource;
-
-            if (_source == null)
+            if (_source == null && _activationSource != null)
             {
-                Debug.LogWarning("PusherOnActivate: The assigned Activation Source does not implement the IActivationSource interface.", this);
+                Debug.LogWarning("PusherOnActivate: The assigned Activation Source does not implement IActivationSource.", this);
             }
+
         }
 
         private void OnEnable()
@@ -68,7 +71,8 @@ namespace Gameplay.Gadgets
             if (_bodyToPush == null) return;
 
             Vector2 randomDirection = Random.insideUnitCircle.normalized;
-            Vector2 impulse = randomDirection * _maxImpulse;
+            // The logic now reads the force value from the profile.
+            Vector2 impulse = randomDirection * _profile.MaxImpulse;
             _bodyToPush.AddForce(impulse, ForceMode2D.Impulse);
         }
 

@@ -1,8 +1,8 @@
 // Filename: AutoActivatorModel.cs
 using Core.Utilities;
+using Gameplay.Interfaces;
 using Services.Registry;
 using System;
-using System.Linq;
 using UnityEngine;
 
 namespace Gameplay.Gadgets
@@ -14,18 +14,19 @@ namespace Gameplay.Gadgets
 
         private readonly Transform _ownerTransform;
         private readonly IActivatableRegistry _registry;
+        private readonly float _activationInterval;
+        private readonly float _scanInterval;
         private float _activationTimer;
         private float _scanTimer;
 
-        private readonly float _activationInterval;
-        private readonly float _scanInterval;
-
-        public AutoActivatorModel(Transform ownerTransform, IActivatableRegistry registry, float activationInterval, float scanInterval)
+        // The constructor now takes the specialized auto-activator profile.
+        public AutoActivatorModel(Transform ownerTransform, IActivatableRegistry registry, AutoActivatorProfile profile)
         {
             _ownerTransform = ownerTransform;
             _registry = registry;
-            _activationInterval = activationInterval;
-            _scanInterval = scanInterval;
+            // It can access properties from BOTH the base and the child class.
+            _activationInterval = profile.ActivationInterval;
+            _scanInterval = profile.TargetScanInterval;
         }
 
         public void Tick(float deltaTime)
@@ -33,7 +34,7 @@ namespace Gameplay.Gadgets
             _scanTimer -= deltaTime;
             if (_scanTimer <= 0)
             {
-                FindNearestTarget();
+                UpdateTarget();
                 _scanTimer = _scanInterval;
             }
 
@@ -45,7 +46,7 @@ namespace Gameplay.Gadgets
             }
         }
 
-        private void FindNearestTarget()
+        private void UpdateTarget()
         {
             CurrentTarget = TargetingUtility.FindNearestTarget(_ownerTransform, _registry.AllActivatables);
         }

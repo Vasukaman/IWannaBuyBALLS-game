@@ -1,21 +1,20 @@
 // Filename: AutoActivatorController.cs
+using Gameplay.Interfaces;
 using Reflex.Attributes;
 using Services.Registry;
 using System;
+using System.Collections;
 using UnityEngine;
-using Services.Money;
-using Gameplay.Interfaces;
+
 namespace Gameplay.Gadgets
 {
     public class AutoActivatorController : MonoBehaviour, IConnectionSource, IActivationSource
     {
         [Header("Configuration")]
-        [SerializeField] private float _activationInterval = 1f;
-        [SerializeField] private float _targetScanInterval = 2.0f;
+        [Tooltip("The ScriptableObject asset that defines the timing for this activator.")]
+        [SerializeField] private AutoActivatorProfile _profile; // It asks for the specialized profile.
 
-        // This is guaranteed to be injected before Start().
         [Inject] private IActivatableRegistry _registry;
-        [Inject] private IMoneyService _moneyService;
 
         private AutoActivatorModel _model;
 
@@ -28,12 +27,19 @@ namespace Gameplay.Gadgets
 
         // Start is called only once in a component's lifetime, after all injections are complete.
         // This is the perfect place for one-time setup.
-        private void Start()
+         private void Start()
         {
-            // This check ensures the model is only ever created once.
+          
+            if (_profile == null) 
+            {
+                Debug.LogError("AutoActivatorProfile is not assigned to AutoActivator!", this);
+                enabled = false;
+                return;
+            }
             if (_model == null)
             {
-                _model = new AutoActivatorModel(transform, _registry, _activationInterval, _targetScanInterval);
+                _model = new AutoActivatorModel(transform, _registry, _profile);
+                //Wierd fix to solve injection race condition. It inject AFTER awake and enabled.
                 _model.OnTargetActivated += HandleTargetActivated;
             }
         }

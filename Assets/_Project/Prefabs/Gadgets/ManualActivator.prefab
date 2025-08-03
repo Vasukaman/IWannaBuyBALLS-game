@@ -436,23 +436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c15d22c836a605448b3388fdd9c0bca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetLocalPosition: {x: 0, y: 0}
-  _minMagnetForce: 1
-  _minForceDistance: 0.1
-  _maxMagnetForce: 50
-  _maxForceDistance: 0.37
-  _maxAllowedDistance: 0.56
-  _limitRampUpDistance: 0.01
-  _maxLimitForceMagnitude: 200
-  _limitForcePower: 5.67
-  _dampingFactor: 0.948
-  _snapDistance: 0.001
-  _zeroVelocityOnSnap: 0
-  _drawGizmos: 1
-  _gizmoColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  _gizmoRadius: 0.1
-  _limitGizmoColor: {r: 1, g: 0, b: 0, a: 1}
-  _snapGizmoColor: {r: 0, g: 1, b: 0, a: 1}
+  _profile: {fileID: 11400000, guid: 50e28c17955d5784ab5686b487551da9, type: 2}
 --- !u!114 &6881230900433264036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,9 +489,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6590976433a3561478737c8fdc3c49f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _profile: {fileID: 11400000, guid: 28c74438f9f6bc9469f9edbe7a12be74, type: 2}
   _activationSource: {fileID: 915699912338400600}
-  _bodyToPush: {fileID: 0}
-  _maxImpulse: 5
+  _bodyToPush: {fileID: 3082716990764103822}
 --- !u!114 &915699912338400600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,8 +504,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95a65dd52275aed40a5c13764c08fa56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _profile: {fileID: 11400000, guid: 9db4627ba87ed6c4cb09db1f8f9c3cee, type: 2}
   _manualActivationEvent: {fileID: 11400000, guid: 8e09b27c2d2a9b842852f853a698f2b5, type: 2}
-  _targetScanInterval: 0.1
 --- !u!114 &6497052988402918995
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8c5443599f83ae4b9b35369667d0240, type: 3}
   m_Name: BallAppearanceProfile
   m_EditorClassIdentifier: 
-  BaseColor: {r: 1, g: 1, b: 1, a: 1}
+  BaseColor: {r: 0, g: 0.18039216, b: 0.23529413, a: 0}
   OrbSpeed: 2
   BaseOrbRadius: 0.04
   Tier2Threshold: 50

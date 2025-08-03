@@ -273,12 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bccd089435cd554abeacc5cf52a77b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  _forceDirection: {x: 0, y: 1}
-  _forceMagnitude: 10
-  _forceMode: 0
+  _profile: {fileID: 11400000, guid: b9e2a7afd2dc4e24187e3d3d8b141e45, type: 2}
 --- !u!1 &4617619587348100965
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,12 +417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bccd089435cd554abeacc5cf52a77b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  _forceDirection: {x: 0, y: 1}
-  _forceMagnitude: 10
-  _forceMode: 0
+  _profile: {fileID: 11400000, guid: b9e2a7afd2dc4e24187e3d3d8b141e45, type: 2}
 --- !u!1 &4798430150809171198
 GameObject:
   m_ObjectHideFlags: 0

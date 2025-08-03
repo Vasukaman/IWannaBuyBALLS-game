@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5da259ee4fe34bb49b2d8245aa091ec4, type: 3}
+  m_Name: MagnetProfile
+  m_EditorClassIdentifier: 
+  TargetLocalPosition: {x: 0, y: 0}
+  MinMagnetForce: 1
+  MinForceDistance: 0.1
+  MaxMagnetForce: 50
+  MaxForceDistance: 0.37
+  MaxAllowedDistance: 0.56
+  LimitRampUpDistance: 0.01
+  MaxLimitForceMagnitude: 200
+  LimitForcePower: 2
+  DampingFactor: 1
+  SnapDistance: 0.001
+  ZeroVelocityOnSnap: 0
+  DrawGizmos: 1
+  GizmoColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  GizmoRadius: 0.1
+  LimitGizmoColor: {r: 1, g: 0, b: 0, a: 1}
+  SnapGizmoColor: {r: 0, g: 1, b: 0, a: 1}

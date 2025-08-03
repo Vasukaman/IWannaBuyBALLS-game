@@ -43,6 +43,7 @@ namespace Services.Gadgets
             // 4. INJECT DEPENDENCIES
             GameObjectInjector.InjectRecursive(instance, Container.ProjectContainer);
 
+
             return view;
         }
     }
