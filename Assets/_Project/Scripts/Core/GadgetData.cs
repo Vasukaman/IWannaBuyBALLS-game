@@ -1,7 +1,7 @@
 // Filename: GadgetData.cs
 using UnityEngine;
 
-namespace Gameplay.Gadgets
+namespace Core.Data
 {
     /// <summary>
     /// A ScriptableObject that defines the static properties of a single gadget.

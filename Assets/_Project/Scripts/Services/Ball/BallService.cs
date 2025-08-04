@@ -1,6 +1,7 @@
 // Filename: BallService.cs
+using Core.Interfaces;
 using Core.Spawning;
-using Gameplay.BallSystem;
+
 using Reflex.Core;
 using Reflex.Injectors;
 using System.Collections.Generic;
@@ -10,27 +11,27 @@ namespace Services.Ball
 {
     public class BallService : IBallService
     {
-        public IReadOnlyCollection<BallView> ActiveBalls => _activeBalls;
+        public IReadOnlyCollection<IBallView> ActiveBalls => _activeBalls;
 
         private readonly IPrefabInstantiator _instantiator;
         private readonly Container _container;
-        private readonly BallView _ballPrefab; // The service knows the blueprint
+        private readonly GameObject _ballPrefabBlueprint; // The service knows the blueprint
 
-        private readonly Queue<BallView> _pooledBalls = new Queue<BallView>();
-        private readonly HashSet<BallView> _activeBalls = new HashSet<BallView>();
+        private readonly Queue<IBallView> _pooledBalls = new Queue<IBallView>();
+        private readonly HashSet<IBallView> _activeBalls = new HashSet<IBallView>();
 
         // All dependencies are passed in by the DI container when this service is created.
-        public BallService(IPrefabInstantiator instantiator, Container container, BallView ballPrefab, int initialPoolSize)
+        public BallService(IPrefabInstantiator instantiator, Container container, GameObject ballPrefabBlueprint, int initialPoolSize)
         {
             _instantiator = instantiator;
             _container = container;
-            _ballPrefab = ballPrefab;
+            _ballPrefabBlueprint = ballPrefabBlueprint;
 
         }
 
-        public BallView SpawnBall(Vector3 position, int price)
+        public IBallView SpawnBall(Vector3 position, int price)
         {
-            BallView ball = GetOrCreateBall();
+            IBallView ball = GetOrCreateBall();
             ConfigureBall(ball, position, price);
             _activeBalls.Add(ball);
             return ball;
@@ -44,13 +45,13 @@ namespace Services.Ball
         {
             for (int i = 0; i < poolSize; i++)
             {
-                BallView ball = CreateNewBallInstance();
+                IBallView ball = CreateNewBallInstance();
                 ball.gameObject.SetActive(false);
                 _pooledBalls.Enqueue(ball);
             }
         }
 
-        private BallView GetOrCreateBall()
+        private IBallView GetOrCreateBall()
         {
             if (_pooledBalls.Count > 0)
             {
@@ -59,18 +60,26 @@ namespace Services.Ball
             return CreateNewBallInstance();
         }
 
-        private BallView CreateNewBallInstance()
+
+        private IBallView CreateNewBallInstance(Transform parent = null)
         {
-            // The service tells its "worker" to create the object.
-            GameObject instance = _instantiator.InstantiatePrefab(_ballPrefab.gameObject, Vector3.zero);
+            // 1. Instantiate the generic blueprint.
+            GameObject instance = _instantiator.InstantiatePrefab(_ballPrefabBlueprint, Vector3.zero, parent);
 
-            // Then it tells the container to inject dependencies.
-            GameObjectInjector.InjectObject(instance, Container.ProjectContainer);
+            // 2. Perform a safe, runtime check to get the specific component.
+            if (!instance.TryGetComponent<IBallView>(out var ballView))
+            {
+                Debug.LogError($"The assigned Ball Prefab '{_ballPrefabBlueprint.name}' is missing a component that implements IBallView!", instance);
+                Object.Destroy(instance);
+                return null;
+            }
 
-            return instance.GetComponent<BallView>();
+            // 3. Inject dependencies.
+            GameObjectInjector.InjectObject(instance, _container);
+            return ballView;
         }
 
-        private void ConfigureBall(BallView ball, Vector3 position, int price)
+        private void ConfigureBall(IBallView ball, Vector3 position, int price)
         {
             ball.transform.position = position;
             ball.SetBasePrice(price);
@@ -82,7 +91,7 @@ namespace Services.Ball
             ball.Initialize();
         }
 
-        private void ReturnBallToPool(BallView ball)
+        private void ReturnBallToPool(IBallView ball)
         {
             ball.OnRequestDespawn -= ReturnBallToPool;
             _activeBalls.Remove(ball);

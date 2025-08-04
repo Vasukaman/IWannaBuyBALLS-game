@@ -3,7 +3,10 @@ guid: 1dcb9eaeed6bbad4c92aa85b6ea95b4b
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _eventChannels: {fileID: 11400000, guid: b223524d530d5664c83db5d5e91e1fc8, type: 2}
+  - _gadgetLibrary: {fileID: 11400000, guid: 0ac24394977b26d419ca811ca311883d, type: 2}
+  - _ballPrefab: {fileID: 2663361385200861499, guid: c1208757b4e86554bb0542b901f08d54, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

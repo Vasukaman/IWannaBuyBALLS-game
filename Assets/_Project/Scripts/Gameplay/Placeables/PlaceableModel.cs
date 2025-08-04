@@ -3,8 +3,9 @@ using Gameplay.Gadgets;
 using Services.Store;
 using System;
 using UnityEngine.Playables;
+using Core.Data;
 
-namespace Gameplay.Gadgets
+namespace Gameplay.Placeables
 {
     /// <summary>
     /// The pure data model for a Gadget. Contains all state and logic

@@ -1,34 +1,39 @@
-// Filename: PlaceableView.cs (replaces Gadget.cs)
+// Filename: PlaceableView.cs
+using Gameplay.Interfaces; // For ISellable
 using Reflex.Attributes;
-using Services.Money;
+using Services.Store;
 using UnityEngine;
+using Gameplay.Gadgets;
+using Core.Data;
+using Core.Interfaces;
 
-namespace Gameplay.Gadgets
+namespace Gameplay.Placeables
 {
-    /// <summary>
-    /// The MonoBehaviour component for a Gadget. It acts as the "bridge" between the
-    /// pure C# PlaceableModel and the Unity engine (physics, rendering, lifecycle).
-    /// </summary>
     [RequireComponent(typeof(BoxCollider2D))]
-    public class PlaceableView : MonoBehaviour, IGadgetSellable
+    public class PlaceableView : MonoBehaviour, IGadgetSellable, IPlaceableView
     {
+        // --- Injected Dependencies ---
+        // The View now gets the service it needs to create its Model.
+        [Inject] private IStoreService _storeService;
+
         // --- Properties ---
         public PlaceableModel Model { get; private set; }
+        public GadgetData Data { get; private set; } // It also holds a direct reference to its blueprint
 
-        // --- IGadgetSellable Implementation ---
+        // --- ISellable Implementation ---
         public GameObject Instance => gameObject;
         public Collider2D ObjectCollider { get; private set; }
 
+        public void Sell() => Model?.Sell();
 
         // --- Unity Methods ---
         private void Awake()
         {
-            ObjectCollider = GetComponent<Collider2D>();
+            ObjectCollider = GetComponent<BoxCollider2D>();
         }
 
         private void OnDestroy()
         {
-            // Clean up event subscriptions when the object is destroyed.
             if (Model != null)
             {
                 Model.OnDestroyRequested -= HandleDestroyRequested;
@@ -38,36 +43,22 @@ namespace Gameplay.Gadgets
         // --- Public API ---
 
         /// <summary>
-        /// Initializes the View by connecting it to its Model.
-        /// Called by the GadgetService upon creation.
+        /// Initializes the View with its blueprint data. Called by the GadgetService.
+        /// It then creates its own Model.
         /// </summary>
-        public void Initialize(PlaceableModel model)
+        public void Initialize(GadgetData data)
         {
-            Model = model;
+            Data = data;
+
+            // The View is now responsible for creating its own brain,
+            // using its injected dependencies and the data it was given.
+            Model = new PlaceableModel(Data, _storeService);
             Model.OnDestroyRequested += HandleDestroyRequested;
+            
         }
 
-        private void Update()
-        {
-           
-        }
-
-        /// <summary>
-        /// Public method for other systems to call. It delegates the logic to the Model.
-        /// </summary>
-        public void Sell()
-        {
-            Model?.Sell();
-        }
-
-        // --- Event Handlers ---
-
-        /// <summary>
-        /// Listens for the event from the Model and performs the Unity-specific action.
-        /// </summary>
         private void HandleDestroyRequested()
         {
-            // This is the only place that calls Destroy(). The logic is now separate.
             Destroy(gameObject);
         }
     }

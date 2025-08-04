@@ -1,5 +1,6 @@
 // Filename: BallView.cs (replaces Ball.cs)
 using Core;
+using Core.Interfaces;
 using Reflex.Attributes;
 using Services.Money;
 using System;
@@ -13,12 +14,12 @@ namespace Gameplay.BallSystem
     /// pure C# BallData and the Unity engine (physics, visuals, lifecycle events).
     /// </summary>
     [RequireComponent(typeof(CircleCollider2D), typeof(Rigidbody2D))]
-    public class BallView : MonoBehaviour
+    public class BallView : MonoBehaviour, IBallView
     {
         // [Inject] IMoneyService money;
         // --- Events ---
         // These events are for other MonoBehaviours to listen to.
-        public event Action<BallView> OnRequestDespawn;
+        public event Action<IBallView> OnRequestDespawn;
         public event Action<BallView> OnDespawned;
         public event Action<BallView> OnInitialize;
         public bool CanMerge { get; set; } = false;

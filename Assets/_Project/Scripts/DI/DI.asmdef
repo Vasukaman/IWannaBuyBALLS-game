@@ -1,0 +1,18 @@
+{
+    "name": "DI",
+    "rootNamespace": "",
+    "references": [
+        "GUID:1530a967b84cfb44dbdd5e8a1989764f",
+        "GUID:0101526a253036f4093105609abd7a24",
+        "GUID:5bd4e90afa2963041a78c8de024b760c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

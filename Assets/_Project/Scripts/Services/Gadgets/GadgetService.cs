@@ -1,10 +1,11 @@
 // Filename: GadgetService.cs
+using Core.Interfaces;
 using Core.Spawning;
-using Gameplay.Gadgets;
 using Reflex.Core;
 using Reflex.Injectors;
 using Services.Store;
 using UnityEngine;
+using Core.Data;
 
 namespace Services.Gadgets
 {
@@ -22,7 +23,7 @@ namespace Services.Gadgets
         }
 
         // Implement the updated method signature
-        public PlaceableView CreateGadget(GadgetData data, Vector3 position, Transform parent = null)
+        public IPlaceableView CreateGadget(GadgetData data, Vector3 position, Transform parent = null)
         {
             if (data.Prefab == null)
             {
@@ -32,16 +33,16 @@ namespace Services.Gadgets
 
             // 1. CREATE THE BODY - Pass the parent transform to the instantiator
             GameObject instance = _instantiator.InstantiatePrefab(data.Prefab, position, parent);
-            PlaceableView view = instance.GetComponent<PlaceableView>();
+            IPlaceableView view = instance.GetComponent<IPlaceableView>();
 
             // 2. CREATE THE BRAIN
-            PlaceableModel model = new PlaceableModel(data, _storeService);
-
-            // 3. CONNECT THEM
-            view.Initialize(model);
+            //  PlaceableModel model = new PlaceableModel(data, _storeService);
 
             // 4. INJECT DEPENDENCIES
             GameObjectInjector.InjectRecursive(instance, Container.ProjectContainer);
+            // 3. CONNECT THEM
+            view.Initialize(data);
+
 
 
             return view;

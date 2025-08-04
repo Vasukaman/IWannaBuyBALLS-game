@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: X2GateProfile
   m_EditorClassIdentifier: 
   Effect:
-    rid: 5109334954895474689
+    rid: 5109334965684535300
   references:
     version: 2
     RefIds:
-    - rid: 5109334954895474689
-      type: {class: MultiplyValueEffect, ns: Gameplay.Gadgets.Effects, asm: Assembly-CSharp}
+    - rid: 5109334965684535300
+      type: {class: MultiplyValueEffect, ns: Gameplay.Gadgets.Effects, asm: Gameplay}
       data:
         Multiplier: 2

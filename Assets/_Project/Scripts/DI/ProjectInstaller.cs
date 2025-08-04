@@ -1,6 +1,6 @@
 using Core.Spawning;
 using Services.Money;
-using Gameplay.BallSystem;
+//using Gameplay.BallSystem;
 using Gameplay.Gadgets;
 using Reflex.Core;
 using Services.Ball;
@@ -20,7 +20,7 @@ public class ProjectInstaller : MonoBehaviour, IInstaller
 
     [SerializeField] private GadgetLibrary _gadgetLibrary;
 
-    [SerializeField] private BallView _ballPrefab;
+    [SerializeField] private GameObject _ballPrefab;
 
 
 

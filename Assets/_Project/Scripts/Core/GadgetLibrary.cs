@@ -1,7 +1,7 @@
 // Filename: GadgetLibrary.cs
 using System.Collections.Generic;
 using UnityEngine;
-
+using Core.Data;
 namespace Gameplay.Gadgets
 {
     /// <summary>

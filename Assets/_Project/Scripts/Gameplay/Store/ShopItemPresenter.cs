@@ -1,10 +1,14 @@
 // Filename: StoreItemPresenter.cs
 using Core.Input;
+using Core.Interfaces;
 using Gameplay.Gadgets;
+using Gameplay.Placeables;
 using Reflex.Attributes;
 using Services.Gadgets;
 using Services.Store;
 using UnityEngine;
+using Core.Data;
+
 
 namespace UI.Store
 {
@@ -58,7 +62,22 @@ namespace UI.Store
             if (_currentState != State.Idle || !_storeService.CanAfford(_data)) return;
 
             _currentState = State.Dragging;
-            _gadgetPreviewInstance = _gadgetService.CreateGadget(_data, transform.position, transform);
+
+            // 1. Call the service, which returns the generic interface.
+            IPlaceableView placeableInterface = _gadgetService.CreateGadget(_data, transform.position, transform);
+
+            // 2. Safely cast the interface to the concrete class we know it is.
+            _gadgetPreviewInstance = placeableInterface as PlaceableView;
+
+            // 3. A crucial safety check.
+            if (_gadgetPreviewInstance == null)
+            {
+                Debug.LogError("The created gadget is not a valid PlaceableView!", this);
+                // We might need to handle the failed purchase here if it's possible.
+                _currentState = State.Idle; // Reset state
+                return;
+            }
+
             _gadgetPreviewInstance.gameObject.SetActive(false);
         }
 
