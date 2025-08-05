@@ -6,11 +6,12 @@ using UnityEngine;
 public class EventChannels : ScriptableObject
 {
     [Header("Ball Events")]
-    public IntGameEvent OnBallSold; // Assign your BallSoldEvent.asset here
-    public GameEvent OnBallSpawned; // Assign your BallSpawnedEvent.asset here
+    public IntGameEvent OnBallSold; 
+    public GameEvent OnBallSpawned; 
 
     [Header("Gadget Events")]
-    public GameEvent OnManualActivation; // Assign your ManualActivationEvent.asset here
+    public GameEvent OnManualActivation; 
+    public GameEvent OnGamePaused;
+    public GameEvent OnGameResumed;
 
-    // Add new event channels here as your game grows...
 }

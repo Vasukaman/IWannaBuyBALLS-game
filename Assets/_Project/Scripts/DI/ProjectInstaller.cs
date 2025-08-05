@@ -9,7 +9,7 @@ using Services.Store;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Services.Registry;
-
+using System.Collections.Generic;
 public class ProjectInstaller : MonoBehaviour, IInstaller
 
 {
@@ -77,7 +77,19 @@ public class ProjectInstaller : MonoBehaviour, IInstaller
 
         builder.AddSingleton<IBallService>(ctr => ballService);
 
+        builder.AddSingleton(ctr =>
+        {
+            // Create a dictionary of all the state instances
+            var states = new Dictionary<System.Type, IState>
+        {
+            { typeof(PlayingState), new PlayingState() },
+            { typeof(PausedState), new PausedState(ctr.Resolve<EventChannels>()) }
+            // Add new states here, like { typeof(MainMenuState), new MainMenuState(...) }
+        };
 
+            // Give the dictionary to the state machine
+            return new GameStateMachine(states);
+        });
     }
 
 }
