@@ -43,6 +43,14 @@ This is a 2D incremental game developed in Unity. The project serves as a portfo
 
 This project is an active work in progress, following a deliberate path of prototyping and professional refactoring.
 
+WIP:
+1. Restructure files (generally everything is in place, but some files in wrong places)
+2. Save/Load system
+3. Refactor IPrefabInstantiator to IAssetProvider
+4. Unit Tests
+5. Addressables
+
+Plan kinda
 1.  ✅ **Initial Prototype:** Build the core gameplay loop with a focus on functionality.
 2.  ✅ **Dependency Injection:** Integrate the Reflex framework to manage dependencies.
 3.  ✅ **Refactor to Model-View & SOLID:** Separate core entities (`Ball`, `Gadget`, `Store`) into pure C# Models and `MonoBehaviour` Views/Presenters.
@@ -51,7 +59,7 @@ This project is an active work in progress, following a deliberate path of proto
 6.  ✅ **Data-Driven Configuration:** Move all hardcoded settings into `ScriptableObject` assets for a designer-friendly workflow.
 7.  ✅ **Bootstrap Scene & Persistent Systems:** Create a professional startup flow with a persistent `ProjectScope` to manage the game's lifecycle.
 8.  ✅ **Data-driven Architecture**
-9.  **More Events using Event Channels + SOUNDS** Adding special events on things like BallMerge and ButGadget and using them for playing sounds for example. 
-10.  **Implement a Game State Machine (FSM):** Add states(menu, pause) and FSM for them **<-- WE ARE HERE**
+9.  ✅ **More Events using Event Channels + SOUNDS** Adding special events on things like BallMerge and ButGadget and using them for playing sounds for example. 
+10. ✅**Implement a Game State Machine (FSM):** Add states(menu, pause) and FSM for them **<-- WE ARE HERE**
 11. **Write Unit Tests:** Create EditMode tests for the pure C# services to verify their logic and ensure stability.
 12. **Modernize Asset Management:** Convert the prefab loading system to use Unity's Addressables for production-level asset management.
