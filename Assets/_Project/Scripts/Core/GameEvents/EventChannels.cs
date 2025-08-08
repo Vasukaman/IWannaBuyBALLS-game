@@ -7,7 +7,9 @@ public class EventChannels : ScriptableObject
 {
     [Header("Ball Events")]
     public IntGameEvent OnBallSold; 
-    public GameEvent OnBallSpawned; 
+    public GameEvent OnBallSpawned;
+    public BallGameEvent OnBallMerged;
+
 
     [Header("Gadget Events")]
     public GameEvent OnManualActivation; 

@@ -98,14 +98,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a71e33974571b42bd2fc837d7be344, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _orbSpeed: 2
-  _baseOrbRadius: 0.04
-  _tier2Threshold: 50
-  _tier2OrbSpeed: -1
-  _tier2BaseOrbRadius: 0.08
-  _baseOutlineThickness: 0.05
-  _showPathLine: 0
-  _basePathLineThickness: 0.005
 --- !u!114 &1803769310976174520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,8 +110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d95c525941570641abc214d1af678fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _proximityRadius: 0
-  _maxNeighbors: 10
 --- !u!1 &2663361385200861499
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,11 +240,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a1d73cd149e8904982eb569e5452992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minScale: 0.1
-  _baseScale: 0.7
-  _scaleFactor: 0.35
-  _maxScale: 5
-  _scaleAnimationSpeed: 8
 --- !u!114 &-1044825380979928625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,12 +252,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3fdfc8cfbfa2384ca19fb6a6a75c6f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mergeDuration: 0.2
-  _mergeCooldownAfterSpawn: 1
-  _maxVelocityToMerge: 3
   _ballRenderer: {fileID: 4839928598268190080}
-  _visualRadiusMultiplier: 0.4
-  _positionCorrectionFactor: 1.65
+  _onBallMerge: {fileID: 11400000, guid: 1633a33ea1383ba40bec9017b017cfd6, type: 2}
 --- !u!114 &-7348541638402304473
 MonoBehaviour:
   m_ObjectHideFlags: 0

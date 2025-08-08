@@ -75,7 +75,7 @@ namespace Services.Ball
             }
 
             // 3. Inject dependencies.
-            GameObjectInjector.InjectObject(instance, _container);
+            GameObjectInjector.InjectObject(instance, Container.ProjectContainer);
             return ballView;
         }
 

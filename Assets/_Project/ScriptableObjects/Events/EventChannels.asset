@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnBallSold: {fileID: 11400000, guid: 64962cc63be2ad24aa3d068ecc4efdd0, type: 2}
   OnBallSpawned: {fileID: 11400000, guid: 8e09b27c2d2a9b842852f853a698f2b5, type: 2}
+  OnBallMerged: {fileID: 11400000, guid: 1633a33ea1383ba40bec9017b017cfd6, type: 2}
   OnManualActivation: {fileID: 11400000, guid: 8e09b27c2d2a9b842852f853a698f2b5, type: 2}
   OnGamePaused: {fileID: 11400000, guid: efe535d829d31344dbda0e2dd828071f, type: 2}
   OnGameResumed: {fileID: 11400000, guid: 18f962897e2e8df4fb8cb6b3e9599fcf, type: 2}

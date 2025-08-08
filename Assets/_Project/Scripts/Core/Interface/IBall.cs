@@ -10,5 +10,5 @@ public interface IBall
     void Despawn();
     event Action<IBall> OnDespawned;
     event Action<int> OnPriceChanged;
-    void RaisePriceChanged(int newPrice); // <-- Add this helper;
+    void RaisePriceChanged(int newPrice); 
 }

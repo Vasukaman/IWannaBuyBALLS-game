@@ -1,6 +1,8 @@
 // Filename: BallMerger.cs
 using Core;
+using Core.Events;
 using Gameplay.BallSystem;
+using Reflex.Attributes;
 using System.Collections;
 using UnityEngine;
 
@@ -15,12 +17,15 @@ namespace Gameplay.BallSystem
         
         [Header("References")]
         [SerializeField] private Renderer _ballRenderer;
+        [SerializeField] private BallGameEvent _onBallMerge;
 
         // --- References ---
         private BallView _ballView;
         private BallMergingProfile _mergingProfile;
 
         private MaterialPropertyBlock _propertyBlock;
+
+        [Inject] private SoundSettingsProfile _soundSettingsProfile;
 
         // --- Shader Property IDs ---
         private static readonly int MergeTargetPosID = Shader.PropertyToID("_MergeTargetPos");
@@ -175,6 +180,7 @@ namespace Gameplay.BallSystem
                 _ballView.Data.MultiplyPrice(2f);
                 otherBall.Despawn();
             }
+            _onBallMerge.Raise(otherBall);
 
             gameObject.layer = originalLayer;
             ResetMergeShader();

@@ -22,8 +22,9 @@ public class ProjectInstaller : MonoBehaviour, IInstaller
 
     [SerializeField] private GameObject _ballPrefab;
 
+    [SerializeField] private GameObject _audioSourcePrefab; 
 
-
+    [SerializeField] private SoundSettingsProfile _soundSettings;
 
 
     [Header("Game Configuration")]
@@ -87,9 +88,27 @@ public class ProjectInstaller : MonoBehaviour, IInstaller
             // Add new states here, like { typeof(MainMenuState), new MainMenuState(...) }
         };
 
-            // Give the dictionary to the state machine
+
             return new GameStateMachine(states);
         });
+
+
+
+        
+        builder.AddSingleton<SoundSettingsProfile>(ctr => _soundSettings);
+
+
+     
+        AudioService audioService = new AudioService(
+            _soundSettings,
+            _prefabInstantiator,
+            _audioSourcePrefab
+        );
+        // 2. Update the AudioService recipe
+        builder.AddSingleton<IAudioService>(ctr => audioService);
+
+        // Give the dictionary to the state machine
+          
     }
 
 }

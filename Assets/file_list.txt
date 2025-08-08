@@ -1,0 +1,1182 @@
+Folder PATH listing for volume 1TB
+Volume serial number is D26C-E662
+D:.
+¦   Editor.meta
+¦   file_list.txt
+¦   file_list.txt.meta
+¦   my_list.txt
+¦   my_list.txt.meta
+¦   Rendering.meta
+¦   Resources.meta
+¦   TextMesh Pro.meta
+¦   ThirdParty.meta
+¦   _Project.meta
+¦   
++---Editor
+¦       SelectImplementationDrawer.cs
+¦       SelectImplementationDrawer.cs.meta
+¦       
++---Rendering
+¦       UniversalRenderPipelineGlobalSettings.asset
+¦       UniversalRenderPipelineGlobalSettings.asset.meta
+¦       
++---Resources
+¦       BallPhysicsMaterial.physicsMaterial2D
+¦       BallPhysicsMaterial.physicsMaterial2D.meta
+¦       NoBouncePhyysicsMaterial.physicsMaterial2D
+¦       NoBouncePhyysicsMaterial.physicsMaterial2D.meta
+¦       ReflexSettings.asset
+¦       ReflexSettings.asset.meta
+¦       
++---TextMesh Pro
+¦   ¦   Documentation.meta
+¦   ¦   Fonts.meta
+¦   ¦   Resources.meta
+¦   ¦   Shaders.meta
+¦   ¦   Sprites.meta
+¦   ¦   
+¦   +---Documentation
+¦   ¦       TextMesh Pro User Guide 2016.pdf
+¦   ¦       TextMesh Pro User Guide 2016.pdf.meta
+¦   ¦       
+¦   +---Fonts
+¦   ¦       LiberationSans - OFL.txt
+¦   ¦       LiberationSans - OFL.txt.meta
+¦   ¦       LiberationSans.ttf
+¦   ¦       LiberationSans.ttf.meta
+¦   ¦       
+¦   +---Resources
+¦   ¦   ¦   Fonts & Materials.meta
+¦   ¦   ¦   LineBreaking Following Characters.txt
+¦   ¦   ¦   LineBreaking Following Characters.txt.meta
+¦   ¦   ¦   LineBreaking Leading Characters.txt
+¦   ¦   ¦   LineBreaking Leading Characters.txt.meta
+¦   ¦   ¦   Sprite Assets.meta
+¦   ¦   ¦   Style Sheets.meta
+¦   ¦   ¦   TMP Settings.asset
+¦   ¦   ¦   TMP Settings.asset.meta
+¦   ¦   ¦   
+¦   ¦   +---Fonts & Materials
+¦   ¦   ¦       LiberationSans SDF - Drop Shadow.mat
+¦   ¦   ¦       LiberationSans SDF - Drop Shadow.mat.meta
+¦   ¦   ¦       LiberationSans SDF - Fallback.asset
+¦   ¦   ¦       LiberationSans SDF - Fallback.asset.meta
+¦   ¦   ¦       LiberationSans SDF - Outline.mat
+¦   ¦   ¦       LiberationSans SDF - Outline.mat.meta
+¦   ¦   ¦       LiberationSans SDF.asset
+¦   ¦   ¦       LiberationSans SDF.asset.meta
+¦   ¦   ¦       
+¦   ¦   +---Sprite Assets
+¦   ¦   ¦       EmojiOne.asset
+¦   ¦   ¦       EmojiOne.asset.meta
+¦   ¦   ¦       
+¦   ¦   +---Style Sheets
+¦   ¦           Default Style Sheet.asset
+¦   ¦           Default Style Sheet.asset.meta
+¦   ¦           
+¦   +---Shaders
+¦   ¦       TMPro.cginc
+¦   ¦       TMPro.cginc.meta
+¦   ¦       TMPro_Mobile.cginc
+¦   ¦       TMPro_Mobile.cginc.meta
+¦   ¦       TMPro_Properties.cginc
+¦   ¦       TMPro_Properties.cginc.meta
+¦   ¦       TMPro_Surface.cginc
+¦   ¦       TMPro_Surface.cginc.meta
+¦   ¦       TMP_Bitmap-Custom-Atlas.shader
+¦   ¦       TMP_Bitmap-Custom-Atlas.shader.meta
+¦   ¦       TMP_Bitmap-Mobile.shader
+¦   ¦       TMP_Bitmap-Mobile.shader.meta
+¦   ¦       TMP_Bitmap.shader
+¦   ¦       TMP_Bitmap.shader.meta
+¦   ¦       TMP_SDF Overlay.shader
+¦   ¦       TMP_SDF Overlay.shader.meta
+¦   ¦       TMP_SDF SSD.shader
+¦   ¦       TMP_SDF SSD.shader.meta
+¦   ¦       TMP_SDF-Mobile Masking.shader
+¦   ¦       TMP_SDF-Mobile Masking.shader.meta
+¦   ¦       TMP_SDF-Mobile Overlay.shader
+¦   ¦       TMP_SDF-Mobile Overlay.shader.meta
+¦   ¦       TMP_SDF-Mobile SSD.shader
+¦   ¦       TMP_SDF-Mobile SSD.shader.meta
+¦   ¦       TMP_SDF-Mobile.shader
+¦   ¦       TMP_SDF-Mobile.shader.meta
+¦   ¦       TMP_SDF-Surface-Mobile.shader
+¦   ¦       TMP_SDF-Surface-Mobile.shader.meta
+¦   ¦       TMP_SDF-Surface.shader
+¦   ¦       TMP_SDF-Surface.shader.meta
+¦   ¦       TMP_SDF.shader
+¦   ¦       TMP_SDF.shader.meta
+¦   ¦       TMP_Sprite.shader
+¦   ¦       TMP_Sprite.shader.meta
+¦   ¦       
+¦   +---Sprites
+¦           EmojiOne Attribution.txt
+¦           EmojiOne Attribution.txt.meta
+¦           EmojiOne.json
+¦           EmojiOne.json.meta
+¦           EmojiOne.png
+¦           EmojiOne.png.meta
+¦           
++---ThirdParty
+¦   ¦   Azilla Studios.meta
+¦   ¦   Reflex.meta
+¦   ¦   
+¦   +---Azilla Studios
+¦   ¦   ¦   Buttons GUI Kit.meta
+¦   ¦   ¦   
+¦   ¦   +---Buttons GUI Kit
+¦   ¦       ¦   Prefabs.meta
+¦   ¦       ¦   Scenes.meta
+¦   ¦       ¦   Textures.meta
+¦   ¦       ¦   
+¦   ¦       +---Prefabs
+¦   ¦       ¦   ¦   ButtonsCircle.meta
+¦   ¦       ¦   ¦   ButtonsSquare.meta
+¦   ¦       ¦   ¦   Icons.meta
+¦   ¦       ¦   ¦   
+¦   ¦       ¦   +---ButtonsCircle
+¦   ¦       ¦   ¦       Button_Circle_Blue.prefab
+¦   ¦       ¦   ¦       Button_Circle_Blue.prefab.meta
+¦   ¦       ¦   ¦       Button_Circle_Blue_Light.prefab
+¦   ¦       ¦   ¦       Button_Circle_Blue_Light.prefab.meta
+¦   ¦       ¦   ¦       Button_Circle_Green.prefab
+¦   ¦       ¦   ¦       Button_Circle_Green.prefab.meta
+¦   ¦       ¦   ¦       Button_Circle_Orange.prefab
+¦   ¦       ¦   ¦       Button_Circle_Orange.prefab.meta
+¦   ¦       ¦   ¦       Button_Circle_Red.prefab
+¦   ¦       ¦   ¦       Button_Circle_Red.prefab.meta
+¦   ¦       ¦   ¦       Button_Circle_Yellow.prefab
+¦   ¦       ¦   ¦       Button_Circle_Yellow.prefab.meta
+¦   ¦       ¦   ¦       
+¦   ¦       ¦   +---ButtonsSquare
+¦   ¦       ¦   ¦       Button_Square_Blue.prefab
+¦   ¦       ¦   ¦       Button_Square_Blue.prefab.meta
+¦   ¦       ¦   ¦       Button_Square_Blue_Light.prefab
+¦   ¦       ¦   ¦       Button_Square_Blue_Light.prefab.meta
+¦   ¦       ¦   ¦       Button_Square_Green.prefab
+¦   ¦       ¦   ¦       Button_Square_Green.prefab.meta
+¦   ¦       ¦   ¦       Button_Square_Orange.prefab
+¦   ¦       ¦   ¦       Button_Square_Orange.prefab.meta
+¦   ¦       ¦   ¦       Button_Square_Red.prefab
+¦   ¦       ¦   ¦       Button_Square_Red.prefab.meta
+¦   ¦       ¦   ¦       Button_Square_Yellow.prefab
+¦   ¦       ¦   ¦       Button_Square_Yellow.prefab.meta
+¦   ¦       ¦   ¦       
+¦   ¦       ¦   +---Icons
+¦   ¦       ¦           Arrow_Down_Icon.prefab
+¦   ¦       ¦           Arrow_Down_Icon.prefab.meta
+¦   ¦       ¦           Arrow_Left_Icon.prefab
+¦   ¦       ¦           Arrow_Left_Icon.prefab.meta
+¦   ¦       ¦           Arrow_Right_Icon.prefab
+¦   ¦       ¦           Arrow_Right_Icon.prefab.meta
+¦   ¦       ¦           Arrow_Up_Icon.prefab
+¦   ¦       ¦           Arrow_Up_Icon.prefab.meta
+¦   ¦       ¦           Bag_Icon.prefab
+¦   ¦       ¦           Bag_Icon.prefab.meta
+¦   ¦       ¦           Bar_Off_Icon.prefab
+¦   ¦       ¦           Bar_Off_Icon.prefab.meta
+¦   ¦       ¦           Battle_Icon.prefab
+¦   ¦       ¦           Battle_Icon.prefab.meta
+¦   ¦       ¦           Chest_Icon.prefab
+¦   ¦       ¦           Chest_Icon.prefab.meta
+¦   ¦       ¦           Coin_Icon.prefab
+¦   ¦       ¦           Coin_Icon.prefab.meta
+¦   ¦       ¦           Diamond_1_Icon.prefab
+¦   ¦       ¦           Diamond_1_Icon.prefab.meta
+¦   ¦       ¦           Diamond_2_Icon.prefab
+¦   ¦       ¦           Diamond_2_Icon.prefab.meta
+¦   ¦       ¦           Diamond_3_Icon.prefab
+¦   ¦       ¦           Diamond_3_Icon.prefab.meta
+¦   ¦       ¦           Energy_1_Icon.prefab
+¦   ¦       ¦           Energy_1_Icon.prefab.meta
+¦   ¦       ¦           Energy_2_Icon.prefab
+¦   ¦       ¦           Energy_2_Icon.prefab.meta
+¦   ¦       ¦           Exclamation_Icon.prefab
+¦   ¦       ¦           Exclamation_Icon.prefab.meta
+¦   ¦       ¦           Exit_Icon.prefab
+¦   ¦       ¦           Exit_Icon.prefab.meta
+¦   ¦       ¦           Gift_Icon.prefab
+¦   ¦       ¦           Gift_Icon.prefab.meta
+¦   ¦       ¦           Heart_Icon.prefab
+¦   ¦       ¦           Heart_Icon.prefab.meta
+¦   ¦       ¦           Info_Icon.prefab
+¦   ¦       ¦           Info_Icon.prefab.meta
+¦   ¦       ¦           Interrogation_Icon.prefab
+¦   ¦       ¦           Interrogation_Icon.prefab.meta
+¦   ¦       ¦           Less_Icon.prefab
+¦   ¦       ¦           Less_Icon.prefab.meta
+¦   ¦       ¦           Locked_Icon.prefab
+¦   ¦       ¦           Locked_Icon.prefab.meta
+¦   ¦       ¦           Menu_Bar_Icon.prefab
+¦   ¦       ¦           Menu_Bar_Icon.prefab.meta
+¦   ¦       ¦           More_Icon.prefab
+¦   ¦       ¦           More_Icon.prefab.meta
+¦   ¦       ¦           Music_Icon.prefab
+¦   ¦       ¦           Music_Icon.prefab.meta
+¦   ¦       ¦           Music_Off_Icon.prefab
+¦   ¦       ¦           Music_Off_Icon.prefab.meta
+¦   ¦       ¦           Pause_Icon.prefab
+¦   ¦       ¦           Pause_Icon.prefab.meta
+¦   ¦       ¦           Play_Icon.prefab
+¦   ¦       ¦           Play_Icon.prefab.meta
+¦   ¦       ¦           Refresh_Icon.prefab
+¦   ¦       ¦           Refresh_Icon.prefab.meta
+¦   ¦       ¦           Search_Icon.prefab
+¦   ¦       ¦           Search_Icon.prefab.meta
+¦   ¦       ¦           Settings_Icon.prefab
+¦   ¦       ¦           Settings_Icon.prefab.meta
+¦   ¦       ¦           Sound_Icon.prefab
+¦   ¦       ¦           Sound_Icon.prefab.meta
+¦   ¦       ¦           Sound_Off_Icon.prefab
+¦   ¦       ¦           Sound_Off_Icon.prefab.meta
+¦   ¦       ¦           Star_Icon.prefab
+¦   ¦       ¦           Star_Icon.prefab.meta
+¦   ¦       ¦           Sword_1_Icon.prefab
+¦   ¦       ¦           Sword_1_Icon.prefab.meta
+¦   ¦       ¦           Sword_2_Icon.prefab
+¦   ¦       ¦           Sword_2_Icon.prefab.meta
+¦   ¦       ¦           Trash_Icon.prefab
+¦   ¦       ¦           Trash_Icon.prefab.meta
+¦   ¦       ¦           Trophy_Icon.prefab
+¦   ¦       ¦           Trophy_Icon.prefab.meta
+¦   ¦       ¦           Unlocked_Icon.prefab
+¦   ¦       ¦           Unlocked_Icon.prefab.meta
+¦   ¦       ¦           X_Icon.prefab
+¦   ¦       ¦           X_Icon.prefab.meta
+¦   ¦       ¦           
+¦   ¦       +---Scenes
+¦   ¦       ¦       Demo.unity
+¦   ¦       ¦       Demo.unity.meta
+¦   ¦       ¦       
+¦   ¦       +---Textures
+¦   ¦           ¦   Circle_Buttons.meta
+¦   ¦           ¦   Icons.meta
+¦   ¦           ¦   Square_Buttons.meta
+¦   ¦           ¦   
+¦   ¦           +---Circle_Buttons
+¦   ¦           ¦       Circle_Blue_Button_Normal.png
+¦   ¦           ¦       Circle_Blue_Button_Normal.png.meta
+¦   ¦           ¦       Circle_Blue_Button_Pressed.png
+¦   ¦           ¦       Circle_Blue_Button_Pressed.png.meta
+¦   ¦           ¦       Circle_Green_Button_Normal.png
+¦   ¦           ¦       Circle_Green_Button_Normal.png.meta
+¦   ¦           ¦       Circle_Green_Button_Pressed.png
+¦   ¦           ¦       Circle_Green_Button_Pressed.png.meta
+¦   ¦           ¦       Circle_Light_Blue_Button_Normal.png
+¦   ¦           ¦       Circle_Light_Blue_Button_Normal.png.meta
+¦   ¦           ¦       Circle_Light_Blue_Button_Pressed.png
+¦   ¦           ¦       Circle_Light_Blue_Button_Pressed.png.meta
+¦   ¦           ¦       Circle_Orange_Button_Normal.png
+¦   ¦           ¦       Circle_Orange_Button_Normal.png.meta
+¦   ¦           ¦       Circle_Orange_Button_Pressed.png
+¦   ¦           ¦       Circle_Orange_Button_Pressed.png.meta
+¦   ¦           ¦       Circle_Red_Button_Normal.png
+¦   ¦           ¦       Circle_Red_Button_Normal.png.meta
+¦   ¦           ¦       Circle_Red_Button_Pressed.png
+¦   ¦           ¦       Circle_Red_Button_Pressed.png.meta
+¦   ¦           ¦       Circle_Yellow_Button_Normal.png
+¦   ¦           ¦       Circle_Yellow_Button_Normal.png.meta
+¦   ¦           ¦       Circle_Yellow_Button_Pressed.png
+¦   ¦           ¦       Circle_Yellow_Button_Pressed.png.meta
+¦   ¦           ¦       
+¦   ¦           +---Icons
+¦   ¦           ¦   ¦   Arrow_Down.png
+¦   ¦           ¦   ¦   Arrow_Down.png.meta
+¦   ¦           ¦   ¦   Arrow_Left.png
+¦   ¦           ¦   ¦   Arrow_Left.png.meta
+¦   ¦           ¦   ¦   Arrow_Right.png
+¦   ¦           ¦   ¦   Arrow_Right.png.meta
+¦   ¦           ¦   ¦   Arrow_Up.png
+¦   ¦           ¦   ¦   Arrow_Up.png.meta
+¦   ¦           ¦   ¦   Bar_Off.png
+¦   ¦           ¦   ¦   Bar_Off.png.meta
+¦   ¦           ¦   ¦   Colors.meta
+¦   ¦           ¦   ¦   Exclamation.png
+¦   ¦           ¦   ¦   Exclamation.png.meta
+¦   ¦           ¦   ¦   Exit.png
+¦   ¦           ¦   ¦   Exit.png.meta
+¦   ¦           ¦   ¦   Info.png
+¦   ¦           ¦   ¦   Info.png.meta
+¦   ¦           ¦   ¦   Interrogation.png
+¦   ¦           ¦   ¦   Interrogation.png.meta
+¦   ¦           ¦   ¦   Less.png
+¦   ¦           ¦   ¦   Less.png.meta
+¦   ¦           ¦   ¦   Lock_Locked.png
+¦   ¦           ¦   ¦   Lock_Locked.png.meta
+¦   ¦           ¦   ¦   Lock_Open.png
+¦   ¦           ¦   ¦   Lock_Open.png.meta
+¦   ¦           ¦   ¦   Menu_Barr.png
+¦   ¦           ¦   ¦   Menu_Barr.png.meta
+¦   ¦           ¦   ¦   More.png
+¦   ¦           ¦   ¦   More.png.meta
+¦   ¦           ¦   ¦   Music.png
+¦   ¦           ¦   ¦   Music.png.meta
+¦   ¦           ¦   ¦   Music_Off.png
+¦   ¦           ¦   ¦   Music_Off.png.meta
+¦   ¦           ¦   ¦   Pause.png
+¦   ¦           ¦   ¦   Pause.png.meta
+¦   ¦           ¦   ¦   Play.png
+¦   ¦           ¦   ¦   Play.png.meta
+¦   ¦           ¦   ¦   Refresh.png
+¦   ¦           ¦   ¦   Refresh.png.meta
+¦   ¦           ¦   ¦   Search.png
+¦   ¦           ¦   ¦   Search.png.meta
+¦   ¦           ¦   ¦   Settings.png
+¦   ¦           ¦   ¦   Settings.png.meta
+¦   ¦           ¦   ¦   Sound.png
+¦   ¦           ¦   ¦   Sound.png.meta
+¦   ¦           ¦   ¦   Sound_Off.png
+¦   ¦           ¦   ¦   Sound_Off.png.meta
+¦   ¦           ¦   ¦   Trash.png
+¦   ¦           ¦   ¦   Trash.png.meta
+¦   ¦           ¦   ¦   X.png
+¦   ¦           ¦   ¦   X.png.meta
+¦   ¦           ¦   ¦   
+¦   ¦           ¦   +---Colors
+¦   ¦           ¦           Bag.png
+¦   ¦           ¦           Bag.png.meta
+¦   ¦           ¦           Battle.png
+¦   ¦           ¦           Battle.png.meta
+¦   ¦           ¦           Chest.png
+¦   ¦           ¦           Chest.png.meta
+¦   ¦           ¦           Coin.png
+¦   ¦           ¦           Coin.png.meta
+¦   ¦           ¦           Diamond_1.png
+¦   ¦           ¦           Diamond_1.png.meta
+¦   ¦           ¦           Diamond_2.png
+¦   ¦           ¦           Diamond_2.png.meta
+¦   ¦           ¦           Diamond_3.png
+¦   ¦           ¦           Diamond_3.png.meta
+¦   ¦           ¦           Energy_1.png
+¦   ¦           ¦           Energy_1.png.meta
+¦   ¦           ¦           Energy_2.png
+¦   ¦           ¦           Energy_2.png.meta
+¦   ¦           ¦           Gift.png
+¦   ¦           ¦           Gift.png.meta
+¦   ¦           ¦           Heart.png
+¦   ¦           ¦           Heart.png.meta
+¦   ¦           ¦           Star.png
+¦   ¦           ¦           Star.png.meta
+¦   ¦           ¦           Sword_1.png
+¦   ¦           ¦           Sword_1.png.meta
+¦   ¦           ¦           Sword_2.png
+¦   ¦           ¦           Sword_2.png.meta
+¦   ¦           ¦           Trophy.png
+¦   ¦           ¦           Trophy.png.meta
+¦   ¦           ¦           
+¦   ¦           +---Square_Buttons
+¦   ¦                   Square_Blue_Button_Normal.png
+¦   ¦                   Square_Blue_Button_Normal.png.meta
+¦   ¦                   Square_Blue_Button_Pressed.png
+¦   ¦                   Square_Blue_Button_Pressed.png.meta
+¦   ¦                   Square_Green_Button_Normal.png
+¦   ¦                   Square_Green_Button_Normal.png.meta
+¦   ¦                   Square_Green_Button_Pressed.png
+¦   ¦                   Square_Green_Button_Pressed.png.meta
+¦   ¦                   Square_Light_Blue_Button_Normal.png
+¦   ¦                   Square_Light_Blue_Button_Normal.png.meta
+¦   ¦                   Square_Light_Blue_Button_Pressed.png
+¦   ¦                   Square_Light_Blue_Button_Pressed.png.meta
+¦   ¦                   Square_Orange_Button_Normal.png
+¦   ¦                   Square_Orange_Button_Normal.png.meta
+¦   ¦                   Square_Orange_Button_Pressed.png
+¦   ¦                   Square_Orange_Button_Pressed.png.meta
+¦   ¦                   Square_Red_Button_Normal.png
+¦   ¦                   Square_Red_Button_Normal.png.meta
+¦   ¦                   Square_Red_Button_Pressed.png
+¦   ¦                   Square_Red_Button_Pressed.png.meta
+¦   ¦                   Square_Yellow_Button_Normal.png
+¦   ¦                   Square_Yellow_Button_Normal.png.meta
+¦   ¦                   Square_Yellow_Button_Pressed.png
+¦   ¦                   Square_Yellow_Button_Pressed.png.meta
+¦   ¦                   
+¦   +---Reflex
+¦       ¦   AssemblyInfo.cs
+¦       ¦   AssemblyInfo.cs.meta
+¦       ¦   Attributes.meta
+¦       ¦   Caching.meta
+¦       ¦   Components.meta
+¦       ¦   Configuration.meta
+¦       ¦   Core.meta
+¦       ¦   Delegates.meta
+¦       ¦   Diagnosis.meta
+¦       ¦   Editor.meta
+¦       ¦   Enums.meta
+¦       ¦   Exceptions.meta
+¦       ¦   Extensions.meta
+¦       ¦   Generics.meta
+¦       ¦   Injectors.meta
+¦       ¦   Logging.meta
+¦       ¦   package.json
+¦       ¦   package.json.meta
+¦       ¦   Pooling.meta
+¦       ¦   Reflectors.meta
+¦       ¦   Reflex.asmdef
+¦       ¦   Reflex.asmdef.meta
+¦       ¦   Resolvers.meta
+¦       ¦   Resources.meta
+¦       ¦   Utilities.meta
+¦       ¦   
+¦       +---Attributes
+¦       ¦       InjectAttribute.cs
+¦       ¦       InjectAttribute.cs.meta
+¦       ¦       ReflexConstructorAttribute.cs
+¦       ¦       ReflexConstructorAttribute.cs.meta
+¦       ¦       
+¦       +---Caching
+¦       ¦       InjectedMethodInfo.cs
+¦       ¦       InjectedMethodInfo.cs.meta
+¦       ¦       TypeAttributeInfo.cs
+¦       ¦       TypeAttributeInfo.cs.meta
+¦       ¦       TypeConstructionInfo.cs
+¦       ¦       TypeConstructionInfo.cs.meta
+¦       ¦       TypeConstructionInfoCache.cs
+¦       ¦       TypeConstructionInfoCache.cs.meta
+¦       ¦       TypeInfoCache.cs
+¦       ¦       TypeInfoCache.cs.meta
+¦       ¦       
+¦       +---Components
+¦       ¦       GameObjectSelfInjector.cs
+¦       ¦       GameObjectSelfInjector.cs.meta
+¦       ¦       
+¦       +---Configuration
+¦       ¦       ReflexSettings.cs
+¦       ¦       ReflexSettings.cs.meta
+¦       ¦       
+¦       +---Core
+¦       ¦       Binding.cs
+¦       ¦       Binding.cs.meta
+¦       ¦       Container.cs
+¦       ¦       Container.cs.meta
+¦       ¦       ContainerBuilder.cs
+¦       ¦       ContainerBuilder.cs.meta
+¦       ¦       ExtraInstallerScope.cs
+¦       ¦       ExtraInstallerScope.cs.meta
+¦       ¦       IInstaller.cs
+¦       ¦       IInstaller.cs.meta
+¦       ¦       ParentOverrideScope.cs
+¦       ¦       ParentOverrideScope.cs.meta
+¦       ¦       ProjectScope.cs
+¦       ¦       ProjectScope.cs.meta
+¦       ¦       SceneScope.cs
+¦       ¦       SceneScope.cs.meta
+¦       ¦       
+¦       +---Delegates
+¦       ¦       ObjectActivator.cs
+¦       ¦       ObjectActivator.cs.meta
+¦       ¦       
+¦       +---Diagnosis
+¦       ¦       Diagnosis.cs
+¦       ¦       Diagnosis.cs.meta
+¦       ¦       
+¦       +---Editor
+¦       ¦   ¦   DebuggingWindow.meta
+¦       ¦   ¦   Linking.meta
+¦       ¦   ¦   Reflex.Editor.asmdef
+¦       ¦   ¦   Reflex.Editor.asmdef.meta
+¦       ¦   ¦   ReflexMenuItems.cs
+¦       ¦   ¦   ReflexMenuItems.cs.meta
+¦       ¦   ¦   UnityEditorUtility.cs
+¦       ¦   ¦   UnityEditorUtility.cs.meta
+¦       ¦   ¦   
+¦       ¦   +---DebuggingWindow
+¦       ¦   ¦       MultiColumnTreeView.cs
+¦       ¦   ¦       MultiColumnTreeView.cs.meta
+¦       ¦   ¦       MyTreeElement.cs
+¦       ¦   ¦       MyTreeElement.cs.meta
+¦       ¦   ¦       ReflexDebuggerWindow.cs
+¦       ¦   ¦       ReflexDebuggerWindow.cs.meta
+¦       ¦   ¦       ReflexEditorSettings.cs
+¦       ¦   ¦       ReflexEditorSettings.cs.meta
+¦       ¦   ¦       SHA1.cs
+¦       ¦   ¦       SHA1.cs.meta
+¦       ¦   ¦       Styles.cs
+¦       ¦   ¦       Styles.cs.meta
+¦       ¦   ¦       TreeElement.cs
+¦       ¦   ¦       TreeElement.cs.meta
+¦       ¦   ¦       TreeElementUtility.cs
+¦       ¦   ¦       TreeElementUtility.cs.meta
+¦       ¦   ¦       TreeModel.cs
+¦       ¦   ¦       TreeModel.cs.meta
+¦       ¦   ¦       TreeViewItem.cs
+¦       ¦   ¦       TreeViewItem.cs.meta
+¦       ¦   ¦       TreeViewWithTreeModel.cs
+¦       ¦   ¦       TreeViewWithTreeModel.cs.meta
+¦       ¦   ¦       UnityScriptingDefineSymbols.cs
+¦       ¦   ¦       UnityScriptingDefineSymbols.cs.meta
+¦       ¦   ¦       
+¦       ¦   +---Linking
+¦       ¦           Linker.cs
+¦       ¦           Linker.cs.meta
+¦       ¦           
+¦       +---Enums
+¦       ¦       Lifetime.cs
+¦       ¦       Lifetime.cs.meta
+¦       ¦       
+¦       +---Exceptions
+¦       ¦       ConstructorInjectorException.cs
+¦       ¦       ConstructorInjectorException.cs.meta
+¦       ¦       ContractDefinitionException.cs
+¦       ¦       ContractDefinitionException.cs.meta
+¦       ¦       FieldInjectorException.cs
+¦       ¦       FieldInjectorException.cs.meta
+¦       ¦       MethodInjectorException.cs
+¦       ¦       MethodInjectorException.cs.meta
+¦       ¦       PropertyInjectorException.cs
+¦       ¦       PropertyInjectorException.cs.meta
+¦       ¦       UnknownContractException.cs
+¦       ¦       UnknownContractException.cs.meta
+¦       ¦       
+¦       +---Extensions
+¦       ¦       ContainerExtensions.cs
+¦       ¦       ContainerExtensions.cs.meta
+¦       ¦       EnumerableExtensions.cs
+¦       ¦       EnumerableExtensions.cs.meta
+¦       ¦       IntExtensions.cs
+¦       ¦       IntExtensions.cs.meta
+¦       ¦       ListExtensions.cs
+¦       ¦       ListExtensions.cs.meta
+¦       ¦       MethodInfoExtensions.cs
+¦       ¦       MethodInfoExtensions.cs.meta
+¦       ¦       ResolverExtensions.cs
+¦       ¦       ResolverExtensions.cs.meta
+¦       ¦       SceneExtensions.cs
+¦       ¦       SceneExtensions.cs.meta
+¦       ¦       TypeExtensions.cs
+¦       ¦       TypeExtensions.cs.meta
+¦       ¦       
+¦       +---Generics
+¦       ¦       DisposableCollection.cs
+¦       ¦       DisposableCollection.cs.meta
+¦       ¦       
+¦       +---Injectors
+¦       ¦       AttributeInjector.cs
+¦       ¦       AttributeInjector.cs.meta
+¦       ¦       ConstructorInjector.cs
+¦       ¦       ConstructorInjector.cs.meta
+¦       ¦       FieldInjector.cs
+¦       ¦       FieldInjector.cs.meta
+¦       ¦       GameObjectInjector.cs
+¦       ¦       GameObjectInjector.cs.meta
+¦       ¦       MethodInjector.cs
+¦       ¦       MethodInjector.cs.meta
+¦       ¦       PropertyInjector.cs
+¦       ¦       PropertyInjector.cs.meta
+¦       ¦       SceneInjector.cs
+¦       ¦       SceneInjector.cs.meta
+¦       ¦       UnityInjector.cs
+¦       ¦       UnityInjector.cs.meta
+¦       ¦       
+¦       +---Logging
+¦       ¦       ContainerDebugProperties.cs
+¦       ¦       ContainerDebugProperties.cs.meta
+¦       ¦       LogLevel.cs
+¦       ¦       LogLevel.cs.meta
+¦       ¦       ReflexLogger.cs
+¦       ¦       ReflexLogger.cs.meta
+¦       ¦       
+¦       +---Pooling
+¦       ¦       SizeSpecificArrayPool.cs
+¦       ¦       SizeSpecificArrayPool.cs.meta
+¦       ¦       
+¦       +---Reflectors
+¦       ¦       ActivatorFactoryManager.cs
+¦       ¦       ActivatorFactoryManager.cs.meta
+¦       ¦       IActivatorFactory.cs
+¦       ¦       IActivatorFactory.cs.meta
+¦       ¦       IL2CPPActivatorFactory.cs
+¦       ¦       IL2CPPActivatorFactory.cs.meta
+¦       ¦       MonoActivatorFactory.cs
+¦       ¦       MonoActivatorFactory.cs.meta
+¦       ¦       
+¦       +---Resolvers
+¦       ¦       CallSite.cs
+¦       ¦       CallSite.cs.meta
+¦       ¦       IResolver.cs
+¦       ¦       IResolver.cs.meta
+¦       ¦       ResolverDebugProperties.cs
+¦       ¦       ResolverDebugProperties.cs.meta
+¦       ¦       ScopedFactoryResolver.cs
+¦       ¦       ScopedFactoryResolver.cs.meta
+¦       ¦       ScopedTypeResolver.cs
+¦       ¦       ScopedTypeResolver.cs.meta
+¦       ¦       SingletonFactoryResolver.cs
+¦       ¦       SingletonFactoryResolver.cs.meta
+¦       ¦       SingletonTypeResolver.cs
+¦       ¦       SingletonTypeResolver.cs.meta
+¦       ¦       SingletonValueResolver.cs
+¦       ¦       SingletonValueResolver.cs.meta
+¦       ¦       TransientFactoryResolver.cs
+¦       ¦       TransientFactoryResolver.cs.meta
+¦       ¦       TransientTypeResolver.cs
+¦       ¦       TransientTypeResolver.cs.meta
+¦       ¦       
+¦       +---Resources
+¦       ¦       link.xml
+¦       ¦       link.xml.meta
+¦       ¦       
+¦       +---Utilities
+¦               ScriptingBackend.cs
+¦               ScriptingBackend.cs.meta
+¦               
++---_Project
+    ¦   Art.meta
+    ¦   Prefabs.meta
+    ¦   Scenes.meta
+    ¦   ScriptableObjects.meta
+    ¦   Scripts.meta
+    ¦   
+    +---Art
+    ¦   ¦   Materials.meta
+    ¦   ¦   Shaders.meta
+    ¦   ¦   
+    ¦   +---Materials
+    ¦   ¦       BallMaterial.mat
+    ¦   ¦       BallMaterial.mat.meta
+    ¦   ¦       DotMaterial Y.mat
+    ¦   ¦       DotMaterial Y.mat.meta
+    ¦   ¦       DotMaterial.mat
+    ¦   ¦       DotMaterial.mat.meta
+    ¦   ¦       InstanstedDotMaterial.mat
+    ¦   ¦       InstanstedDotMaterial.mat.meta
+    ¦   ¦       LiquidGate Center 2.mat
+    ¦   ¦       LiquidGate Center 2.mat.meta
+    ¦   ¦       LiquidGate Center Full.mat
+    ¦   ¦       LiquidGate Center Full.mat.meta
+    ¦   ¦       LiquidGate Center.mat
+    ¦   ¦       LiquidGate Center.mat.meta
+    ¦   ¦       LiquidGate.mat
+    ¦   ¦       LiquidGate.mat.meta
+    ¦   ¦       LiquidGateAbove.mat
+    ¦   ¦       LiquidGateAbove.mat.meta
+    ¦   ¦       SellerMat.mat
+    ¦   ¦       SellerMat.mat.meta
+    ¦   ¦       ZoneShader.mat
+    ¦   ¦       ZoneShader.mat.meta
+    ¦   ¦       
+    ¦   +---Shaders
+    ¦           BallShader.shader
+    ¦           BallShader.shader.meta
+    ¦           InstancedDot.shader
+    ¦           InstancedDot.shader.meta
+    ¦           LiquidGateShader.shader
+    ¦           LiquidGateShader.shader.meta
+    ¦           SquereTunnel.shader
+    ¦           SquereTunnel.shader.meta
+    ¦           VortexBallDrawer.shader
+    ¦           VortexBallDrawer.shader.meta
+    ¦           VortexController.shader
+    ¦           VortexController.shader.meta
+    ¦           ZoneShader.shader
+    ¦           ZoneShader.shader.meta
+    ¦           
+    +---Prefabs
+    ¦   ¦   Ball.meta
+    ¦   ¦   Gadgets.meta
+    ¦   ¦   Store.meta
+    ¦   ¦   System.meta
+    ¦   ¦   
+    ¦   +---Ball
+    ¦   ¦       Ball.prefab
+    ¦   ¦       Ball.prefab.meta
+    ¦   ¦       
+    ¦   +---Gadgets
+    ¦   ¦       AutoActivator.prefab
+    ¦   ¦       AutoActivator.prefab.meta
+    ¦   ¦       Border Bottom.prefab
+    ¦   ¦       Border Bottom.prefab.meta
+    ¦   ¦       Border Top.prefab
+    ¦   ¦       Border Top.prefab.meta
+    ¦   ¦       Gate +2.prefab
+    ¦   ¦       Gate +2.prefab.meta
+    ¦   ¦       Gate +5.prefab
+    ¦   ¦       Gate +5.prefab.meta
+    ¦   ¦       Gate X2.prefab
+    ¦   ¦       Gate X2.prefab.meta
+    ¦   ¦       ManualActivator.prefab
+    ¦   ¦       ManualActivator.prefab.meta
+    ¦   ¦       XRay Centre 1.prefab
+    ¦   ¦       XRay Centre 1.prefab.meta
+    ¦   ¦       XRay Centre.prefab
+    ¦   ¦       XRay Centre.prefab.meta
+    ¦   ¦       
+    ¦   +---Store
+    ¦   ¦       StoreIcon.prefab
+    ¦   ¦       StoreIcon.prefab.meta
+    ¦   ¦       
+    ¦   +---System
+    ¦           PrefabInstantiator.prefab
+    ¦           PrefabInstantiator.prefab.meta
+    ¦           [ProjectContext].prefab
+    ¦           [ProjectContext].prefab.meta
+    ¦           
+    +---Scenes
+    ¦   ¦   Bootstrap.unity
+    ¦   ¦   Bootstrap.unity.meta
+    ¦   ¦   GameplayScene.unity
+    ¦   ¦   GameplayScene.unity.meta
+    ¦   ¦   SampleScene_Profiles.meta
+    ¦   ¦   
+    ¦   +---SampleScene_Profiles
+    ¦           Global Volume Profile 1.asset
+    ¦           Global Volume Profile 1.asset.meta
+    ¦           Global VOlume Profile.asset
+    ¦           Global VOlume Profile.asset.meta
+    ¦           Main Camera Profile.asset
+    ¦           Main Camera Profile.asset.meta
+    ¦           
+    +---ScriptableObjects
+    ¦   ¦   Events.meta
+    ¦   ¦   Gadgets.meta
+    ¦   ¦   Profiles.meta
+    ¦   ¦   
+    ¦   +---Events
+    ¦   ¦       EventChannels.asset
+    ¦   ¦       EventChannels.asset.meta
+    ¦   ¦       ManualActivationEvent.asset
+    ¦   ¦       ManualActivationEvent.asset.meta
+    ¦   ¦       OnBallSoldEvent.asset
+    ¦   ¦       OnBallSoldEvent.asset.meta
+    ¦   ¦       OnGamePausedEvent.asset
+    ¦   ¦       OnGamePausedEvent.asset.meta
+    ¦   ¦       OnGameResumedEvent.asset
+    ¦   ¦       OnGameResumedEvent.asset.meta
+    ¦   ¦       
+    ¦   +---Gadgets
+    ¦   ¦   ¦   GatesProfiles.meta
+    ¦   ¦   ¦   Store.meta
+    ¦   ¦   ¦   
+    ¦   ¦   +---GatesProfiles
+    ¦   ¦   ¦       +2GateProfile.asset
+    ¦   ¦   ¦       +2GateProfile.asset.meta
+    ¦   ¦   ¦       +5GateProfile.asset
+    ¦   ¦   ¦       +5GateProfile.asset.meta
+    ¦   ¦   ¦       X2GateProfile.asset
+    ¦   ¦   ¦       X2GateProfile.asset.meta
+    ¦   ¦   ¦       
+    ¦   ¦   +---Store
+    ¦   ¦           AutoActivator.asset
+    ¦   ¦           AutoActivator.asset.meta
+    ¦   ¦           GadgetLibrary.asset
+    ¦   ¦           GadgetLibrary.asset.meta
+    ¦   ¦           Gate +2.asset
+    ¦   ¦           Gate +2.asset.meta
+    ¦   ¦           Gate +5.asset
+    ¦   ¦           Gate +5.asset.meta
+    ¦   ¦           Gate X2.asset
+    ¦   ¦           Gate X2.asset.meta
+    ¦   ¦           
+    ¦   +---Profiles
+    ¦       ¦   BallProfiles.meta
+    ¦       ¦   Gadgets.meta
+    ¦       ¦   SellZone.meta
+    ¦       ¦   
+    ¦       +---BallProfiles
+    ¦       ¦   ¦   MasterBallProfile.asset
+    ¦       ¦   ¦   MasterBallProfile.asset.meta
+    ¦       ¦   ¦   SubProfiles.meta
+    ¦       ¦   ¦   
+    ¦       ¦   +---SubProfiles
+    ¦       ¦           BallAppearanceProfile.asset
+    ¦       ¦           BallAppearanceProfile.asset.meta
+    ¦       ¦           BallMergingProfile.asset
+    ¦       ¦           BallMergingProfile.asset.meta
+    ¦       ¦           BallProximityProfile.asset
+    ¦       ¦           BallProximityProfile.asset.meta
+    ¦       ¦           BallScalingProfile.asset
+    ¦       ¦           BallScalingProfile.asset.meta
+    ¦       ¦           
+    ¦       +---Gadgets
+    ¦       ¦   ¦   ActivatorProfiles.meta
+    ¦       ¦   ¦   BallSpawner.meta
+    ¦       ¦   ¦   ForceZonesProfiles.meta
+    ¦       ¦   ¦   LiquidGatesProfiles.meta
+    ¦       ¦   ¦   WaveConnectorProfiles.meta
+    ¦       ¦   ¦   
+    ¦       ¦   +---ActivatorProfiles
+    ¦       ¦   ¦   ¦   AutoActivatorProfile.asset
+    ¦       ¦   ¦   ¦   AutoActivatorProfile.asset.meta
+    ¦       ¦   ¦   ¦   MagnetPofiles.meta
+    ¦       ¦   ¦   ¦   ManualActivatorProfile.asset
+    ¦       ¦   ¦   ¦   ManualActivatorProfile.asset.meta
+    ¦       ¦   ¦   ¦   PusherOnActivateProfiles.meta
+    ¦       ¦   ¦   ¦   RotatorProfile.meta
+    ¦       ¦   ¦   ¦   
+    ¦       ¦   ¦   +---MagnetPofiles
+    ¦       ¦   ¦   ¦       MagnetProfile.asset
+    ¦       ¦   ¦   ¦       MagnetProfile.asset.meta
+    ¦       ¦   ¦   ¦       
+    ¦       ¦   ¦   +---PusherOnActivateProfiles
+    ¦       ¦   ¦   ¦       PusherProfile.asset
+    ¦       ¦   ¦   ¦       PusherProfile.asset.meta
+    ¦       ¦   ¦   ¦       
+    ¦       ¦   ¦   +---RotatorProfile
+    ¦       ¦   ¦           RotatorProfile.asset
+    ¦       ¦   ¦           RotatorProfile.asset.meta
+    ¦       ¦   ¦           
+    ¦       ¦   +---BallSpawner
+    ¦       ¦   ¦       BallSpawnerProfile.asset
+    ¦       ¦   ¦       BallSpawnerProfile.asset.meta
+    ¦       ¦   ¦       
+    ¦       ¦   +---ForceZonesProfiles
+    ¦       ¦   ¦       ForceZoneDownForceMedProfile.asset
+    ¦       ¦   ¦       ForceZoneDownForceMedProfile.asset.meta
+    ¦       ¦   ¦       
+    ¦       ¦   +---LiquidGatesProfiles
+    ¦       ¦   ¦       LGP_BOTTOM.asset
+    ¦       ¦   ¦       LGP_BOTTOM.asset.meta
+    ¦       ¦   ¦       LGP_CENTER(T).asset
+    ¦       ¦   ¦       LGP_CENTER(T).asset.meta
+    ¦       ¦   ¦       LGP_CENTER.asset
+    ¦       ¦   ¦       LGP_CENTER.asset.meta
+    ¦       ¦   ¦       LGP_TOP.asset
+    ¦       ¦   ¦       LGP_TOP.asset.meta
+    ¦       ¦   ¦       
+    ¦       ¦   +---WaveConnectorProfiles
+    ¦       ¦           AutoActivatorWave 1.asset
+    ¦       ¦           AutoActivatorWave 1.asset.meta
+    ¦       ¦           ManualActivatorWave.asset
+    ¦       ¦           ManualActivatorWave.asset.meta
+    ¦       ¦           
+    ¦       +---SellZone
+    ¦               SellZoneProfile.asset
+    ¦               SellZoneProfile.asset.meta
+    ¦               SellZoneViewProfile.asset
+    ¦               SellZoneViewProfile.asset.meta
+    ¦               SpringTransformProfile.asset
+    ¦               SpringTransformProfile.asset.meta
+    ¦               
+    +---Scripts
+        ¦   Core.meta
+        ¦   DI.meta
+        ¦   Gameplay.meta
+        ¦   Interfaces.meta
+        ¦   ScriptableObjects.meta
+        ¦   Services.meta
+        ¦   UI.meta
+        ¦   VFX.meta
+        ¦   
+        +---Core
+        ¦   ¦   Animations.meta
+        ¦   ¦   Core.asmdef
+        ¦   ¦   Core.asmdef.meta
+        ¦   ¦   Data.meta
+        ¦   ¦   GadgetData.cs
+        ¦   ¦   GadgetData.cs.meta
+        ¦   ¦   GadgetLibrary.cs
+        ¦   ¦   GadgetLibrary.cs.meta
+        ¦   ¦   GameEvents.meta
+        ¦   ¦   GameLayers.cs
+        ¦   ¦   GameLayers.cs.meta
+        ¦   ¦   Input.meta
+        ¦   ¦   Interface.meta
+        ¦   ¦   Physics.meta
+        ¦   ¦   SceneManagement.meta
+        ¦   ¦   SellZoneProfile.cs
+        ¦   ¦   SellZoneProfile.cs.meta
+        ¦   ¦   SellZoneViewProfile.cs
+        ¦   ¦   SellZoneViewProfile.cs.meta
+        ¦   ¦   Spawning.meta
+        ¦   ¦   Statemachine.meta
+        ¦   ¦   Utilities.meta
+        ¦   ¦   
+        ¦   +---Animations
+        ¦   ¦       SpringTransform.cs
+        ¦   ¦       SpringTransform.cs.meta
+        ¦   ¦       SpringTransformProfile.cs
+        ¦   ¦       SpringTransformProfile.cs.meta
+        ¦   ¦       
+        ¦   +---Data
+        ¦   +---GameEvents
+        ¦   ¦       EventChannels.cs
+        ¦   ¦       EventChannels.cs.meta
+        ¦   ¦       GameEvent.cs
+        ¦   ¦       GameEvent.cs.meta
+        ¦   ¦       IntGameEvent.cs
+        ¦   ¦       IntGameEvent.cs.meta
+        ¦   ¦       
+        ¦   +---Input
+        ¦   ¦       ClickableButton.cs
+        ¦   ¦       ClickableButton.cs.meta
+        ¦   ¦       Draggable.cs
+        ¦   ¦       Draggable.cs.meta
+        ¦   ¦       
+        ¦   +---Interface
+        ¦   ¦       IActivatable.cs
+        ¦   ¦       IActivatable.cs.meta
+        ¦   ¦       IActivationSource.cs
+        ¦   ¦       IActivationSource.cs.meta
+        ¦   ¦       IBallView.cs
+        ¦   ¦       IBallView.cs.meta
+        ¦   ¦       IButton.cs
+        ¦   ¦       IButton.cs.meta
+        ¦   ¦       IConnectionSource.cs
+        ¦   ¦       IConnectionSource.cs.meta
+        ¦   ¦       IGadgetSellable.cs
+        ¦   ¦       IGadgetSellable.cs.meta
+        ¦   ¦       IPlaceableView.cs
+        ¦   ¦       IPlaceableView.cs.meta
+        ¦   ¦       
+        ¦   +---Physics
+        ¦   ¦       LocalPointMagnet.cs
+        ¦   ¦       LocalPointMagnet.cs.meta
+        ¦   ¦       MagnetProfile.cs
+        ¦   ¦       MagnetProfile.cs.meta
+        ¦   ¦       
+        ¦   +---SceneManagement
+        ¦   ¦       Bootstrapper.cs
+        ¦   ¦       Bootstrapper.cs.meta
+        ¦   ¦       EditorSceneLoader.cs
+        ¦   ¦       EditorSceneLoader.cs.meta
+        ¦   ¦       
+        ¦   +---Spawning
+        ¦   ¦       IPrefabInstantiator.cs
+        ¦   ¦       IPrefabInstantiator.cs.meta
+        ¦   ¦       PrefabInstantiator.cs
+        ¦   ¦       PrefabInstantiator.cs.meta
+        ¦   ¦       
+        ¦   +---Statemachine
+        ¦   ¦   ¦   IState.cs
+        ¦   ¦   ¦   IState.cs.meta
+        ¦   ¦   ¦   States.meta
+        ¦   ¦   ¦   
+        ¦   ¦   +---States
+        ¦   ¦           PausedState.cs
+        ¦   ¦           PausedState.cs.meta
+        ¦   ¦           PlayingState.cs
+        ¦   ¦           PlayingState.cs.meta
+        ¦   ¦           
+        ¦   +---Utilities
+        ¦           TargetingUtility.cs
+        ¦           TargetingUtility.cs.meta
+        ¦           
+        +---DI
+        ¦       DI.asmdef
+        ¦       DI.asmdef.meta
+        ¦       ProjectInstaller.cs
+        ¦       ProjectInstaller.cs.meta
+        ¦       SceneServicesInitializer.cs
+        ¦       SceneServicesInitializer.cs.meta
+        ¦       
+        +---Gameplay
+        ¦   ¦   Ball.meta
+        ¦   ¦   Gadgets.meta
+        ¦   ¦   GameManager.cs
+        ¦   ¦   GameManager.cs.meta
+        ¦   ¦   Gameplay.asmdef
+        ¦   ¦   Gameplay.asmdef.meta
+        ¦   ¦   GameplaySceneServicesInitializer.cs
+        ¦   ¦   GameplaySceneServicesInitializer.cs.meta
+        ¦   ¦   PauseController.cs
+        ¦   ¦   PauseController.cs.meta
+        ¦   ¦   PauseMenuView.cs
+        ¦   ¦   PauseMenuView.cs.meta
+        ¦   ¦   Placeables.meta
+        ¦   ¦   SellZone.meta
+        ¦   ¦   Store.meta
+        ¦   ¦   
+        ¦   +---Ball
+        ¦   ¦   ¦   BallAppearanceController.cs
+        ¦   ¦   ¦   BallAppearanceController.cs.meta
+        ¦   ¦   ¦   BallCollisionHandler.cs
+        ¦   ¦   ¦   BallCollisionHandler.cs.meta
+        ¦   ¦   ¦   BallCore.meta
+        ¦   ¦   ¦   BallMerger.cs
+        ¦   ¦   ¦   BallMerger.cs.meta
+        ¦   ¦   ¦   BallProximityVisuals.cs
+        ¦   ¦   ¦   BallProximityVisuals.cs.meta
+        ¦   ¦   ¦   BallScaler.cs
+        ¦   ¦   ¦   BallScaler.cs.meta
+        ¦   ¦   ¦   BallUIController.cs
+        ¦   ¦   ¦   BallUIController.cs.meta
+        ¦   ¦   ¦   IBall.cs
+        ¦   ¦   ¦   IBall.cs.meta
+        ¦   ¦   ¦   Profiles.meta
+        ¦   ¦   ¦   
+        ¦   ¦   +---BallCore
+        ¦   ¦   ¦       BallData.cs
+        ¦   ¦   ¦       BallData.cs.meta
+        ¦   ¦   ¦       BallView.cs
+        ¦   ¦   ¦       BallView.cs.meta
+        ¦   ¦   ¦       
+        ¦   ¦   +---Profiles
+        ¦   ¦           BallAppearanceProfile.cs
+        ¦   ¦           BallAppearanceProfile.cs.meta
+        ¦   ¦           BallMergingProfile.cs
+        ¦   ¦           BallMergingProfile.cs.meta
+        ¦   ¦           BallProfile.cs
+        ¦   ¦           BallProfile.cs.meta
+        ¦   ¦           BallProximityProfile.cs
+        ¦   ¦           BallProximityProfile.cs.meta
+        ¦   ¦           BallScalingProfile.cs
+        ¦   ¦           BallScalingProfile.cs.meta
+        ¦   ¦           
+        ¦   +---Gadgets
+        ¦   ¦   ¦   Activators.meta
+        ¦   ¦   ¦   BallSeller.meta
+        ¦   ¦   ¦   BallSpawner.meta
+        ¦   ¦   ¦   Gates.meta
+        ¦   ¦   ¦   SOScripts.meta
+        ¦   ¦   ¦   
+        ¦   ¦   +---Activators
+        ¦   ¦   ¦   ¦   AutoActivator.meta
+        ¦   ¦   ¦   ¦   AutoActivatorProfile.cs
+        ¦   ¦   ¦   ¦   AutoActivatorProfile.cs.meta
+        ¦   ¦   ¦   ¦   BaseActivatorProfile.cs
+        ¦   ¦   ¦   ¦   BaseActivatorProfile.cs.meta
+        ¦   ¦   ¦   ¦   ManualActivator.meta
+        ¦   ¦   ¦   ¦   ManualActivatorProfile.cs
+        ¦   ¦   ¦   ¦   ManualActivatorProfile.cs.meta
+        ¦   ¦   ¦   ¦   PusherOnActivate.cs
+        ¦   ¦   ¦   ¦   PusherOnActivate.cs.meta
+        ¦   ¦   ¦   ¦   PusherProfile.cs
+        ¦   ¦   ¦   ¦   PusherProfile.cs.meta
+        ¦   ¦   ¦   ¦   RotatorOnActivate.cs
+        ¦   ¦   ¦   ¦   RotatorOnActivate.cs.meta
+        ¦   ¦   ¦   ¦   RotatorProfile.cs
+        ¦   ¦   ¦   ¦   RotatorProfile.cs.meta
+        ¦   ¦   ¦   ¦   
+        ¦   ¦   ¦   +---AutoActivator
+        ¦   ¦   ¦   ¦       AutoActivatorController.cs
+        ¦   ¦   ¦   ¦       AutoActivatorController.cs.meta
+        ¦   ¦   ¦   ¦       AutoActivatorModel.cs
+        ¦   ¦   ¦   ¦       AutoActivatorModel.cs.meta
+        ¦   ¦   ¦   ¦       
+        ¦   ¦   ¦   +---ManualActivator
+        ¦   ¦   ¦           ManualActivatorController.cs
+        ¦   ¦   ¦           ManualActivatorController.cs.meta
+        ¦   ¦   ¦           ManualActivatorModel.cs
+        ¦   ¦   ¦           ManualActivatorModel.cs.meta
+        ¦   ¦   ¦           
+        ¦   ¦   +---BallSeller
+        ¦   ¦   ¦       BallSeller.cs
+        ¦   ¦   ¦       BallSeller.cs.meta
+        ¦   ¦   ¦       
+        ¦   ¦   +---BallSpawner
+        ¦   ¦   ¦       BallSpawner.cs
+        ¦   ¦   ¦       BallSpawner.cs.meta
+        ¦   ¦   ¦       BallSpawnerProfile.cs
+        ¦   ¦   ¦       BallSpawnerProfile.cs.meta
+        ¦   ¦   ¦       
+        ¦   ¦   +---Gates
+        ¦   ¦   ¦       ForceZone.cs
+        ¦   ¦   ¦       ForceZone.cs.meta
+        ¦   ¦   ¦       ForceZoneProfile.cs
+        ¦   ¦   ¦       ForceZoneProfile.cs.meta
+        ¦   ¦   ¦       GateEffects.cs
+        ¦   ¦   ¦       GateEffects.cs.meta
+        ¦   ¦   ¦       GateLogic.cs
+        ¦   ¦   ¦       GateLogic.cs.meta
+        ¦   ¦   ¦       GateProfile.cs
+        ¦   ¦   ¦       GateProfile.cs.meta
+        ¦   ¦   ¦       IGateEffect.cs
+        ¦   ¦   ¦       IGateEffect.cs.meta
+        ¦   ¦   ¦       SelectImplementationAttribute.cs
+        ¦   ¦   ¦       SelectImplementationAttribute.cs.meta
+        ¦   ¦   ¦       
+        ¦   ¦   +---SOScripts
+        ¦   +---Placeables
+        ¦   ¦       PlaceableModel.cs
+        ¦   ¦       PlaceableModel.cs.meta
+        ¦   ¦       PlaceableView.cs
+        ¦   ¦       PlaceableView.cs.meta
+        ¦   ¦       
+        ¦   +---SellZone
+        ¦   ¦       GadgetSellTrigger.cs
+        ¦   ¦       GadgetSellTrigger.cs.meta
+        ¦   ¦       GadgetSellZonePresenter.cs
+        ¦   ¦       GadgetSellZonePresenter.cs.meta
+        ¦   ¦       SellZoneView.cs
+        ¦   ¦       SellZoneView.cs.meta
+        ¦   ¦       
+        ¦   +---Store
+        ¦           ShopItemPresenter.cs
+        ¦           ShopItemPresenter.cs.meta
+        ¦           StoreItemView.cs
+        ¦           StoreItemView.cs.meta
+        ¦           StoreView.cs
+        ¦           StoreView.cs.meta
+        ¦           
+        +---Interfaces
+        +---ScriptableObjects
+        ¦       LiquidGateProfile.cs
+        ¦       LiquidGateProfile.cs.meta
+        ¦       WaveTrailProfile.cs
+        ¦       WaveTrailProfile.cs.meta
+        ¦       
+        +---Services
+        ¦   ¦   Ball.meta
+        ¦   ¦   Gadgets.meta
+        ¦   ¦   Money.meta
+        ¦   ¦   Registry.meta
+        ¦   ¦   Services.asmdef
+        ¦   ¦   Services.asmdef.meta
+        ¦   ¦   StateMachine.meta
+        ¦   ¦   Store.meta
+        ¦   ¦   
+        ¦   +---Ball
+        ¦   ¦       BallService.cs
+        ¦   ¦       BallService.cs.meta
+        ¦   ¦       IBallService.cs
+        ¦   ¦       IBallService.cs.meta
+        ¦   ¦       
+        ¦   +---Gadgets
+        ¦   ¦       GadgetService.cs
+        ¦   ¦       GadgetService.cs.meta
+        ¦   ¦       IGadgetService.cs
+        ¦   ¦       IGadgetService.cs.meta
+        ¦   ¦       
+        ¦   +---Money
+        ¦   ¦       IMoneyService.cs
+        ¦   ¦       IMoneyService.cs.meta
+        ¦   ¦       MoneyService.cs
+        ¦   ¦       MoneyService.cs.meta
+        ¦   ¦       
+        ¦   +---Registry
+        ¦   ¦       ActivatableRegistryService.cs
+        ¦   ¦       ActivatableRegistryService.cs.meta
+        ¦   ¦       IActivatableRegistry.cs
+        ¦   ¦       IActivatableRegistry.cs.meta
+        ¦   ¦       
+        ¦   +---StateMachine
+        ¦   ¦       GameStateMachine.cs
+        ¦   ¦       GameStateMachine.cs.meta
+        ¦   ¦       
+        ¦   +---Store
+        ¦           IStoreService.cs
+        ¦           IStoreService.cs.meta
+        ¦           StoreService.cs
+        ¦           StoreService.cs.meta
+        ¦           
+        +---UI
+        ¦   ¦   WorldSpace.meta
+        ¦   ¦   
+        ¦   +---WorldSpace
+        ¦           MoneyView.cs
+        ¦           MoneyView.cs.meta
+        ¦           TargetFollowerUI.cs
+        ¦           TargetFollowerUI.cs.meta
+        ¦           
+        +---VFX
+            ¦   ConnectionTrail.meta
+            ¦   LiquidGates.meta
+            ¦   UpdateShaderScale.cs
+            ¦   UpdateShaderScale.cs.meta
+            ¦   
+            +---ConnectionTrail
+            ¦       ConnectionPresenter.cs
+            ¦       ConnectionPresenter.cs.meta
+            ¦       ITargetableVisual.cs
+            ¦       ITargetableVisual.cs.meta
+            ¦       WaveTrailView.cs
+            ¦       WaveTrailView.cs.meta
+            ¦       
+            +---LiquidGates
+                    BallDetector.cs
+                    BallDetector.cs.meta
+                    LiquidGateView.cs
+                    LiquidGateView.cs.meta
+                    LiquidWobbleAnimator.cs
+                    LiquidWobbleAnimator.cs.meta
+                    
