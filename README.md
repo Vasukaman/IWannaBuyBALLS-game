@@ -22,7 +22,7 @@ This project is a 2D incremental game developed in Unity. While the gameplay is 
 
 -----
 
-### **Work in Progress**
+### **Future Improvements**
 
   * Data Persistence (Save/Load System)
   * Refactor to an `IAssetProvider` service
