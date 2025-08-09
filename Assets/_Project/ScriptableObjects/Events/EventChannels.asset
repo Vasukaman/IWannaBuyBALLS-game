@@ -15,6 +15,8 @@ MonoBehaviour:
   OnBallSold: {fileID: 11400000, guid: 64962cc63be2ad24aa3d068ecc4efdd0, type: 2}
   OnBallSpawned: {fileID: 11400000, guid: 8e09b27c2d2a9b842852f853a698f2b5, type: 2}
   OnBallMerged: {fileID: 11400000, guid: 1633a33ea1383ba40bec9017b017cfd6, type: 2}
+  OnBallCollisionSound: {fileID: 11400000, guid: fae06964b8a671b4399705ca7c538967, type: 2}
   OnManualActivation: {fileID: 11400000, guid: 8e09b27c2d2a9b842852f853a698f2b5, type: 2}
   OnGamePaused: {fileID: 11400000, guid: efe535d829d31344dbda0e2dd828071f, type: 2}
   OnGameResumed: {fileID: 11400000, guid: 18f962897e2e8df4fb8cb6b3e9599fcf, type: 2}
+  OnGadgetPlaced: {fileID: 11400000, guid: 50401e4114e0ddc46892c2f40752c503, type: 2}

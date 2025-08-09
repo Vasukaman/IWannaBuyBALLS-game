@@ -630,6 +630,7 @@ D:.
     +---Art
     ¦   ¦   Materials.meta
     ¦   ¦   Shaders.meta
+    ¦   ¦   Sounds.meta
     ¦   ¦   
     ¦   +---Materials
     ¦   ¦       BallMaterial.mat
@@ -656,20 +657,36 @@ D:.
     ¦   ¦       ZoneShader.mat.meta
     ¦   ¦       
     ¦   +---Shaders
-    ¦           BallShader.shader
-    ¦           BallShader.shader.meta
-    ¦           InstancedDot.shader
-    ¦           InstancedDot.shader.meta
-    ¦           LiquidGateShader.shader
-    ¦           LiquidGateShader.shader.meta
-    ¦           SquereTunnel.shader
-    ¦           SquereTunnel.shader.meta
-    ¦           VortexBallDrawer.shader
-    ¦           VortexBallDrawer.shader.meta
-    ¦           VortexController.shader
-    ¦           VortexController.shader.meta
-    ¦           ZoneShader.shader
-    ¦           ZoneShader.shader.meta
+    ¦   ¦       BallShader.shader
+    ¦   ¦       BallShader.shader.meta
+    ¦   ¦       InstancedDot.shader
+    ¦   ¦       InstancedDot.shader.meta
+    ¦   ¦       LiquidGateShader.shader
+    ¦   ¦       LiquidGateShader.shader.meta
+    ¦   ¦       SquereTunnel.shader
+    ¦   ¦       SquereTunnel.shader.meta
+    ¦   ¦       VortexBallDrawer.shader
+    ¦   ¦       VortexBallDrawer.shader.meta
+    ¦   ¦       VortexController.shader
+    ¦   ¦       VortexController.shader.meta
+    ¦   ¦       ZoneShader.shader
+    ¦   ¦       ZoneShader.shader.meta
+    ¦   ¦       
+    ¦   +---Sounds
+    ¦           146718__leszek_szary__button.wav
+    ¦           146718__leszek_szary__button.wav.meta
+    ¦           196979__peepholecircus__sci-fi-button-beep.wav
+    ¦           196979__peepholecircus__sci-fi-button-beep.wav.meta
+    ¦           237422__plasterbrain__hover-1.ogg
+    ¦           237422__plasterbrain__hover-1.ogg.meta
+    ¦           245645__unfa__cartoon-pop-clean.flac
+    ¦           245645__unfa__cartoon-pop-clean.flac.meta
+    ¦           320181__dland__hint.wav
+    ¦           320181__dland__hint.wav.meta
+    ¦           691965__gavynator__coin-collect-sound.mp3
+    ¦           691965__gavynator__coin-collect-sound.mp3.meta
+    ¦           714257__qubodup__puff-of-smoke.wav
+    ¦           714257__qubodup__puff-of-smoke.wav.meta
     ¦           
     +---Prefabs
     ¦   ¦   Ball.meta
@@ -708,6 +725,8 @@ D:.
     ¦   +---System
     ¦           PrefabInstantiator.prefab
     ¦           PrefabInstantiator.prefab.meta
+    ¦           [AudioSource].prefab
+    ¦           [AudioSource].prefab.meta
     ¦           [ProjectContext].prefab
     ¦           [ProjectContext].prefab.meta
     ¦           
@@ -736,8 +755,14 @@ D:.
     ¦   ¦       EventChannels.asset.meta
     ¦   ¦       ManualActivationEvent.asset
     ¦   ¦       ManualActivationEvent.asset.meta
+    ¦   ¦       OnBallCollisionSound.asset
+    ¦   ¦       OnBallCollisionSound.asset.meta
+    ¦   ¦       OnBallMerged.asset
+    ¦   ¦       OnBallMerged.asset.meta
     ¦   ¦       OnBallSoldEvent.asset
     ¦   ¦       OnBallSoldEvent.asset.meta
+    ¦   ¦       OnGadgetPlaced.asset
+    ¦   ¦       OnGadgetPlaced.asset.meta
     ¦   ¦       OnGamePausedEvent.asset
     ¦   ¦       OnGamePausedEvent.asset.meta
     ¦   ¦       OnGameResumedEvent.asset
@@ -771,6 +796,7 @@ D:.
     ¦       ¦   BallProfiles.meta
     ¦       ¦   Gadgets.meta
     ¦       ¦   SellZone.meta
+    ¦       ¦   SoundEffects.meta
     ¦       ¦   
     ¦       +---BallProfiles
     ¦       ¦   ¦   MasterBallProfile.asset
@@ -840,12 +866,24 @@ D:.
     ¦       ¦           ManualActivatorWave.asset.meta
     ¦       ¦           
     ¦       +---SellZone
-    ¦               SellZoneProfile.asset
-    ¦               SellZoneProfile.asset.meta
-    ¦               SellZoneViewProfile.asset
-    ¦               SellZoneViewProfile.asset.meta
-    ¦               SpringTransformProfile.asset
-    ¦               SpringTransformProfile.asset.meta
+    ¦       ¦       SellZoneProfile.asset
+    ¦       ¦       SellZoneProfile.asset.meta
+    ¦       ¦       SellZoneViewProfile.asset
+    ¦       ¦       SellZoneViewProfile.asset.meta
+    ¦       ¦       SpringTransformProfile.asset
+    ¦       ¦       SpringTransformProfile.asset.meta
+    ¦       ¦       
+    ¦       +---SoundEffects
+    ¦               ActivationSound.asset
+    ¦               ActivationSound.asset.meta
+    ¦               BallCollisionSound.asset
+    ¦               BallCollisionSound.asset.meta
+    ¦               BallMergeSound.asset
+    ¦               BallMergeSound.asset.meta
+    ¦               BallSellSounds.asset
+    ¦               BallSellSounds.asset.meta
+    ¦               PlaceGadgetSound.asset
+    ¦               PlaceGadgetSound.asset.meta
     ¦               
     +---Scripts
         ¦   Core.meta
@@ -859,13 +897,12 @@ D:.
         ¦   
         +---Core
         ¦   ¦   Animations.meta
+        ¦   ¦   Audio.meta
+        ¦   ¦   AudioPresenter.cs
+        ¦   ¦   AudioPresenter.cs.meta
         ¦   ¦   Core.asmdef
         ¦   ¦   Core.asmdef.meta
         ¦   ¦   Data.meta
-        ¦   ¦   GadgetData.cs
-        ¦   ¦   GadgetData.cs.meta
-        ¦   ¦   GadgetLibrary.cs
-        ¦   ¦   GadgetLibrary.cs.meta
         ¦   ¦   GameEvents.meta
         ¦   ¦   GameLayers.cs
         ¦   ¦   GameLayers.cs.meta
@@ -887,14 +924,37 @@ D:.
         ¦   ¦       SpringTransformProfile.cs
         ¦   ¦       SpringTransformProfile.cs.meta
         ¦   ¦       
+        ¦   +---Audio
+        ¦   ¦       AudioProfile.asset
+        ¦   ¦       AudioProfile.asset.meta
+        ¦   ¦       AudioProfile.cs
+        ¦   ¦       AudioProfile.cs.meta
+        ¦   ¦       SoundEffect.cs
+        ¦   ¦       SoundEffect.cs.meta
+        ¦   ¦       SoundSettings.asset
+        ¦   ¦       SoundSettings.asset.meta
+        ¦   ¦       SoundSettingsProfile.cs
+        ¦   ¦       SoundSettingsProfile.cs.meta
+        ¦   ¦       
         ¦   +---Data
+        ¦   ¦       GadgetData.cs
+        ¦   ¦       GadgetData.cs.meta
+        ¦   ¦       GadgetLibrary.cs
+        ¦   ¦       GadgetLibrary.cs.meta
+        ¦   ¦       
         ¦   +---GameEvents
+        ¦   ¦       BallGameEvent.cs
+        ¦   ¦       BallGameEvent.cs.meta
         ¦   ¦       EventChannels.cs
         ¦   ¦       EventChannels.cs.meta
+        ¦   ¦       GadgetGameEvent.cs
+        ¦   ¦       GadgetGameEvent.cs.meta
         ¦   ¦       GameEvent.cs
         ¦   ¦       GameEvent.cs.meta
         ¦   ¦       IntGameEvent.cs
         ¦   ¦       IntGameEvent.cs.meta
+        ¦   ¦       SoundEffectGameEvent.cs
+        ¦   ¦       SoundEffectGameEvent.cs.meta
         ¦   ¦       
         ¦   +---Input
         ¦   ¦       ClickableButton.cs
@@ -907,6 +967,10 @@ D:.
         ¦   ¦       IActivatable.cs.meta
         ¦   ¦       IActivationSource.cs
         ¦   ¦       IActivationSource.cs.meta
+        ¦   ¦       IAudioService.cs
+        ¦   ¦       IAudioService.cs.meta
+        ¦   ¦       IBall.cs
+        ¦   ¦       IBall.cs.meta
         ¦   ¦       IBallView.cs
         ¦   ¦       IBallView.cs.meta
         ¦   ¦       IButton.cs
@@ -917,6 +981,8 @@ D:.
         ¦   ¦       IGadgetSellable.cs.meta
         ¦   ¦       IPlaceableView.cs
         ¦   ¦       IPlaceableView.cs.meta
+        ¦   ¦       IPrefabInstantiator.cs
+        ¦   ¦       IPrefabInstantiator.cs.meta
         ¦   ¦       
         ¦   +---Physics
         ¦   ¦       LocalPointMagnet.cs
@@ -931,8 +997,6 @@ D:.
         ¦   ¦       EditorSceneLoader.cs.meta
         ¦   ¦       
         ¦   +---Spawning
-        ¦   ¦       IPrefabInstantiator.cs
-        ¦   ¦       IPrefabInstantiator.cs.meta
         ¦   ¦       PrefabInstantiator.cs
         ¦   ¦       PrefabInstantiator.cs.meta
         ¦   ¦       
@@ -960,6 +1024,7 @@ D:.
         ¦       SceneServicesInitializer.cs.meta
         ¦       
         +---Gameplay
+        ¦   ¦   Audio.meta
         ¦   ¦   Ball.meta
         ¦   ¦   Gadgets.meta
         ¦   ¦   GameManager.cs
@@ -976,9 +1041,15 @@ D:.
         ¦   ¦   SellZone.meta
         ¦   ¦   Store.meta
         ¦   ¦   
+        ¦   +---Audio
+        ¦   ¦       SoundEffectPlayer.cs
+        ¦   ¦       SoundEffectPlayer.cs.meta
+        ¦   ¦       
         ¦   +---Ball
         ¦   ¦   ¦   BallAppearanceController.cs
         ¦   ¦   ¦   BallAppearanceController.cs.meta
+        ¦   ¦   ¦   BallAudio.cs
+        ¦   ¦   ¦   BallAudio.cs.meta
         ¦   ¦   ¦   BallCollisionHandler.cs
         ¦   ¦   ¦   BallCollisionHandler.cs.meta
         ¦   ¦   ¦   BallCore.meta
@@ -990,8 +1061,6 @@ D:.
         ¦   ¦   ¦   BallScaler.cs.meta
         ¦   ¦   ¦   BallUIController.cs
         ¦   ¦   ¦   BallUIController.cs.meta
-        ¦   ¦   ¦   IBall.cs
-        ¦   ¦   ¦   IBall.cs.meta
         ¦   ¦   ¦   Profiles.meta
         ¦   ¦   ¦   
         ¦   ¦   +---BallCore
@@ -1106,6 +1175,7 @@ D:.
         ¦       WaveTrailProfile.cs.meta
         ¦       
         +---Services
+        ¦   ¦   Audio.meta
         ¦   ¦   Ball.meta
         ¦   ¦   Gadgets.meta
         ¦   ¦   Money.meta
@@ -1115,6 +1185,10 @@ D:.
         ¦   ¦   StateMachine.meta
         ¦   ¦   Store.meta
         ¦   ¦   
+        ¦   +---Audio
+        ¦   ¦       AudioService.cs
+        ¦   ¦       AudioService.cs.meta
+        ¦   ¦       
         ¦   +---Ball
         ¦   ¦       BallService.cs
         ¦   ¦       BallService.cs.meta

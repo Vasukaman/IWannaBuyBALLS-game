@@ -502,6 +502,7 @@ GameObject:
   - component: {fileID: 7954339687942485932}
   - component: {fileID: 3806311545951910626}
   - component: {fileID: 4978417298361605182}
+  - component: {fileID: 8232089183410382920}
   m_Layer: 8
   m_Name: Trigger
   m_TagString: Untagged
@@ -636,10 +637,34 @@ MonoBehaviour:
   _profile: {fileID: 11400000, guid: 0f32e9db73ede9641874d6d9c12090c6, type: 2}
   _onFirstPass:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8232089183410382920}
+        m_TargetAssemblyTypeName: UnityEngine.MonoBehaviour, UnityEngine
+        m_MethodName: StopAllCoroutines
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _onRepeatPass:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8232089183410382920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5790169369672092255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9966ac68080549a418ef4f0a71fe819c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8112166129428784083
 GameObject:
   m_ObjectHideFlags: 0

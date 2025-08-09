@@ -1,9 +1,9 @@
-// Filename: SoundEffect.cs
+// Filename: SoundEffectProfile.cs
 // Location: _Project/Scripts/Core/Audio/
 using UnityEngine;
 
-[System.Serializable]
-public class SoundEffect
+[CreateAssetMenu(fileName = "NewSoundEffect", menuName = "Profiles/Core/Sound Effect")]
+public class SoundEffectProfile : ScriptableObject
 {
     public AudioClip Clip;
 

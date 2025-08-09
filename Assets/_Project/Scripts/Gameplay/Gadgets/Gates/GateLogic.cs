@@ -2,17 +2,26 @@
 using Gameplay.BallSystem;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.Events; // Required for UnityEvent
 
 namespace Gameplay.Gadgets
 {
+    /// <summary>
+    /// A trigger that applies a configurable effect to a Ball a single time,
+    /// defined by a GateProfile. It uses UnityEvents for local feedback.
+    /// </summary>
     [RequireComponent(typeof(Collider2D))]
     public class GateLogic : MonoBehaviour
     {
         [Header("Configuration")]
         [SerializeField] private GateProfile _profile;
 
+        [Header("Local Events")]
+        [Tooltip("Invoked the first time any ball passes through the gate.")]
+        [SerializeField] private UnityEvent _onFirstPass; // Add this back
 
+        [Tooltip("Invoked when a ball that has already passed through enters again.")]
+        [SerializeField] private UnityEvent _onRepeatPass; // Add this back
 
         private readonly HashSet<BallView> _processedBalls = new HashSet<BallView>();
 
@@ -30,9 +39,11 @@ namespace Gameplay.Gadgets
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!other.TryGetComponent<BallView>(out var ball)) return;
+
             if (_processedBalls.Contains(ball))
             {
-   
+                // Invoke the repeat pass event
+                _onRepeatPass?.Invoke();
                 return;
             }
 
@@ -40,12 +51,13 @@ namespace Gameplay.Gadgets
 
             _processedBalls.Add(ball);
             ball.OnDespawned += HandleBallDespawned;
-           
+
+            // Invoke the first pass event
+            _onFirstPass?.Invoke();
         }
 
         private void OnDestroy()
         {
-            // When this gate is destroyed, clean up all remaining event subscriptions to prevent memory leaks.
             foreach (var ball in _processedBalls)
             {
                 if (ball != null)
@@ -55,14 +67,8 @@ namespace Gameplay.Gadgets
             }
         }
 
-        // --- Private Methods ---
-        /// <summary>
-        /// Called when a ball we've processed is despawned. This allows it to be processed again
-        /// if it is respawned from a pool and re-enters the gate.
-        /// </summary>
         private void HandleBallDespawned(BallView ball)
         {
-            // Remove the ball from the processed set and unsubscribe from its event.
             if (_processedBalls.Remove(ball))
             {
                 ball.OnDespawned -= HandleBallDespawned;

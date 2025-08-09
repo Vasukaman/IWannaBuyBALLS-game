@@ -432,6 +432,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameplayAreaBoundary: 0.15
   _animationDuration: 0.15
+  _onGadgetPlacedEvent: {fileID: 11400000, guid: 50401e4114e0ddc46892c2f40752c503, type: 2}
 --- !u!1 &6272611266985708857
 GameObject:
   m_ObjectHideFlags: 0

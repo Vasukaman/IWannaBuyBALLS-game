@@ -6,13 +6,13 @@ using UnityEngine;
 public class AudioProfile : ScriptableObject
 {
     [Header("UI Sounds")]
-    public SoundEffect ButtonClick;
+    public SoundEffectProfile ButtonClick;
 
     [Header("Ball Sounds")]
-    public SoundEffect BallSpawn;
-    public SoundEffect BallMerge;
-    public SoundEffect BallSell;
+    public SoundEffectProfile BallSpawn;
+    public SoundEffectProfile BallMerge;
+    public SoundEffectProfile BallSell;
 
     [Header("Gadget Sounds")]
-    public SoundEffect GadgetPlace;
+    public SoundEffectProfile GadgetPlace;
 }

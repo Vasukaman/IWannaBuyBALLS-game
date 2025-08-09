@@ -1,0 +1,381 @@
+Folder PATH listing for volume 1TB
+Volume serial number is D26C-E662
+D:.
+¦   Core.meta
+¦   DI.meta
+¦   file_list.txt
+¦   file_list.txt.meta
+¦   Gameplay.meta
+¦   ScriptableObjects.meta
+¦   Services.meta
+¦   UI.meta
+¦   VFX.meta
+¦   
++---Core
+¦   ¦   Animations.meta
+¦   ¦   Audio.meta
+¦   ¦   Core.asmdef
+¦   ¦   Core.asmdef.meta
+¦   ¦   Data.meta
+¦   ¦   GameEvents.meta
+¦   ¦   Input.meta
+¦   ¦   Interface.meta
+¦   ¦   Physics.meta
+¦   ¦   SceneManagement.meta
+¦   ¦   Spawning.meta
+¦   ¦   Statemachine.meta
+¦   ¦   Utilities.meta
+¦   ¦   
+¦   +---Animations
+¦   ¦       SpringTransform.cs
+¦   ¦       SpringTransform.cs.meta
+¦   ¦       SpringTransformProfile.cs
+¦   ¦       SpringTransformProfile.cs.meta
+¦   ¦       
+¦   +---Audio
+¦   ¦       AudioProfile.asset
+¦   ¦       AudioProfile.asset.meta
+¦   ¦       AudioProfile.cs
+¦   ¦       AudioProfile.cs.meta
+¦   ¦       SoundEffect.cs
+¦   ¦       SoundEffect.cs.meta
+¦   ¦       SoundSettings.asset
+¦   ¦       SoundSettings.asset.meta
+¦   ¦       SoundSettingsProfile.cs
+¦   ¦       SoundSettingsProfile.cs.meta
+¦   ¦       
+¦   +---Data
+¦   ¦       GadgetData.cs
+¦   ¦       GadgetData.cs.meta
+¦   ¦       GadgetLibrary.cs
+¦   ¦       GadgetLibrary.cs.meta
+¦   ¦       
+¦   +---GameEvents
+¦   ¦       BallGameEvent.cs
+¦   ¦       BallGameEvent.cs.meta
+¦   ¦       EventChannels.cs
+¦   ¦       EventChannels.cs.meta
+¦   ¦       GadgetGameEvent.cs
+¦   ¦       GadgetGameEvent.cs.meta
+¦   ¦       GameEvent.cs
+¦   ¦       GameEvent.cs.meta
+¦   ¦       IntGameEvent.cs
+¦   ¦       IntGameEvent.cs.meta
+¦   ¦       SoundEffectGameEvent.cs
+¦   ¦       SoundEffectGameEvent.cs.meta
+¦   ¦       
+¦   +---Input
+¦   ¦       ClickableButton.cs
+¦   ¦       ClickableButton.cs.meta
+¦   ¦       Draggable.cs
+¦   ¦       Draggable.cs.meta
+¦   ¦       
+¦   +---Interface
+¦   ¦       IActivatable.cs
+¦   ¦       IActivatable.cs.meta
+¦   ¦       IActivationSource.cs
+¦   ¦       IActivationSource.cs.meta
+¦   ¦       IAudioService.cs
+¦   ¦       IAudioService.cs.meta
+¦   ¦       IBall.cs
+¦   ¦       IBall.cs.meta
+¦   ¦       IBallView.cs
+¦   ¦       IBallView.cs.meta
+¦   ¦       IButton.cs
+¦   ¦       IButton.cs.meta
+¦   ¦       IConnectionSource.cs
+¦   ¦       IConnectionSource.cs.meta
+¦   ¦       IGadgetSellable.cs
+¦   ¦       IGadgetSellable.cs.meta
+¦   ¦       IPlaceableView.cs
+¦   ¦       IPlaceableView.cs.meta
+¦   ¦       IPrefabInstantiator.cs
+¦   ¦       IPrefabInstantiator.cs.meta
+¦   ¦       
+¦   +---Physics
+¦   ¦       LocalPointMagnet.cs
+¦   ¦       LocalPointMagnet.cs.meta
+¦   ¦       MagnetProfile.cs
+¦   ¦       MagnetProfile.cs.meta
+¦   ¦       
+¦   +---SceneManagement
+¦   ¦       Bootstrapper.cs
+¦   ¦       Bootstrapper.cs.meta
+¦   ¦       EditorSceneLoader.cs
+¦   ¦       EditorSceneLoader.cs.meta
+¦   ¦       
+¦   +---Spawning
+¦   ¦       PrefabInstantiator.cs
+¦   ¦       PrefabInstantiator.cs.meta
+¦   ¦       
+¦   +---Statemachine
+¦   ¦   ¦   IState.cs
+¦   ¦   ¦   IState.cs.meta
+¦   ¦   ¦   States.meta
+¦   ¦   ¦   
+¦   ¦   +---States
+¦   ¦           PausedState.cs
+¦   ¦           PausedState.cs.meta
+¦   ¦           PlayingState.cs
+¦   ¦           PlayingState.cs.meta
+¦   ¦           
+¦   +---Utilities
+¦           GameLayers.cs
+¦           GameLayers.cs.meta
+¦           TargetingUtility.cs
+¦           TargetingUtility.cs.meta
+¦           
++---DI
+¦       DI.asmdef
+¦       DI.asmdef.meta
+¦       GameplaySceneServicesInitializer.cs
+¦       GameplaySceneServicesInitializer.cs.meta
+¦       ProjectInstaller.cs
+¦       ProjectInstaller.cs.meta
+¦       SceneServicesInitializer.cs
+¦       SceneServicesInitializer.cs.meta
+¦       
++---Gameplay
+¦   ¦   Audio.meta
+¦   ¦   Ball.meta
+¦   ¦   Gadgets.meta
+¦   ¦   GameManager.cs
+¦   ¦   GameManager.cs.meta
+¦   ¦   Gameplay.asmdef
+¦   ¦   Gameplay.asmdef.meta
+¦   ¦   Input(temp).meta
+¦   ¦   Placeables.meta
+¦   ¦   SellZone.meta
+¦   ¦   Store.meta
+¦   ¦   UI.meta
+¦   ¦   
+¦   +---Audio
+¦   ¦       AudioPresenter.cs
+¦   ¦       AudioPresenter.cs.meta
+¦   ¦       SoundEffectPlayer.cs
+¦   ¦       SoundEffectPlayer.cs.meta
+¦   ¦       
+¦   +---Ball
+¦   ¦   ¦   BallAudio.cs
+¦   ¦   ¦   BallAudio.cs.meta
+¦   ¦   ¦   BallCollisionHandler.cs
+¦   ¦   ¦   BallCollisionHandler.cs.meta
+¦   ¦   ¦   BallCore.meta
+¦   ¦   ¦   BallMerger.cs
+¦   ¦   ¦   BallMerger.cs.meta
+¦   ¦   ¦   BallScaler.cs
+¦   ¦   ¦   BallScaler.cs.meta
+¦   ¦   ¦   Profiles.meta
+¦   ¦   ¦   UI.meta
+¦   ¦   ¦   VFX.meta
+¦   ¦   ¦   
+¦   ¦   +---BallCore
+¦   ¦   ¦       BallData.cs
+¦   ¦   ¦       BallData.cs.meta
+¦   ¦   ¦       BallView.cs
+¦   ¦   ¦       BallView.cs.meta
+¦   ¦   ¦       
+¦   ¦   +---Profiles
+¦   ¦   ¦       BallAppearanceProfile.cs
+¦   ¦   ¦       BallAppearanceProfile.cs.meta
+¦   ¦   ¦       BallMergingProfile.cs
+¦   ¦   ¦       BallMergingProfile.cs.meta
+¦   ¦   ¦       BallProfile.cs
+¦   ¦   ¦       BallProfile.cs.meta
+¦   ¦   ¦       BallProximityProfile.cs
+¦   ¦   ¦       BallProximityProfile.cs.meta
+¦   ¦   ¦       BallScalingProfile.cs
+¦   ¦   ¦       BallScalingProfile.cs.meta
+¦   ¦   ¦       
+¦   ¦   +---UI
+¦   ¦   ¦       BallUIController.cs
+¦   ¦   ¦       BallUIController.cs.meta
+¦   ¦   ¦       
+¦   ¦   +---VFX
+¦   ¦           BallAppearanceController.cs
+¦   ¦           BallAppearanceController.cs.meta
+¦   ¦           BallProximityVisuals.cs
+¦   ¦           BallProximityVisuals.cs.meta
+¦   ¦           
+¦   +---Gadgets
+¦   ¦   ¦   Activators.meta
+¦   ¦   ¦   BallSeller.meta
+¦   ¦   ¦   BallSpawner.meta
+¦   ¦   ¦   Gates.meta
+¦   ¦   ¦   
+¦   ¦   +---Activators
+¦   ¦   ¦   ¦   AutoActivator.meta
+¦   ¦   ¦   ¦   AutoActivatorProfile.cs
+¦   ¦   ¦   ¦   AutoActivatorProfile.cs.meta
+¦   ¦   ¦   ¦   BaseActivatorProfile.cs
+¦   ¦   ¦   ¦   BaseActivatorProfile.cs.meta
+¦   ¦   ¦   ¦   ManualActivator.meta
+¦   ¦   ¦   ¦   ManualActivatorProfile.cs
+¦   ¦   ¦   ¦   ManualActivatorProfile.cs.meta
+¦   ¦   ¦   ¦   PusherOnActivate.cs
+¦   ¦   ¦   ¦   PusherOnActivate.cs.meta
+¦   ¦   ¦   ¦   PusherProfile.cs
+¦   ¦   ¦   ¦   PusherProfile.cs.meta
+¦   ¦   ¦   ¦   RotatorOnActivate.cs
+¦   ¦   ¦   ¦   RotatorOnActivate.cs.meta
+¦   ¦   ¦   ¦   RotatorProfile.cs
+¦   ¦   ¦   ¦   RotatorProfile.cs.meta
+¦   ¦   ¦   ¦   
+¦   ¦   ¦   +---AutoActivator
+¦   ¦   ¦   ¦       AutoActivatorController.cs
+¦   ¦   ¦   ¦       AutoActivatorController.cs.meta
+¦   ¦   ¦   ¦       AutoActivatorModel.cs
+¦   ¦   ¦   ¦       AutoActivatorModel.cs.meta
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---ManualActivator
+¦   ¦   ¦           ManualActivatorController.cs
+¦   ¦   ¦           ManualActivatorController.cs.meta
+¦   ¦   ¦           ManualActivatorModel.cs
+¦   ¦   ¦           ManualActivatorModel.cs.meta
+¦   ¦   ¦           
+¦   ¦   +---BallSeller
+¦   ¦   ¦       BallSeller.cs
+¦   ¦   ¦       BallSeller.cs.meta
+¦   ¦   ¦       
+¦   ¦   +---BallSpawner
+¦   ¦   ¦       BallSpawner.cs
+¦   ¦   ¦       BallSpawner.cs.meta
+¦   ¦   ¦       BallSpawnerProfile.cs
+¦   ¦   ¦       BallSpawnerProfile.cs.meta
+¦   ¦   ¦       
+¦   ¦   +---Gates
+¦   ¦           ForceZone.cs
+¦   ¦           ForceZone.cs.meta
+¦   ¦           ForceZoneProfile.cs
+¦   ¦           ForceZoneProfile.cs.meta
+¦   ¦           GateEffects.cs
+¦   ¦           GateEffects.cs.meta
+¦   ¦           GateLogic.cs
+¦   ¦           GateLogic.cs.meta
+¦   ¦           GateProfile.cs
+¦   ¦           GateProfile.cs.meta
+¦   ¦           IGateEffect.cs
+¦   ¦           IGateEffect.cs.meta
+¦   ¦           SelectImplementationAttribute.cs
+¦   ¦           SelectImplementationAttribute.cs.meta
+¦   ¦           
+¦   +---Input(temp)
+¦   ¦       PauseController.cs
+¦   ¦       PauseController.cs.meta
+¦   ¦       
+¦   +---Placeables
+¦   ¦       PlaceableModel.cs
+¦   ¦       PlaceableModel.cs.meta
+¦   ¦       PlaceableView.cs
+¦   ¦       PlaceableView.cs.meta
+¦   ¦       
+¦   +---SellZone
+¦   ¦       GadgetSellTrigger.cs
+¦   ¦       GadgetSellTrigger.cs.meta
+¦   ¦       GadgetSellZonePresenter.cs
+¦   ¦       GadgetSellZonePresenter.cs.meta
+¦   ¦       SellZoneProfile.cs
+¦   ¦       SellZoneProfile.cs.meta
+¦   ¦       SellZoneView.cs
+¦   ¦       SellZoneView.cs.meta
+¦   ¦       SellZoneViewProfile.cs
+¦   ¦       SellZoneViewProfile.cs.meta
+¦   ¦       
+¦   +---Store
+¦   ¦       ShopItemPresenter.cs
+¦   ¦       ShopItemPresenter.cs.meta
+¦   ¦       StoreItemView.cs
+¦   ¦       StoreItemView.cs.meta
+¦   ¦       StoreView.cs
+¦   ¦       StoreView.cs.meta
+¦   ¦       
+¦   +---UI
+¦           PauseMenuView.cs
+¦           PauseMenuView.cs.meta
+¦           
++---ScriptableObjects
+¦       LiquidGateProfile.cs
+¦       LiquidGateProfile.cs.meta
+¦       WaveTrailProfile.cs
+¦       WaveTrailProfile.cs.meta
+¦       
++---Services
+¦   ¦   Audio.meta
+¦   ¦   Ball.meta
+¦   ¦   Gadgets.meta
+¦   ¦   Money.meta
+¦   ¦   Registry.meta
+¦   ¦   Services.asmdef
+¦   ¦   Services.asmdef.meta
+¦   ¦   StateMachine.meta
+¦   ¦   Store.meta
+¦   ¦   
+¦   +---Audio
+¦   ¦       AudioService.cs
+¦   ¦       AudioService.cs.meta
+¦   ¦       
+¦   +---Ball
+¦   ¦       BallService.cs
+¦   ¦       BallService.cs.meta
+¦   ¦       IBallService.cs
+¦   ¦       IBallService.cs.meta
+¦   ¦       
+¦   +---Gadgets
+¦   ¦       GadgetService.cs
+¦   ¦       GadgetService.cs.meta
+¦   ¦       IGadgetService.cs
+¦   ¦       IGadgetService.cs.meta
+¦   ¦       
+¦   +---Money
+¦   ¦       IMoneyService.cs
+¦   ¦       IMoneyService.cs.meta
+¦   ¦       MoneyService.cs
+¦   ¦       MoneyService.cs.meta
+¦   ¦       
+¦   +---Registry
+¦   ¦       ActivatableRegistryService.cs
+¦   ¦       ActivatableRegistryService.cs.meta
+¦   ¦       IActivatableRegistry.cs
+¦   ¦       IActivatableRegistry.cs.meta
+¦   ¦       
+¦   +---StateMachine
+¦   ¦       GameStateMachine.cs
+¦   ¦       GameStateMachine.cs.meta
+¦   ¦       
+¦   +---Store
+¦           IStoreService.cs
+¦           IStoreService.cs.meta
+¦           StoreService.cs
+¦           StoreService.cs.meta
+¦           
++---UI
+¦   ¦   WorldSpace.meta
+¦   ¦   
+¦   +---WorldSpace
+¦           MoneyView.cs
+¦           MoneyView.cs.meta
+¦           TargetFollowerUI.cs
+¦           TargetFollowerUI.cs.meta
+¦           
++---VFX
+    ¦   ConnectionTrail.meta
+    ¦   LiquidGates.meta
+    ¦   UpdateShaderScale.cs
+    ¦   UpdateShaderScale.cs.meta
+    ¦   
+    +---ConnectionTrail
+    ¦       ConnectionPresenter.cs
+    ¦       ConnectionPresenter.cs.meta
+    ¦       ITargetableVisual.cs
+    ¦       ITargetableVisual.cs.meta
+    ¦       WaveTrailView.cs
+    ¦       WaveTrailView.cs.meta
+    ¦       
+    +---LiquidGates
+            BallDetector.cs
+            BallDetector.cs.meta
+            LiquidGateView.cs
+            LiquidGateView.cs.meta
+            LiquidWobbleAnimator.cs
+            LiquidWobbleAnimator.cs.meta
+            

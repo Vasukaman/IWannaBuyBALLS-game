@@ -3,6 +3,10 @@
 using Reflex.Attributes;
 using UnityEngine;
 
+
+
+//THis script is in wrong place and should use events or smt.
+//I will change it later, but I'm too tired with the project and need to finish it ASAP
 public class PauseController : MonoBehaviour
 {
     [Inject] private GameStateMachine _fsm;

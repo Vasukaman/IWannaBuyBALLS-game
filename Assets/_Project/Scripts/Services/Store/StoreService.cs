@@ -17,6 +17,7 @@ namespace Services.Store
         private readonly GadgetLibrary _gadgetLibrary;
         private readonly Dictionary<GadgetData, int> _purchasedGadgetCounts = new();
 
+
         // Dependencies are passed in when the service is created by the DI container.
         public StoreService(IMoneyService moneyService, GadgetLibrary gadgetLibrary)
         {

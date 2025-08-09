@@ -21,5 +21,8 @@ namespace Core.Data
 
         [Tooltip("The icon used in the shop UI.")]
         public Sprite Icon;
+
+        [Header("Audio")]
+        public SoundEffectProfile EffectSound;
     }
 }

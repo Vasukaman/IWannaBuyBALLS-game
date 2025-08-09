@@ -8,6 +8,7 @@ using Services.Gadgets;
 using Services.Store;
 using UnityEngine;
 using Core.Data;
+using Core.Events;
 
 
 namespace UI.Store
@@ -32,6 +33,8 @@ namespace UI.Store
         private PlaceableView _gadgetPreviewInstance;
         private State _currentState = State.Idle;
         private bool _isPreviewingGadget = false;
+
+        [SerializeField] private GadgetGameEvent _onGadgetPlacedEvent;
 
         private void Awake()
         {
@@ -112,6 +115,7 @@ namespace UI.Store
             if (_isPreviewingGadget)
             {
                 _storeService.PurchaseItem(_data);
+                _onGadgetPlacedEvent.Raise(_data);
                 _gadgetPreviewInstance.transform.SetParent(null, true);
             }
             else

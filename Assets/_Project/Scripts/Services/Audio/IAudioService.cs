@@ -2,5 +2,5 @@
 // Location: _Project/Scripts/Services/Audio/
 public interface IAudioService
 {
-    void PlaySound(SoundEffect soundEffect);
+    void PlaySound(SoundEffectProfile soundEffect);
 }

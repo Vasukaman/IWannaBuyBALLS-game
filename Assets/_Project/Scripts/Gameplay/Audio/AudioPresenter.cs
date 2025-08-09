@@ -4,6 +4,7 @@ using Core.Events;
 using Reflex.Attributes;
 using UnityEngine;
 using Core.Interfaces;
+using Core.Data;
 public class AudioPresenter : MonoBehaviour
 {
     [Header("Configuration")]
@@ -21,6 +22,8 @@ public class AudioPresenter : MonoBehaviour
         _eventChannels.OnBallSpawned.RegisterListener(HandleBallSpawned);
         _eventChannels.OnBallMerged.RegisterListener(HandleBallMerged);
         _eventChannels.OnManualActivation.RegisterListener(HandleManualActivator);
+        _eventChannels.OnGadgetPlaced.RegisterListener(HandleGadgetPlaced);
+        _eventChannels.OnBallCollisionSound.RegisterListener(HandleCollisionSound);
         // You would add OnBallMerged here later
     }
 
@@ -30,6 +33,8 @@ public class AudioPresenter : MonoBehaviour
         _eventChannels.OnBallSpawned.UnregisterListener(HandleBallSpawned);
         _eventChannels.OnBallMerged.UnregisterListener(HandleBallMerged);
         _eventChannels.OnManualActivation.UnregisterListener(HandleManualActivator);
+        _eventChannels.OnGadgetPlaced.UnregisterListener(HandleGadgetPlaced);
+        _eventChannels.OnBallCollisionSound.UnregisterListener(HandleCollisionSound);
     }
 
     private void HandleBallSold(int amount)
@@ -51,4 +56,16 @@ public class AudioPresenter : MonoBehaviour
     {
         _audioService.PlaySound(_audioProfile.ButtonClick);
     }
+
+    private void HandleGadgetPlaced(GadgetData data)
+    {
+        _audioService.PlaySound(_audioProfile.GadgetPlace);
+    }
+
+    private void HandleCollisionSound(SoundEffectProfile sfx)
+    {
+        // The presenter's job is simple: just tell the service to play the sound.
+        _audioService.PlaySound(sfx);
+    }
+
 }

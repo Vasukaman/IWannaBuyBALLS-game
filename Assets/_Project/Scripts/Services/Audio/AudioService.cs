@@ -17,7 +17,7 @@ public class AudioService : IAudioService
         _audioSourcePrefab = audioSourcePrefab;
     }
 
-    public void PlaySound(SoundEffect sfx)
+    public void PlaySound(SoundEffectProfile sfx)
     {
         if (sfx == null || sfx.Clip == null) return;
 

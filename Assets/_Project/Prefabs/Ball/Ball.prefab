@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: -7348541638402304473}
   - component: {fileID: 1986236194467723359}
   - component: {fileID: 2283885112739142917}
+  - component: {fileID: 4340254722213721458}
   m_Layer: 3
   m_Name: Ball
   m_TagString: Ball
@@ -292,6 +293,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _profile: {fileID: 11400000, guid: f863aa3e1cb83e54daa0407533408a82, type: 2}
+--- !u!114 &4340254722213721458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2663361385200861499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fa232e0f43fb09469e8ac741851e47d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collisionSound: {fileID: 11400000, guid: 4702deb1f87529e4eb0e1a146c509736, type: 2}
+  _soundCooldown: 0.2
+  _minVelocityForSound: 1
+  _onCollisionSoundEvent: {fileID: 11400000, guid: fae06964b8a671b4399705ca7c538967, type: 2}
 --- !u!1 &3177938666313022737
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,28 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfb12394d903d3a43aedd6d4736c7348, type: 3}
   m_Name: AudioProfile
   m_EditorClassIdentifier: 
-  ButtonClick:
-    Clip: {fileID: 8300000, guid: 580d96b389d8d9e44ba57ab11722a865, type: 3}
-    Volume: 1
-    VolumeVariation: 0.1
-    PitchVariation: 0.1
-  BallSpawn:
-    Clip: {fileID: 0}
-    Volume: 1
-    VolumeVariation: 0.1
-    PitchVariation: 0.1
-  BallMerge:
-    Clip: {fileID: 8300000, guid: 205a5b4b0bbe69f449ac3ffe3cc0de42, type: 3}
-    Volume: 1
-    VolumeVariation: 0.1
-    PitchVariation: 0.1
-  BallSell:
-    Clip: {fileID: 8300000, guid: ca3ebb0ecdb65b34e8d50bd24480602b, type: 3}
-    Volume: 1
-    VolumeVariation: 0.1
-    PitchVariation: 0.246
-  GadgetPlace:
-    Clip: {fileID: 0}
-    Volume: 1
-    VolumeVariation: 0.1
-    PitchVariation: 0.1
+  ButtonClick: {fileID: 11400000, guid: 07fbc06b21e3cf64a984ff92d59be8eb, type: 2}
+  BallSpawn: {fileID: 0}
+  BallMerge: {fileID: 11400000, guid: 500a9f3e613d05b4b814a0335cc580db, type: 2}
+  BallSell: {fileID: 11400000, guid: 8c28ed87fb5731248bdc147f835a21d3, type: 2}
+  GadgetPlace: {fileID: 11400000, guid: 419e200709088d149b8e82d1e11fc368, type: 2}
