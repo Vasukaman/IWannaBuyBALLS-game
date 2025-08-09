@@ -49,7 +49,7 @@ This project is a 2D incremental game developed in Unity. While the gameplay is 
 
 ![Seller_git](https://github.com/user-attachments/assets/740ba7d8-9697-402e-becb-d03a6635ea59)
 
-**Connection Trail Effect**
+**Ball Seller**
 
 ![Sellet_git](https://github.com/user-attachments/assets/75fb8afe-e02b-458c-ac3b-9866911c0830)
 
