@@ -1,4 +1,4 @@
-# I Wanna Buy Your BALLS - A Unity Architecture Showcase
+# I Wanna To Buy Your BALLS - A Unity Architecture Showcase
 
 **[Play the Game on itch.io](https://vasuka.itch.io/i-want-to-buy-your-balls)** | **[Читать на русском (Russian README)](  )**
 
