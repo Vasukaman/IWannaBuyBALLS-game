@@ -1,6 +1,6 @@
 # I Wanna To Buy Your BALLS - A Unity Architecture Showcase
 
-**[Play the Game on itch.io](https://vasuka.itch.io/i-want-to-buy-your-balls)** | **[Читать на русском (Russian README)](  )**
+**[Play the Game on itch.io](https://vasuka.itch.io/i-want-to-buy-your-balls)** | **[Читать на русском (Russian README)](README-RU.md)**
 
 This project is a 2D incremental game developed in Unity. While the gameplay is simple, its primary purpose is to serve as a portfolio piece demonstrating a deep understanding of professional, scalable game architecture and modern Unity development patterns.
 
