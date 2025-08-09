@@ -1,7 +1,3 @@
-Of course. Here is the complete `README.md` in Markdown format, ready to be copied.
-
------
-
 # I Wanna Buy Your BALLS - A Unity Architecture Showcase
 
 **[Play the Game on itch.io](https://vasuka.itch.io/i-want-to-buy-your-balls)** | **[Читать на русском (Russian README)](  )**
