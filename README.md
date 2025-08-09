@@ -1,22 +1,27 @@
-# Unity 2D Incremental/Clicker Game
+I Wanna Buy Your BALLS - A Unity Architecture Showcase
+Play the Game on itch.io | Читать на русском (Russian README)
 
-PLAY IT HERE - https://vasuka.itch.io/i-want-to-buy-your-balls
+This project is a 2D incremental game developed in Unity. While the gameplay is simple, its primary purpose is to serve as a portfolio piece demonstrating a deep understanding of professional, scalable game architecture and modern Unity development patterns.
 
-Unity 2D Incremental Game
-This is a 2D incremental game developed in Unity. The project serves as a portfolio piece to demonstrate a deep understanding of professional game development architecture, clean code practices, and advanced engine features.
+Architectural Features
+SOLID Principles & Decoupled Design
 
-## Key Features & Technical Highlights
+1. Dependency Injection (DI) with the Reflex framework
+2. Persistent Bootstrap Scene for a clean application entry point
+3. Service Layer for abstracting core game logic
+4. Model-View-Presenter (MVP) pattern for separating logic from MonoBehaviours
+5. Data-Driven Design using ScriptableObjects for all configurations
+6. Composite "Master" Profiles for a designer-friendly workflow
+7. Strategy Pattern with [SerializeReference] for pluggable logic
+8. ScriptableObject-based Event Bus for decoupled, cross-system communication
+9. Game State Machine (FSM) to manage the application's lifecycle
+10. GPU-Accelerated VFX with custom HLSL Shaders and GPU Instancing
 
-* **SOLID, Decoupled Architecture:** The project is built on a foundation of SOLID principles, with a clear separation between different layers of the application.
-* **Dependency Injection (DI):** Utilizes the **Reflex** framework to manage dependencies, creating a flexible and testable codebase where systems are decoupled from each other.
-* **Service Layer:** Core game systems (like the economy, ball spawning, and store logic) are abstracted into a pure C# **Service Layer**, separating logic from the Unity scene.
-* **Model-View-Presenter (MVP):** Employs the MVP pattern to separate pure C# data and logic (**Models**) from their `MonoBehaviour` representations in the scene (**Views** and **Presenters**).
-* **Event-Driven Communication:** Uses a **ScriptableObject-based Event Bus** for communication between systems, allowing for maximum decoupling (e.g., the `BallSellerZone` announces a sale, and the `MoneyService` listens, with neither knowing about the other).
-* **Data-Driven Design:** Leverages **Scriptable Objects** for all configuration (gadget stats, visual styles, event channels), allowing for easy iteration and designer-friendly workflows.
-* **Component-Based Prefabs:** Game objects are built by composing small, single-responsibility `MonoBehaviour` "behaviours" (`ForceZone`, `Draggable`, `RotatorOnActivate`), creating a library of reusable tools.
-* **GPU-Accelerated VFX:** Core visuals are driven by custom **HLSL shaders** and leverage **GPU Instancing** for high-performance particle-like effects.
-
-
+Work in Progress:
+1. Data Persistence (Save/Load System)
+2. Refactor to an IAssetProvider service
+3. Write Unit Tests for core services and models
+4. Integrate Unity's Addressable Asset System
 
 
 ### Shader Effects Showcase
@@ -41,25 +46,3 @@ This is a 2D incremental game developed in Unity. The project serves as a portfo
 
 ## Development Roadmap
 
-This project is an active work in progress, following a deliberate path of prototyping and professional refactoring.
-
-WIP:
-1. Restructure files (generally everything is in place, but some files in wrong places)
-2. Save/Load system
-3. Refactor IPrefabInstantiator to IAssetProvider
-4. Unit Tests
-5. Addressables
-
-Plan kinda
-1.  ✅ **Initial Prototype:** Build the core gameplay loop with a focus on functionality.
-2.  ✅ **Dependency Injection:** Integrate the Reflex framework to manage dependencies.
-3.  ✅ **Refactor to Model-View & SOLID:** Separate core entities (`Ball`, `Gadget`, `Store`) into pure C# Models and `MonoBehaviour` Views/Presenters.
-4.  ✅ **Implement Service Layer:** Abstract core logic into decoupled, testable services (`IMoneyService`, `IBallService`, `IGadgetService`).
-5.  ✅ **Decouple with Event Bus:** Implement a ScriptableObject-based event system to handle cross-system communication.
-6.  ✅ **Data-Driven Configuration:** Move all hardcoded settings into `ScriptableObject` assets for a designer-friendly workflow.
-7.  ✅ **Bootstrap Scene & Persistent Systems:** Create a professional startup flow with a persistent `ProjectScope` to manage the game's lifecycle.
-8.  ✅ **Data-driven Architecture**
-9.  ✅ **More Events using Event Channels + SOUNDS** Adding special events on things like BallMerge and ButGadget and using them for playing sounds for example. 
-10. ✅**Implement a Game State Machine (FSM):** Add states(menu, pause) and FSM for them **<-- WE ARE HERE**
-11. **Write Unit Tests:** Create EditMode tests for the pure C# services to verify their logic and ensure stability.
-12. **Modernize Asset Management:** Convert the prefab loading system to use Unity's Addressables for production-level asset management.
