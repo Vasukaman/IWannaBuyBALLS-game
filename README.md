@@ -6,6 +6,25 @@ This project is a 2D incremental game developed in Unity. While the gameplay is 
 
 -----
 
+### **Visual Effects Showcase**
+
+**Ball Merging (Metaball Effect)**
+
+![Merging_git](https://github.com/user-attachments/assets/65438e40-9194-475e-a5e2-e824c688f529)
+
+**Wobbly Gates**
+
+![wibbly gates](https://github.com/user-attachments/assets/86a4d903-0a17-48f6-9e3a-c1fc16c1dd1c)
+
+**Gadget Sell Zone**
+
+![Seller_git](https://github.com/user-attachments/assets/740ba7d8-9697-402e-becb-d03a6635ea59)
+
+**Ball Seller**
+
+![Sellet_git](https://github.com/user-attachments/assets/75fb8afe-e02b-458c-ac3b-9866911c0830)
+
+
 ### **Architectural Features**
 
   * **SOLID Principles & Decoupled Design**
@@ -29,23 +48,5 @@ This project is a 2D incremental game developed in Unity. While the gameplay is 
   * Write Unit Tests for core services and models
   * Integrate Unity's Addressable Asset System
 
------
 
-### **Visual Effects Showcase**
-
-**Ball Merging (Metaball Effect)**
-
-![Merging_git](https://github.com/user-attachments/assets/65438e40-9194-475e-a5e2-e824c688f529)
-
-**Wobbly Gates**
-
-![wibbly gates](https://github.com/user-attachments/assets/86a4d903-0a17-48f6-9e3a-c1fc16c1dd1c)
-
-**Gadget Sell Zone**
-
-![Seller_git](https://github.com/user-attachments/assets/740ba7d8-9697-402e-becb-d03a6635ea59)
-
-**Ball Seller**
-
-![Sellet_git](https://github.com/user-attachments/assets/75fb8afe-e02b-458c-ac3b-9866911c0830)
 
