@@ -1,7 +1,11 @@
 // Filename: RotatorOnActivate.cs
+using Cysharp.Threading.Tasks;
 using Gameplay.Interfaces;
+using System;
 using System.Collections;
+using System.Threading;
 using UnityEngine;
+
 
 namespace Gameplay.Gadgets
 {
@@ -77,15 +81,16 @@ namespace Gameplay.Gadgets
 
             // The logic now reads the rotation amount from the profile.
             _targetRotation *= Quaternion.Euler(0, 0, _profile.RotationDegreesPerActivate);
-            StartCoroutine(SmoothRotateCoroutine(_targetRotation));
+            SmoothRotateCoroutine(_targetRotation).Forget();
         }
 
-        private IEnumerator SmoothRotateCoroutine(Quaternion endRotation)
+        private async UniTaskVoid SmoothRotateCoroutine(Quaternion endRotation)
         {
             _isRotating = true;
             float timer = 0f;
             Quaternion startRotation = _cachedTransformToRotate.rotation;
 
+            var cancellationToken = this.GetCancellationTokenOnDestroy();
             // The logic now reads the duration from the profile.
             while (timer < _profile.RotationDuration)
             {
@@ -97,7 +102,7 @@ namespace Gameplay.Gadgets
 
                 _cachedTransformToRotate.rotation = Quaternion.Slerp(startRotation, endRotation, easedProgress);
 
-                yield return null;
+                await UniTask.Yield(cancellationToken);
             }
 
             _cachedTransformToRotate.rotation = endRotation;

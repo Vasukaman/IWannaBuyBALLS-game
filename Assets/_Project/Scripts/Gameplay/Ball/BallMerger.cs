@@ -3,8 +3,9 @@ using Core;
 using Core.Events;
 using Gameplay.BallSystem;
 using Reflex.Attributes;
-using System.Collections;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+using System;
 
 namespace Gameplay.BallSystem
 {
@@ -14,7 +15,6 @@ namespace Gameplay.BallSystem
     [RequireComponent(typeof(BallView))]
     public class BallMerger : MonoBehaviour
     {
-        
         [Header("References")]
         [SerializeField] private Renderer _ballRenderer;
         [SerializeField] private BallGameEvent _onBallMerge;
@@ -22,7 +22,6 @@ namespace Gameplay.BallSystem
         // --- References ---
         private BallView _ballView;
         private BallMergingProfile _mergingProfile;
-
         private MaterialPropertyBlock _propertyBlock;
 
         [Inject] private SoundSettingsProfile _soundSettingsProfile;
@@ -36,24 +35,20 @@ namespace Gameplay.BallSystem
 
         private void Awake()
         {
-            // 1. Get the root component.
             _ballView = GetComponent<BallView>();
 
-            // 2. Pull the specific profile.
             if (_ballView.Profile != null)
             {
                 _mergingProfile = _ballView.Profile.Merging;
             }
 
-            // 3. Validate.
             if (_mergingProfile == null)
             {
-                Debug.LogError("BallMergingProfile is not assigned in the master BallProfile! Disabling BallMerger.", this);
+                Debug.LogError("BallMergingProfile is not assigned! Disabling BallMerger.", this);
                 enabled = false;
-                return; // Return early to prevent further null errors
+                return;
             }
 
-            // Continue with other setup
             if (_ballRenderer != null)
             {
                 _propertyBlock = new MaterialPropertyBlock();
@@ -87,32 +82,29 @@ namespace Gameplay.BallSystem
         {
             if (!CanMergeWith(otherBall)) return;
 
-            // Set the state on the public API of both BallViews. This is clean and decoupled.
             _ballView.CanMerge = false;
             otherBall.CanMerge = false;
 
-            StartCoroutine(MergeCoroutine(otherBall));
+            // Call the async UniTask method directly. The .Forget() call indicates
+            // this is a "fire and forget" task.
+            MergeTask(otherBall).Forget();
         }
 
         // --- Event Handlers ---
 
         private void HandleBallInitialized(BallView ball)
         {
-            // The ball is not ready to merge immediately after spawning.
             _ballView.CanMerge = false;
-            StopAllCoroutines();
-            StartCoroutine(EnableMergeAfterCooldown());
+            // Call the async UniTask method instead of starting a coroutine.
+            EnableMergeAfterCooldown().Forget();
         }
 
-        /// <summary>
-        /// When our ball despawns, ensure its shader is reset.
-        /// </summary>
         private void HandleBallDespawned(BallView ball)
         {
             ResetMergeShader();
         }
 
-        // --- Private Logic & Coroutines ---
+        // --- Private Logic & Async Tasks ---
 
         private bool CanMergeWith(BallView otherBall)
         {
@@ -121,20 +113,26 @@ namespace Gameplay.BallSystem
                    _ballView.Data.CurrentPrice == otherBall.Data.CurrentPrice &&
                    _ballView.Velocity <= _mergingProfile.MaxVelocityToMerge &&
                    otherBall.Velocity <= _mergingProfile.MaxVelocityToMerge &&
-                   // Use InstanceID to ensure only one of two colliding balls initiates the merge.
                    GetInstanceID() > otherBall.GetInstanceID();
         }
 
-        private IEnumerator EnableMergeAfterCooldown()
+        /// <summary>
+        /// Replaces the EnableMergeAfterCooldown coroutine.
+        /// </summary>
+        private async UniTaskVoid EnableMergeAfterCooldown()
         {
-            yield return new WaitForSeconds(_mergingProfile.MergeCooldownAfterSpawn);
-            if (this != null) // Failsafe in case the object was destroyed during the wait
-            {
-                _ballView.CanMerge = true;
-            }
+            // UniTask.Delay is a zero-allocation, more precise replacement for WaitForSeconds.
+            // It also automatically handles cancellation if the object is destroyed.
+            await UniTask.Delay(TimeSpan.FromSeconds(_mergingProfile.MergeCooldownAfterSpawn), cancellationToken: this.GetCancellationTokenOnDestroy());
+
+            // The failsafe "if (this != null)" is no longer needed because the CancellationToken handles it.
+            _ballView.CanMerge = true;
         }
 
-        private IEnumerator MergeCoroutine(BallView otherBall)
+        /// <summary>
+        /// Replaces the MergeCoroutine with a much cleaner async UniTask method.
+        /// </summary>
+        private async UniTaskVoid MergeTask(BallView otherBall)
         {
             var originalLayer = gameObject.layer;
             gameObject.layer = GameLayers.MergingBall;
@@ -144,17 +142,23 @@ namespace Gameplay.BallSystem
             if (otherMerger == null)
             {
                 FinalizeMerge(otherBall, originalLayer);
-                yield break;
+                return;
             }
 
             float elapsedTime = 0f;
             Vector3 thisStartPosition = transform.position;
             Vector3 otherStartPosition = otherBall.transform.position;
 
+            var cancellationToken = this.GetCancellationTokenOnDestroy();
+
             while (elapsedTime < _mergingProfile.MergeDuration)
             {
-                // Failsafe in case the other ball is destroyed mid-animation
-                if (otherBall == null) { FinalizeMerge(null, originalLayer); yield break; }
+                // Failsafe if the other ball is destroyed mid-animation
+                if (otherBall == null)
+                {
+                    FinalizeMerge(null, originalLayer);
+                    return;
+                }
 
                 elapsedTime += Time.deltaTime;
                 float weight = Mathf.SmoothStep(0, 1, elapsedTime / _mergingProfile.MergeDuration);
@@ -166,7 +170,8 @@ namespace Gameplay.BallSystem
                 UpdateMergeShader(otherBall);
                 otherMerger.UpdateMergeShader(_ballView);
 
-                yield return null;
+             //   [cite_start]// This replaces "yield return null" and automatically cancels if the GameObject is destroyed. [cite: 1]
+                await UniTask.Yield(cancellationToken);
             }
 
             FinalizeMerge(otherBall, originalLayer);
@@ -174,7 +179,6 @@ namespace Gameplay.BallSystem
 
         private void FinalizeMerge(BallView otherBall, int originalLayer)
         {
-            // Only modify our ball and despawn the other.
             if (otherBall != null)
             {
                 _ballView.Data.MultiplyPrice(2f);
@@ -186,14 +190,14 @@ namespace Gameplay.BallSystem
             ResetMergeShader();
 
             // Start the cooldown again for this newly merged ball.
-            StartCoroutine(EnableMergeAfterCooldown());
+            EnableMergeAfterCooldown().Forget();
         }
 
         // --- Shader Update Methods ---
 
         public void UpdateMergeShader(BallView otherBall)
         {
-            if (_ballRenderer == null) return;
+            if (_ballRenderer == null || otherBall == null) return;
 
             float otherWorldRadius = otherBall.Radius * _mergingProfile.VisualRadiusMultiplier;
             Vector3 otherLocalPos = transform.InverseTransformPoint(otherBall.transform.position);

@@ -1,10 +1,12 @@
 // Filename: BallSellerZone.cs
 using Core.Events;
+using Cysharp.Threading.Tasks;
 using Gameplay.BallSystem;
 using Reflex.Attributes;
 using Services.Money;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 namespace Gameplay.Gadgets
@@ -52,7 +54,7 @@ namespace Gameplay.Gadgets
                 // ensure we only process each ball once.
                 if (_ballsBeingProcessed.Add(ball))
                 {
-                    StartCoroutine(AnimateAndSellBall(ball));
+                    AnimateAndSellBall(ball).Forget();
                 }
             }
         }
@@ -62,7 +64,7 @@ namespace Gameplay.Gadgets
         /// <summary>
         /// Handles the entire lifecycle of selling a ball, from animation to despawn.
         /// </summary>
-        private IEnumerator AnimateAndSellBall(BallView ball)
+        private async UniTaskVoid AnimateAndSellBall(BallView ball)
         {
             // 1. Tell the ball to prepare itself for the animation.
             ball.PrepareForSellingAnimation();
@@ -71,6 +73,7 @@ namespace Gameplay.Gadgets
             Vector3 startScale = ball.transform.localScale;
             float elapsedTime = 0f;
 
+            var cancellationToken = this.GetCancellationTokenOnDestroy();
             // 2. Animate the ball.
             while (elapsedTime < _animationDuration)
             {
@@ -80,7 +83,7 @@ namespace Gameplay.Gadgets
                 {
                     // If the ball is gone, we must also clean up our tracking set.
                     _ballsBeingProcessed.Remove(ball);
-                    yield break;
+                    return;
                 }
 
                 elapsedTime += Time.deltaTime;
@@ -89,7 +92,7 @@ namespace Gameplay.Gadgets
                 ball.transform.position = Vector3.Lerp(startPosition, transform.position, progress);
                 ball.transform.localScale = Vector3.Lerp(startScale, Vector3.zero, progress);
 
-                yield return null;
+                await UniTask.Yield(cancellationToken);
             }
 
             // 3. Finalize the transaction.
