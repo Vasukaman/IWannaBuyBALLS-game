@@ -38,6 +38,7 @@ This project is a 2D incremental game developed in Unity. While the gameplay is 
   * **ScriptableObject-based Event Bus** for decoupled, cross-system communication
   * **Game State Machine (FSM)** to manage the application's lifecycle
   * **GPU-Accelerated VFX** with custom **HLSL Shaders** and **GPU Instancing**
+  * **Async/Await with UniTask** for high-performance, asynchronous operations
 
 -----
 
